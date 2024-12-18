@@ -1,0 +1,179 @@
+\documentclass[11pt,a4paper,hidelinks]{article}
+
+\input{settings.tex}
+
+% Variables
+\newcommand{\vTitle}{DIY Optische ToF Distanzmessung}
+\newcommand{\vModule}{CAS Sensorik und Sensor Signal Conditioning}
+\newcommand{\vAuthorFirstName}{Matthias Schär,}
+\newcommand{\vAuthorLastName}{Timon Burkard}
+\newcommand{\vUniversity}{OST -- Ostschweizer Fachhochschule}
+\newcommand{\vDegree}{CAS Sensorik und Sensor Signal Conditioning}
+\newcommand{\vSemester}{HS24}
+\newcommand{\vProfessor}{Prof. Guido Keel}
+\newcommand{\vCity}{Rapperswil}
+\newcommand{\vAbstract}{Die vorliegende Projektarbeit befasst sich mit der Entwicklung eines\dots}
+
+% Acronyms
+\newacronym{pcb}{PCB}{Printed Circuit Board}
+
+\begin{document}
+
+\input{coverpage.tex}
+\input{titlepage.tex}
+\input{tocpage.tex}
+\input{acronympage.tex}
+\input{figurepage.tex}
+\input{equationpage.tex}
+\input{tablepage.tex}
+\input{codepage.tex}
+
+%%%%%%%%%%%%%%%%%%%%%% CONTENT START %%%%%%%%%%%%%%%%%%%%%%
+
+\section{Ein paar erste Beispiele}\label{sec:beispiel_kapitel}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\ \cite{lipsum2022lorem}
+
+\subsection{Abkürzungen}\label{sec:abkuerzungen}
+
+Wir verwenden den Begriff \acrfull{pcb} für eine Leiterplatte. Als Abkürzung verwenden wir \acrshort{pcb}. Wenn man will kann man es aber auch als \acrlong{pcb} ausschreiben.
+
+\subsection{Kapitelverweis}\label{sec:kapitelverweis}
+
+Es kann auf Kapitel verwiesen werden: Siehe Kapitel~\ref{sec:aufzaehlung}.
+
+\subsubsection{Aufzählung}\label{sec:aufzaehlung}
+
+Nachfolgend wird eine einfache Aufzählung gezeigt:
+
+\begin{outline}
+    \1 Erstes Element
+    \1 Zweites Element
+        \2 Unterelement
+\end{outline}
+
+\subsubsection{Fussbote}\label{sec:fussnote}
+
+Es können an beliebigen Stellen Fussnoten\footnote{Eine Fussnote ist eine Anmerkung, welche zuunterst auf der Seite aufgeführt wird.} eingefügt werden.
+
+\paragraph{Das ist ein Paragraph}
+
+Nach der subsubsection kommt der paragraph. Dieser ist nicht mehr nummeriert.
+
+\subparagraph{Das ist ein Subparagraph}
+
+Für spezielle Fälle kann auch ein subparagraph verwendet werden.
+
+\pagebreak
+
+\section{Bilder}\label{sec:bilder}
+
+In diesem Kapitel geht es um verschiedene Arten von Bildern. In Abbildung~\ref{fig:example1} ist ein einzelnes Bild dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{graphics/example1.jpg}
+    \caption[Erstes Beispielbild]{Erstes Beispielbild \cite{pixabay2022pcb}}\label{fig:example1}
+\end{figure}
+
+\subsection{Bilder Nebeneinander}\label{sec_literaturreview}
+
+Es können auch Bilder nebeneinander platziert werden, wie in Abbildung~\ref{fig:example2}~und~\ref{fig:example3} dargestellt.
+
+\begin{figure}[H]
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/example2.jpg}
+        \caption[Zweites Beispielbild]{Zweites Beispielbild}\label{fig:example2}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/example3.jpg}
+        \caption[Drittes Beispielbild]{Drittes Beispielbild}\label{fig:example3}
+    \end{minipage}
+\end{figure}
+
+\subsection{Vektorgrafiken}\label{sec:vektorgrafiken}
+
+Es gibt drei Möglichkeiten, um Vektorgrafiken zu inkludieren.
+
+\subsubsection{SVG Files}\label{sec:svg_files}
+
+Es können SVG Files verwendet werden, wie in Abbildung~\ref{fig:svg_example} gezeigt.
+
+\begin{figure}[H]
+    \centering
+    \includesvg[width=0.5\textwidth]{graphics/OST_Logo.svg}
+    \caption[SVG Beispielbild]{SVG Beispielbild}\label{fig:svg_example}
+\end{figure}
+
+\subsubsection{EPS Files}\label{sec:eps_files}
+
+Es können EPS Files verwendet werden, wie in Abbildung~\ref{fig:eps_example} gezeigt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/eps_example.eps}
+    \caption[EPS Beispielbild]{EPS Beispielbild}\label{fig:eps_example}
+\end{figure}
+
+\subsubsection{draw.io Files}\label{sec:drawio_files}
+
+Alternativ können auch draw.io Files verwendet werden, wie in Abbildung~\ref{fig:pdf_example} gezeigt. Dies müssen im diagrams/ Verzeichnis sein und werden automatisch in ein PDF konvertiert.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{diagrams/drawio_example.pdf}
+    \caption[draw.io Beispielbild]{draw.io Beispielbild}\label{fig:pdf_example}
+\end{figure}
+
+\section{Formeln}\label{sec:formel}
+
+In Formel~\ref{eq:dopplereffekt_allgemein} \cite{wikipedia2021doppler_effect} ist der Dopplereffekt gezeigt.
+
+\begin{equation}\label{eq:dopplereffekt_allgemein}
+    f = \frac{c \pm v_r}{c \pm v_s} \cdot f_0
+\end{equation}
+\myequations{Formel allgemeiner Dopplereffekt}
+
+Die Berechnung der DFT eines Signales $x[n]$ ist in Formel~\ref{eq:dft} gegeben.
+
+\begin{equation}\label{eq:dft}
+    X[k] = \sum^{N-1}_{n=0} x[n] \cdot e^{-j2 \pi n \frac{k}{N}},\qquad k = 0, 1, 2, \dotsb , N-1
+\end{equation}
+\myequations{Formel zur Berechnung der dft}
+
+$X[k]$ ist das berechnete Frequenzspektrum, welches durch $k$ indexiert wird. $N$ ist die Anzahl Sample des Signals und somit auch die Anzahl Frequenzkomponenten im Spektrum.
+
+\section{Tabelle}\label{sec:tabelle}
+
+In Tabelle~\ref{tab:example} ist eine Tabelle via CSV File gezeigt. Alternativ könnten Tabellen auch direkt im TEX File definiert werden.
+
+\begin{table}[H]
+    \mytable
+        {|l|c|c|}
+        {\textbf{Nr.} & \textbf{Frequenzkomponente [Hz]} & \textbf{Fliessgeschwindigkeit [m/s]}}
+        {\nr & \dominantfrequency & \determinedflowspeed}
+        {tables/example.csv}
+    \caption[Beispieltabelle]{\label{tab:example}Beispieltabelle}
+\end{table}
+
+\section{Code}\label{sec:code}
+
+In Code~\ref{code:example} ist ein Beispiel-Code in Matlab gezeigt.
+
+\lstinputlisting[language=matlab, label={code:example}, caption={Matlab-Beispeil}]{sourcecode/example.m}
+
+\section{Anhang}\label{sec:anhang}
+
+Es können auch ganze PDF-Seiten eingefügt werden. Siehe dazu die nachfolgenden zwei Seiten.
+
+\includepdf[pages=1, pagecommand={\subsection{Aufgabenstellung}\label{sec:aufgabenstellung}}, width=\textwidth, frame=true, offset=0 -1cm]{attachments/example.pdf}
+\includepdf[pages=2-, pagecommand={}, width=\textwidth, frame=true]{attachments/example.pdf}
+
+%%%%%%%%%%%%%%%%%%%%%% CONTENT END %%%%%%%%%%%%%%%%%%%%%%
+
+\input{referencepage.tex}
+
+\end{document}
