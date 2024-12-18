@@ -1,0 +1,28 @@
+name: Build STM32CubeIDE Project
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Build Debug and Release configuration
+      - name: Build Debug and Release configuration
+        uses: xanderhendriks/action-build-stm32cubeide@v13.0
+        with:
+          project-path: 'firmware'
+          project-target: 'DIY_ToF'
+
+      # Step 3: Upload artifacts
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          path: firmware/**/*.elf
