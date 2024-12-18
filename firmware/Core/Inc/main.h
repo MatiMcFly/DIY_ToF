@@ -59,14 +59,36 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define MCO_Pin GPIO_PIN_0
 #define MCO_GPIO_Port GPIOF
+#define PEAK_OPT_Pin GPIO_PIN_0
+#define PEAK_OPT_GPIO_Port GPIOA
 #define VCP_TX_Pin GPIO_PIN_2
 #define VCP_TX_GPIO_Port GPIOA
+#define START_OPT_Pin GPIO_PIN_0
+#define START_OPT_GPIO_Port GPIOB
+#define START_ELE_Pin GPIO_PIN_8
+#define START_ELE_GPIO_Port GPIOA
+#define INT_ELE_Pin GPIO_PIN_9
+#define INT_ELE_GPIO_Port GPIOA
+#define INT_OPT_Pin GPIO_PIN_10
+#define INT_OPT_GPIO_Port GPIOA
+#define STOP_ELE_Pin GPIO_PIN_11
+#define STOP_ELE_GPIO_Port GPIOA
 #define SWDIO_Pin GPIO_PIN_13
 #define SWDIO_GPIO_Port GPIOA
 #define SWCLK_Pin GPIO_PIN_14
 #define SWCLK_GPIO_Port GPIOA
 #define VCP_RX_Pin GPIO_PIN_15
 #define VCP_RX_GPIO_Port GPIOA
+#define SPI_CLK_Pin GPIO_PIN_3
+#define SPI_CLK_GPIO_Port GPIOB
+#define SPI_MISO_Pin GPIO_PIN_4
+#define SPI_MISO_GPIO_Port GPIOB
+#define SPI_MOSI_Pin GPIO_PIN_5
+#define SPI_MOSI_GPIO_Port GPIOB
+#define SPI_CS_ELE_Pin GPIO_PIN_6
+#define SPI_CS_ELE_GPIO_Port GPIOB
+#define SPI_CS_OPT_Pin GPIO_PIN_7
+#define SPI_CS_OPT_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
