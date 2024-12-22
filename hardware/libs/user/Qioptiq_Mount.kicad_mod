@@ -1,0 +1,135 @@
+(footprint "Qioptiq_Mount"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -0.5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "c904f95a-17de-44e1-8e81-ab040e85c0a1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "Qioptiq_Mount"
+		(at 0 1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "5d432566-a241-4cd5-bb05-8449ee0f0f83")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" "user:Qioptiq_Mount"
+		(at -20 20 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f3c45c2e-57c2-4ef8-9d4e-3b28a8bae5de")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at -20 20 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1fc94989-51db-44af-94b9-a2bf5a4ae638")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at -20 20 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3615206d-623d-4b6f-903f-9f35a4fdb0b8")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr allow_missing_courtyard)
+	(fp_circle
+		(center 0 0)
+		(end 12.5 0)
+		(stroke
+			(width 0.3)
+			(type default)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "ab0231fa-1e68-4190-852f-6bf23f8b2023")
+	)
+	(fp_poly
+		(pts
+			(xy -18.5 -20) (xy 18.5 -20) (xy 20 -18.5) (xy 20 18.5) (xy 18.5 20) (xy -18.5 20) (xy -20 18.5)
+			(xy -20 -18.5)
+		)
+		(stroke
+			(width 0.3)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "a0eabe3c-2010-4bd2-8c18-b88362d5cffe")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 2.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "b7ea6385-06ae-4f7e-b2ba-0cb10954051f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "" np_thru_hole circle
+		(at -15 -15)
+		(size 6.2 6.2)
+		(drill 6.2)
+		(layers "*.Mask" "Dwgs.User")
+		(uuid "49374fd1-c3ed-4439-a15d-b9d27ffb2127")
+	)
+	(pad "" np_thru_hole circle
+		(at -15 15)
+		(size 6.2 6.2)
+		(drill 6.2)
+		(layers "*.Mask" "Dwgs.User")
+		(uuid "ed072d9b-4aab-4790-aa2b-d440449138f9")
+	)
+	(pad "" np_thru_hole circle
+		(at 15 15)
+		(size 6.2 6.2)
+		(drill 6.2)
+		(layers "*.Mask" "Dwgs.User")
+		(uuid "1f65cf6b-4fa0-4ff2-b861-f24e7c013990")
+	)
+	(pad "" np_thru_hole circle
+		(at 15.5 -15)
+		(size 6.2 6.2)
+		(drill 6.2)
+		(layers "*.Mask" "Dwgs.User")
+		(uuid "16653f3a-496e-4f26-ac34-a71db570b2b5")
+	)
+)

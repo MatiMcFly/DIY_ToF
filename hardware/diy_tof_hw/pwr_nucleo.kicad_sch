@@ -4034,6 +4034,7 @@
 	)
 	(label "spi_cs_ele"
 		(at 99.06 149.86 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4110,6 +4111,7 @@
 	)
 	(label "spi_clk"
 		(at 99.06 147.32 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4164,6 +4166,7 @@
 	)
 	(label "spi_mosi"
 		(at 99.06 152.4 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4196,6 +4199,7 @@
 	)
 	(label "spi_miso"
 		(at 99.06 154.94 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
