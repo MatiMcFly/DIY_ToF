@@ -16,7 +16,7 @@
 	)
 	(lib_symbols)
 	(sheet
-		(at 193.04 113.03)
+		(at 146.05 109.728)
 		(size 55.88 24.13)
 		(fields_autoplaced yes)
 		(stroke
@@ -28,7 +28,7 @@
 		)
 		(uuid "1536e9f2-3315-42ae-af66-5ae730c43aea")
 		(property "Sheetname" "Optoelectronics"
-			(at 193.04 112.3184 0)
+			(at 146.05 109.0164 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -37,7 +37,7 @@
 			)
 		)
 		(property "Sheetfile" "optoelectronics.kicad_sch"
-			(at 193.04 137.7446 0)
+			(at 146.05 134.4426 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -82,6 +82,36 @@
 				)
 				(justify left top)
 			)
+		)
+		(pin "LD_pulse" output
+			(at 137.16 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "5d634d3f-b54c-4034-a9e8-5c5ee0252110")
+		)
+		(pin "stop_opt" input
+			(at 137.16 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "c32ee16c-5cb8-4998-a883-54539efd6a3f")
+		)
+		(pin "LD_enable" output
+			(at 137.16 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "9c660b2c-8b3b-4f26-bf19-ba88a6ed56ef")
 		)
 		(instances
 			(project "diy_tof_hw"

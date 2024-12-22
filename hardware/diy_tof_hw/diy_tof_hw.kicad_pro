@@ -500,6 +500,10 @@
       {
         "netclass": "Power",
         "pattern": "/Power_Nucleo/12_nuc"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "3V3"
       }
     ]
   },
