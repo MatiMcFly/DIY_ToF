@@ -15,9 +15,39 @@
 		(comment 8 "M. Schär")
 	)
 	(lib_symbols)
+	(wire
+		(pts
+			(xy 196.85 125.73) (xy 205.74 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "68aa8e88-7918-47b9-9529-d1491df138f8")
+	)
+	(wire
+		(pts
+			(xy 196.85 115.57) (xy 205.74 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cb22bb30-9d34-49cd-8906-8e8dfe3bcc26")
+	)
+	(wire
+		(pts
+			(xy 196.85 119.38) (xy 205.74 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d637d19e-9482-4696-8bce-48d86cf80660")
+	)
 	(sheet
-		(at 146.05 109.728)
-		(size 55.88 24.13)
+		(at 205.74 110.998)
+		(size 31.242 24.13)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -28,7 +58,7 @@
 		)
 		(uuid "1536e9f2-3315-42ae-af66-5ae730c43aea")
 		(property "Sheetname" "Optoelectronics"
-			(at 146.05 109.0164 0)
+			(at 205.74 110.2864 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -37,13 +67,43 @@
 			)
 		)
 		(property "Sheetfile" "optoelectronics.kicad_sch"
-			(at 146.05 134.4426 0)
+			(at 205.74 135.7126 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
 			)
+		)
+		(pin "~{LD_enable}" input
+			(at 205.74 115.57 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "fd789b57-9e6c-444e-8c07-2b9204d57fdd")
+		)
+		(pin "LD_Pulse" input
+			(at 205.74 119.38 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "661f962b-0a24-4836-b9f0-0b0672435c38")
+		)
+		(pin "stop_opt" output
+			(at 205.74 125.73 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "2023355d-dbde-4fc2-84df-d6081bc2603f")
 		)
 		(instances
 			(project "diy_tof_hw"
@@ -54,8 +114,8 @@
 		)
 	)
 	(sheet
-		(at 60.96 80.01)
-		(size 76.2 80.01)
+		(at 161.036 95.25)
+		(size 35.814 50.8)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -66,7 +126,7 @@
 		)
 		(uuid "e3345fca-f581-4274-8897-90c8927ce695")
 		(property "Sheetname" "Power_Nucleo"
-			(at 60.96 79.2984 0)
+			(at 161.036 94.5384 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -75,7 +135,7 @@
 			)
 		)
 		(property "Sheetfile" "pwr_nucleo.kicad_sch"
-			(at 60.96 160.6046 0)
+			(at 161.036 146.6346 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -84,7 +144,7 @@
 			)
 		)
 		(pin "LD_pulse" output
-			(at 137.16 118.11 0)
+			(at 196.85 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -94,7 +154,7 @@
 			(uuid "5d634d3f-b54c-4034-a9e8-5c5ee0252110")
 		)
 		(pin "stop_opt" input
-			(at 137.16 124.46 0)
+			(at 196.85 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -104,7 +164,7 @@
 			(uuid "c32ee16c-5cb8-4998-a883-54539efd6a3f")
 		)
 		(pin "LD_enable" output
-			(at 137.16 114.3 0)
+			(at 196.85 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)

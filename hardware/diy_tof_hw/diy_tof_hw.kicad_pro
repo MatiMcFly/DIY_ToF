@@ -504,6 +504,22 @@
       {
         "netclass": "Power",
         "pattern": "3V3"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "5V"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "GNDA"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "12V_LN"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "5V_LN"
       }
     ]
   },

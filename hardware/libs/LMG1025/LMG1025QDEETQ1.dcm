@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP LMG1025QDEETQ1
+D IC MOSFET GAN DRIVER 7A/5A 6-WSO
+K
+F https://www.ti.com/lit/gpn/LMG1025-Q1
+$ENDCMP
+#
+#End Doc Library
