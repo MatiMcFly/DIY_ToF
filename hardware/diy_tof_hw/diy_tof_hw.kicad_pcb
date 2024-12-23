@@ -1730,7 +1730,7 @@
 			(solder_mask_margin 0.102)
 			(uuid "b0bc4d4d-d925-4679-b531-becf00191aa1")
 		)
-		(model "NUCLEO-F042K6.step"
+		(model "../libs/NUCLEO_F042K6/NUCLEO-F042K6.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -5622,7 +5622,7 @@
 			(pintype "passive")
 			(uuid "f3cf8212-118f-4a32-8950-e2ddbb1483bf")
 		)
-		(model "LMG1025QDEETQ1.stp"
+		(model "../libs/LMG1025/LMG1025QDEETQ1.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -6692,7 +6692,7 @@
 			(pintype "power_in")
 			(uuid "77cda204-a1bf-4837-b05a-8dc290272f43")
 		)
-		(model "74LVC1G08QW5-7.stp"
+		(model "../libs/74LVC1G08QW5-7/74LVC1G08QW5-7.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -7987,7 +7987,7 @@
 			(pintype "passive")
 			(uuid "fb573afd-b0db-4af5-aa3f-aba4852c1a42")
 		)
-		(model "TDC7200PWR.stp"
+		(model "../libs/TDC7200/TDC7200PWR.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -11171,7 +11171,7 @@
 			(pintype "passive")
 			(uuid "1574742b-0c55-4048-86f7-6141c8020aad")
 		)
-		(model "TDC7200PWR.stp"
+		(model "../libs/TDC7200/TDC7200PWR.stp"
 			(offset
 				(xyz 0 0 0)
 			)

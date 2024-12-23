@@ -625,7 +625,7 @@
       "version": 1
     },
     "net_format_name": "",
-    "page_layout_descr_file": "C:\\Work\\SSSC\\DIY_ToF_Repository\\hardware\\libs\\Schematics_Template_A3.kicad_wks",
+    "page_layout_descr_file": "..\\libs\\Schematics_Template_A3.kicad_wks",
     "plot_directory": "",
     "spice_current_sheet_as_root": false,
     "spice_external_command": "spice \"%I\"",

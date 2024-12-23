@@ -4022,6 +4022,17 @@
 		)
 		(uuid "7b06a5dc-a49d-4714-a81e-ae6bdea0425e")
 	)
+	(text "JP3: nucleo powered by ext. 12V"
+		(exclude_from_sim no)
+		(at 213.868 32.512 0)
+		(effects
+			(font
+				(size 1.524 1.524)
+			)
+			(justify left)
+		)
+		(uuid "ca22bd8b-9a35-474e-90e4-ddee10214042")
+	)
 	(text "TDC electrical signal"
 		(exclude_from_sim no)
 		(at 53.34 113.538 0)
