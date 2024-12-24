@@ -1610,489 +1610,6 @@
 				)
 			)
 		)
-		(symbol "Device:D_Laser_Photo_MType"
-			(pin_names hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "LD"
-				(at 1.016 7.112 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "D_Laser_Photo_MType"
-				(at 1.016 -5.588 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 1.016 1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "http://www.egismos.disonhu.com/laser/diode-package.htm"
-				(at 2.286 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Laser diode with photodiode, common cathode on pin 2"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "opto laserdiode photodiode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "*LaserDiode*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "D_Laser_Photo_MType_0_1"
-				(circle
-					(center -1.524 0)
-					(radius 0.254)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(arc
-					(start -0.508 -1.778)
-					(mid -0.3302 -1.6002)
-					(end -0.508 -1.397)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start 0 -2.159)
-					(mid 0.3794 -1.778)
-					(end 0 -1.397)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.54 0) (xy -1.524 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 3.81) (xy 0 5.334)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 4.318) (xy 0 4.826)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 4.826) (xy 0 4.318)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 5.334) (xy 0 3.81)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.016 5.334) (xy -0.508 3.81)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.762 4.572) (xy -0.762 3.556)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.762 4.572) (xy -0.762 5.588)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.635 -1.397) (xy -0.635 -2.159)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.508 5.334) (xy -1.016 3.81)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -1.397) (xy 0 -2.159)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.032) (xy 0 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 4.572) (xy -1.778 4.572)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 -1.27) (xy 1.016 -3.81)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 -0.762) (xy 1.524 -0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 3.81) (xy 1.016 1.27)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 3.81 5.588) (xy 3.302 5.588)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.635 2.032) (xy -0.635 1.27) (xy -0.254 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.286 4.064) (xy 3.81 5.588) (xy 3.81 5.08)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 0.762) (xy 1.016 -0.762) (xy 1.016 -0.254)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 3.556 -1.27) (xy 3.556 -3.81) (xy 1.016 -2.54) (xy 3.556 -1.27)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 3.556 3.81) (xy 3.556 1.27) (xy 1.016 2.54) (xy 3.556 3.81)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 5.08 2.54) (xy -1.524 2.54) (xy -1.524 -2.54) (xy 5.08 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 4.064) (xy 2.54 5.588) (xy 2.54 5.08) (xy 2.54 5.588) (xy 2.032 5.588)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 3.81 0.762) (xy 2.286 -0.762) (xy 2.286 -0.254) (xy 2.286 -0.762) (xy 2.794 -0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start 0 1.27)
-					(mid 0.3794 1.651)
-					(end 0 2.032)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start 4.318 6.096)
-					(end -2.286 -4.318)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "D_Laser_Photo_MType_1_1"
-				(pin passive line
-					(at 7.62 2.54 180)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -5.08 0 0)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 -2.54 180)
-					(length 2.54)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "Device:R"
 			(pin_numbers hide)
 			(pin_names
@@ -2792,6 +2309,242 @@
 				)
 			)
 		)
+		(symbol "NJL6401R-3-TE1:NJL6401R-3-TE1"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 3.302 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Value" "NJL6401R-3-TE1"
+				(at 3.302 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "NJL6401R3TE1"
+				(at 3.302 -106.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://componentsearchengine.com/Datasheets/1/NJL6401R-3-TE1.pdf"
+				(at 3.302 -206.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Description" "Photodiode 800nm 2ns 2-SMD, No Lead "
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Height" "0.95"
+				(at 3.302 -406.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Mouser Part Number" "513-NJL6401R-3-TE1"
+				(at 3.302 -506.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Mouser Price/Stock" "https://www.mouser.com/Search/Refine.aspx?Keyword=513-NJL6401R-3-TE1"
+				(at 3.302 -606.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Name" "New Japan Radio"
+				(at 3.302 -706.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Part_Number" "NJL6401R-3-TE1"
+				(at 3.302 -806.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(symbol "NJL6401R-3-TE1_1_1"
+				(polyline
+					(pts
+						(xy -6.604 -3.302) (xy -4.064 -5.842)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -5.08 -1.778) (xy -2.54 -4.318)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -6.35) (xy 0 -7.62)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -3.81) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -6.35) (xy -1.27 -6.35)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -5.588 -5.08) (xy -4.826 -4.318) (xy -4.064 -5.842) (xy -5.588 -5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy -4.064 -3.556) (xy -3.302 -2.794) (xy -2.54 -4.318) (xy -4.064 -3.556)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 -3.81) (xy 1.27 -3.81) (xy 0 -6.35) (xy -1.27 -3.81)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(pin passive line
+					(at 0 0 270)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -10.16 90)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "Qioptiq_Mount_1"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -2865,49 +2618,27 @@
 				)
 			)
 		)
-		(symbol "Sensor_Optical:BPW34"
-			(pin_numbers hide)
-			(pin_names
-				(offset 1.016) hide)
+		(symbol "RLD65NZX1-00A:RLD65NZX1"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "D"
-				(at 0.508 1.778 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "BPW34"
-				(at -1.016 -2.794 0)
+			(property "Reference" "LD"
+				(at -2.286 7.62 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Footprint" "OptoDevice:Osram_DIL2_4.3x4.65mm_P5.08mm"
-				(at 0 4.445 0)
+			(property "Value" ""
+				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(hide yes)
 				)
 			)
-			(property "Datasheet" "http://www.vishay.com/docs/81521/bpw34.pdf"
-				(at -1.27 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Silicon PIN Photodiode"
+			(property "Footprint" ""
 				(at 0 0 0)
 				(effects
 					(font
@@ -2916,7 +2647,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "opto PIN photodiode"
+			(property "Datasheet" ""
 				(at 0 0 0)
 				(effects
 					(font
@@ -2925,7 +2656,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_fp_filters" "Osram*DIL2*4.3x4.65mm*P5.08*"
+			(property "Description" ""
 				(at 0 0 0)
 				(effects
 					(font
@@ -2934,13 +2665,59 @@
 					(hide yes)
 				)
 			)
-			(symbol "BPW34_0_1"
-				(polyline
-					(pts
-						(xy -2.54 1.27) (xy -2.54 -1.27)
-					)
+			(symbol "RLD65NZX1_0_1"
+				(rectangle
+					(start -3.556 6.096)
+					(end 3.048 -4.318)
 					(stroke
-						(width 0.1524)
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(circle
+					(center -2.794 0)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(arc
+					(start -1.778 -1.778)
+					(mid -1.5998 -1.5875)
+					(end -1.778 -1.397)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -1.27 -2.159)
+					(mid -0.8906 -1.778)
+					(end -1.27 -1.397)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -1.27 1.27)
+					(mid -0.8906 1.651)
+					(end -1.27 2.032)
+					(stroke
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -2949,7 +2726,7 @@
 				)
 				(polyline
 					(pts
-						(xy -2.032 1.778) (xy -1.524 1.778)
+						(xy -3.81 0) (xy -2.794 0)
 					)
 					(stroke
 						(width 0)
@@ -2961,7 +2738,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 -1.27) (xy 0 1.27)
+						(xy -2.794 3.81) (xy -1.27 5.334)
 					)
 					(stroke
 						(width 0)
@@ -2973,7 +2750,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy -2.54 0)
+						(xy -2.794 4.318) (xy -1.27 4.826)
 					)
 					(stroke
 						(width 0)
@@ -2985,7 +2762,7 @@
 				)
 				(polyline
 					(pts
-						(xy -0.508 3.302) (xy -2.032 1.778) (xy -2.032 2.286)
+						(xy -2.794 4.826) (xy -1.27 4.318)
 					)
 					(stroke
 						(width 0)
@@ -2997,7 +2774,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 1.27) (xy -2.54 0) (xy 0 -1.27)
+						(xy -2.794 5.334) (xy -1.27 3.81)
 					)
 					(stroke
 						(width 0)
@@ -3009,7 +2786,223 @@
 				)
 				(polyline
 					(pts
-						(xy 0.762 3.302) (xy -0.762 1.778) (xy -0.762 2.286) (xy -0.762 1.778) (xy -0.254 1.778)
+						(xy -2.286 5.334) (xy -1.778 3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.032 4.572) (xy -2.032 3.556)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.032 4.572) (xy -2.032 5.588)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.905 -1.397) (xy -1.905 -2.159)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.778 5.334) (xy -2.286 3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 -1.397) (xy -1.27 -2.159)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 2.032) (xy -1.27 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.508 4.572) (xy -3.048 4.572)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.508 5.588) (xy 0 5.588)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.254 -1.27) (xy -0.254 -3.81)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.254 -0.762) (xy 0.254 -0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.286 3.81) (xy 2.286 1.27)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.905 2.032) (xy -1.905 1.27) (xy -1.524 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.016 4.064) (xy -0.508 5.588) (xy -0.508 5.08)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0.762) (xy -0.254 -0.762) (xy -0.254 -0.254)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.286 -1.27) (xy 2.286 -3.81) (xy -0.254 -2.54) (xy 2.286 -1.27)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.81 2.54) (xy -2.794 2.54) (xy -2.794 -2.54) (xy 3.81 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.286 4.064) (xy 0.762 5.588) (xy 0.762 5.08) (xy 0.762 5.588) (xy 1.27 5.588)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 0.762) (xy 1.016 -0.762) (xy 1.016 -0.254) (xy 1.016 -0.762) (xy 1.524 -0.762)
 					)
 					(stroke
 						(width 0)
@@ -3020,11 +3013,23 @@
 					)
 				)
 			)
-			(symbol "BPW34_1_1"
+			(symbol "RLD65NZX1_1_1"
+				(polyline
+					(pts
+						(xy -0.254 3.81) (xy -0.254 1.27) (xy 2.286 2.54) (xy -0.254 3.81)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
 				(pin passive line
-					(at -5.08 0 0)
+					(at 6.35 2.54 180)
 					(length 2.54)
-					(name "K"
+					(name "~"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3040,9 +3045,9 @@
 					)
 				)
 				(pin passive line
-					(at 2.54 0 180)
+					(at 6.35 -2.54 180)
 					(length 2.54)
-					(name "A"
+					(name "~"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3050,6 +3055,24 @@
 						)
 					)
 					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -6.35 0 0)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3977,7 +4000,7 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 144.78) (xy 66.04 146.05)
+			(xy 66.04 144.78) (xy 66.04 147.32)
 		)
 		(stroke
 			(width 0)
@@ -4397,16 +4420,6 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 153.67) (xy 66.04 158.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "78d26506-2da2-4f3d-b096-a8d9382092d9")
-	)
-	(wire
-		(pts
 			(xy 173.99 68.58) (xy 175.26 68.58)
 		)
 		(stroke
@@ -4484,6 +4497,16 @@
 			(type default)
 		)
 		(uuid "91857e23-2ffb-48f4-b216-412f2101878f")
+	)
+	(wire
+		(pts
+			(xy 66.04 157.48) (xy 66.04 158.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "94202c87-7b66-4360-b17e-0891003d2de3")
 	)
 	(wire
 		(pts
@@ -4944,19 +4967,6 @@
 		)
 		(uuid b6f6fc4b-890f-4682-8113-6d4489bda99f)
 	)
-	(text "ACHTUNG: LASER TYP TBD, LD1 + R25 ANPASSEN!"
-		(exclude_from_sim no)
-		(at 232.41 57.15 0)
-		(effects
-			(font
-				(size 1.778 1.778)
-				(thickness 0.3556)
-				(bold yes)
-				(color 255 36 34 1)
-			)
-		)
-		(uuid "08e8addb-bb74-49bc-8ee4-35dfc4cd49a7")
-	)
 	(text "U2"
 		(exclude_from_sim no)
 		(at 127 253.746 0)
@@ -4976,6 +4986,16 @@
 			)
 		)
 		(uuid "461d7709-1fcc-4423-9bf2-730fbcf57f41")
+	)
+	(text "RLD65NZX1"
+		(exclude_from_sim no)
+		(at 205.994 53.34 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "47043643-0004-4393-b966-b1d92ec76588")
 	)
 	(text "IC22"
 		(exclude_from_sim no)
@@ -5489,6 +5509,79 @@
 			(project "diy_tof_hw"
 				(path "/0f7bf370-0a80-4101-a61d-d850fd66ab1d/1536e9f2-3315-42ae-af66-5ae730c43aea"
 					(reference "#PWR037")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "RLD65NZX1-00A:RLD65NZX1")
+		(at 193.04 50.8 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1cd51b67-1db0-4515-9573-db890c310f91")
+		(property "Reference" "LD1"
+			(at 200.66 50.1649 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "~"
+			(at 200.66 52.07 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "RLD65NZX1-00A:RLD85PZJ400A"
+			(at 193.04 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 193.04 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 193.04 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "01cffdf8-3505-4f4c-b9ed-3d2480b03d30")
+		)
+		(pin "2"
+			(uuid "d0c1ec68-a327-4ee7-8d2e-59bdf68d749d")
+		)
+		(pin "3"
+			(uuid "3b971d88-f939-4224-a409-0e211bf732fe")
+		)
+		(instances
+			(project ""
+				(path "/0f7bf370-0a80-4101-a61d-d850fd66ab1d/1536e9f2-3315-42ae-af66-5ae730c43aea"
+					(reference "LD1")
 					(unit 1)
 				)
 			)
@@ -6288,76 +6381,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Sensor_Optical:BPW34")
-		(at 66.04 151.13 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "311db716-05e8-4053-b581-a86a75621df9")
-		(property "Reference" "D1"
-			(at 71.12 148.9328 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "BPW34"
-			(at 71.12 151.4728 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "OptoDevice:Osram_DIL2_4.3x4.65mm_P5.08mm"
-			(at 70.485 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.vishay.com/docs/81521/bpw34.pdf"
-			(at 66.04 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Silicon PIN Photodiode"
-			(at 66.04 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "3c5e0b91-541e-4995-ae9e-28567353cc61")
-		)
-		(pin "2"
-			(uuid "ee98bddf-5c93-4efb-8da9-ff6c8fd311e3")
-		)
-		(instances
-			(project "diy_tof_hw"
-				(path "/0f7bf370-0a80-4101-a61d-d850fd66ab1d/1536e9f2-3315-42ae-af66-5ae730c43aea"
-					(reference "D1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector:Conn_01x01_Pin")
 		(at 120.65 55.88 270)
 		(unit 1)
@@ -6482,78 +6505,6 @@
 			(project "diy_tof_hw"
 				(path "/0f7bf370-0a80-4101-a61d-d850fd66ab1d/1536e9f2-3315-42ae-af66-5ae730c43aea"
 					(reference "TP12")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_Laser_Photo_MType")
-		(at 195.58 52.07 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "380f210e-1d92-4012-8f71-0d631f83cd83")
-		(property "Reference" "LD1"
-			(at 200.66 49.5299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "D_Laser_Photo_MType"
-			(at 200.66 52.0699 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "OptoDevice:LaserDiode_TO5-D9-3"
-			(at 193.675 51.054 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.egismos.disonhu.com/laser/diode-package.htm"
-			(at 198.12 49.784 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Laser diode with photodiode, common cathode on pin 2"
-			(at 195.58 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b5e8982a-782b-4663-a70b-8e0d15c41863")
-		)
-		(pin "2"
-			(uuid "c41a6942-9172-4724-805c-8aee1775c152")
-		)
-		(pin "3"
-			(uuid "912d4ab4-c592-4be6-a31a-04116da0cb78")
-		)
-		(instances
-			(project ""
-				(path "/0f7bf370-0a80-4101-a61d-d850fd66ab1d/1536e9f2-3315-42ae-af66-5ae730c43aea"
-					(reference "LD1")
 					(unit 1)
 				)
 			)
@@ -7154,6 +7105,128 @@
 			(project "diy_tof_hw"
 				(path "/0f7bf370-0a80-4101-a61d-d850fd66ab1d/1536e9f2-3315-42ae-af66-5ae730c43aea"
 					(reference "RV22")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "NJL6401R-3-TE1:NJL6401R-3-TE1")
+		(at 66.04 157.48 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "577fbe49-4b6d-4030-a911-566957eed348")
+		(property "Reference" "D1"
+			(at 73.66 151.5109 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "NJL6401R-3-TE1"
+			(at 73.66 154.0509 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "NJL6401R3TE1"
+			(at 62.738 51.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://componentsearchengine.com/Datasheets/1/NJL6401R-3-TE1.pdf"
+			(at 62.738 -48.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" "Photodiode 800nm 2ns 2-SMD, No Lead"
+			(at 66.04 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Height" "0.95"
+			(at 62.738 -248.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "513-NJL6401R-3-TE1"
+			(at 62.738 -348.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.com/Search/Refine.aspx?Keyword=513-NJL6401R-3-TE1"
+			(at 62.738 -448.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Name" "New Japan Radio"
+			(at 62.738 -548.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "NJL6401R-3-TE1"
+			(at 62.738 -648.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "a5190c00-a035-4f7a-8d5d-94cd9ef5e32b")
+		)
+		(pin "1"
+			(uuid "2b6ca4df-0f0a-422d-8ef3-7652eb6a2608")
+		)
+		(instances
+			(project ""
+				(path "/0f7bf370-0a80-4101-a61d-d850fd66ab1d/1536e9f2-3315-42ae-af66-5ae730c43aea"
+					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -9833,7 +9906,7 @@
 	)
 	(symbol
 		(lib_id "Graphic:SYM_LASER_Large")
-		(at 177.8 50.8 0)
+		(at 219.71 49.53 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -9842,7 +9915,7 @@
 		(fields_autoplaced yes)
 		(uuid "dd6e6348-a410-4800-9826-299958c1512f")
 		(property "Reference" "#SYM2"
-			(at 177.8 45.72 0)
+			(at 219.71 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9851,7 +9924,7 @@
 			)
 		)
 		(property "Value" "SYM_LASER_Large"
-			(at 177.8 57.531 0)
+			(at 219.71 56.261 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9860,7 +9933,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 177.546 55.245 0)
+			(at 219.456 53.975 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9869,7 +9942,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 178.562 55.88 0)
+			(at 220.472 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9878,7 +9951,7 @@
 			)
 		)
 		(property "Description" "Laser radiation warning symbol, large"
-			(at 177.8 50.8 0)
+			(at 219.71 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
