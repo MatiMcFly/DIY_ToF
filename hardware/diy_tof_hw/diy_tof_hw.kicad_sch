@@ -85,16 +85,6 @@
 			)
 			(uuid "fd789b57-9e6c-444e-8c07-2b9204d57fdd")
 		)
-		(pin "LD_Pulse" input
-			(at 205.74 119.38 180)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-			(uuid "661f962b-0a24-4836-b9f0-0b0672435c38")
-		)
 		(pin "stop_opt" output
 			(at 205.74 125.73 180)
 			(effects
@@ -104,6 +94,16 @@
 				(justify left)
 			)
 			(uuid "2023355d-dbde-4fc2-84df-d6081bc2603f")
+		)
+		(pin "LD_pulse" input
+			(at 205.74 119.38 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "338855f3-e52d-45be-ae02-14577f2c628d")
 		)
 		(instances
 			(project "diy_tof_hw"
@@ -163,7 +163,7 @@
 			)
 			(uuid "c32ee16c-5cb8-4998-a883-54539efd6a3f")
 		)
-		(pin "LD_enable" output
+		(pin "~{LD_enable}" output
 			(at 196.85 115.57 0)
 			(effects
 				(font
@@ -171,7 +171,7 @@
 				)
 				(justify right)
 			)
-			(uuid "9c660b2c-8b3b-4f26-bf19-ba88a6ed56ef")
+			(uuid "2b38f3e8-5a7a-4d14-83cf-8e4c8cb4ca93")
 		)
 		(instances
 			(project "diy_tof_hw"
