@@ -17,33 +17,33 @@
 	(lib_symbols)
 	(wire
 		(pts
-			(xy 196.85 125.73) (xy 205.74 125.73)
+			(xy 195.834 119.38) (xy 205.74 119.38)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "68aa8e88-7918-47b9-9529-d1491df138f8")
+		(uuid "4f3d6d3e-5bb4-4ed7-b868-636a8f9ee1e7")
 	)
 	(wire
 		(pts
-			(xy 196.85 115.57) (xy 205.74 115.57)
+			(xy 195.834 125.73) (xy 205.74 125.73)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "cb22bb30-9d34-49cd-8906-8e8dfe3bcc26")
+		(uuid "7778671c-3f01-494d-9cac-8a291287e345")
 	)
 	(wire
 		(pts
-			(xy 196.85 119.38) (xy 205.74 119.38)
+			(xy 195.834 115.57) (xy 205.74 115.57)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d637d19e-9482-4696-8bce-48d86cf80660")
+		(uuid "8f301fdb-094b-4e57-b08e-e865d6c0be56")
 	)
 	(sheet
 		(at 205.74 110.998)
@@ -114,7 +114,7 @@
 		)
 	)
 	(sheet
-		(at 161.036 95.25)
+		(at 160.02 95.25)
 		(size 35.814 50.8)
 		(fields_autoplaced yes)
 		(stroke
@@ -125,8 +125,8 @@
 			(color 0 0 0 0.0000)
 		)
 		(uuid "e3345fca-f581-4274-8897-90c8927ce695")
-		(property "Sheetname" "Power_Nucleo"
-			(at 161.036 94.5384 0)
+		(property "Sheetname" "Power_Nucleo_TDC"
+			(at 160.02 94.5384 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -134,8 +134,8 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "pwr_nucleo.kicad_sch"
-			(at 161.036 146.6346 0)
+		(property "Sheetfile" "pwr_nucleo_tdc.kicad_sch"
+			(at 160.02 146.6346 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -144,7 +144,7 @@
 			)
 		)
 		(pin "LD_pulse" output
-			(at 196.85 119.38 0)
+			(at 195.834 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -154,7 +154,7 @@
 			(uuid "5d634d3f-b54c-4034-a9e8-5c5ee0252110")
 		)
 		(pin "stop_opt" input
-			(at 196.85 125.73 0)
+			(at 195.834 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -164,7 +164,7 @@
 			(uuid "c32ee16c-5cb8-4998-a883-54539efd6a3f")
 		)
 		(pin "~{LD_enable}" output
-			(at 196.85 115.57 0)
+			(at 195.834 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
