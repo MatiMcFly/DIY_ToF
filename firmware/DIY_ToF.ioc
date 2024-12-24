@@ -194,6 +194,3 @@ VP_SYS_VS_Systick.Signal=SYS_VS_Systick
 board=NUCLEO-F042K6
 boardIOC=true
 isbadioc=false
-isbadioc=false
-isbadioc=false
-isbadioc=false
