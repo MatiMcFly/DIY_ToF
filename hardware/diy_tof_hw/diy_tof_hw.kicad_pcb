@@ -9340,7 +9340,7 @@
 		(descr "WSON(6)")
 		(tags "Integrated Circuit")
 		(property "Reference" "IC22"
-			(at 0 0 0)
+			(at 2.01 -2.35 0)
 			(layer "F.SilkS")
 			(uuid "0e1721e0-4258-401c-8e4c-dce5f1e16ba6")
 			(effects
@@ -9642,7 +9642,7 @@
 			(pintype "passive")
 			(uuid "c2337da9-8833-4bf0-aeb3-854af622daa1")
 		)
-		(model "LMG1025QDEETQ1.stp"
+		(model "../libs/LMG1025/LMG1025QDEETQ1.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -11201,7 +11201,7 @@
 			(pintype "power_in")
 			(uuid "b1fa50c2-7be6-4674-b389-55636c6912b9")
 		)
-		(model "74LVC1G08QW5-7.stp"
+		(model "../libs/74LVC1G08QW5-7/74LVC1G08QW5-7.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -12749,7 +12749,7 @@
 			(pintype "passive")
 			(uuid "85267200-3893-4d3b-85e3-7289380ce0dd")
 		)
-		(model "TDC7200PWR.stp"
+		(model "../libs/TDC7200/TDC7200PWR.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -17051,7 +17051,7 @@
 			(pintype "passive")
 			(uuid "3caaa8bc-4d2e-42d0-b276-086708ddfd27")
 		)
-		(model "TDC7200PWR.stp"
+		(model "../libs/TDC7200/TDC7200PWR.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -17812,7 +17812,7 @@
 		(at 98.049999 108.325001)
 		(tags "CSD17578Q3A ")
 		(property "Reference" "V1"
-			(at 0 0 0)
+			(at -3.049999 -2.325001 0)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(uuid "4ab2f17b-4d63-40f2-8f34-f121260bb2d7")
@@ -18645,6 +18645,7 @@
 			(at -1.651 -3.0734 0)
 			(unlocked yes)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "1b793a58-3f52-4b51-802f-61166e779e88")
 			(effects
 				(font
@@ -18790,6 +18791,17 @@
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(uuid "12d8cb1f-d139-4770-a6be-7af5ad31ccd2")
+		)
+		(model "../libs/CSD17578Q3A/DNH0008A.stp"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
 		)
 	)
 	(footprint "graphics:laser_hazard"
