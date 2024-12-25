@@ -41,6 +41,79 @@
 
 \subsection{Time of Flight}
 \subsection{Photostrom}
+
+Zur Berechnung des theoretisch zu erwartenden Photostrom wird von einer Distanz zur Wand von $10~m$ ausgegangen.
+
+Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform Halbkugel-förmig gestreut. In der Realität wird sich die Streuung nicht uniform verteilen, sondern in der Mitte stärker konzentriert sein. Die folgende Berechnung zeigt also den worst case.
+
+\begin{equation}\label{eq:pin}
+    P_{in} = E_e \cdot A = \frac{I_e}{r^2} \cdot A
+\end{equation}
+\myequations{Eintreffende Lichtleistung}
+
+\begin{equation}\label{eq:ie}
+    I_e = \frac{P_{out}}{\Omega}
+\end{equation}
+\myequations{Strahlungsintensität}
+
+\begin{equation}\label{eq:omega}
+    \Omega = \frac{4\cdot \pi \cdot 0.5}{d}
+\end{equation}
+\myequations{Raumwinkel}
+
+\begin{equation}\label{eq:iph}
+    I_{ph} = S \cdot P_{in}
+\end{equation}
+\myequations{Photostrom}
+
+\subsubsection{Berechnung mit RLD94PZJ5 und BPV23NF}
+
+\begin{equation}\label{eq:rld94pzj5_num}
+    P_{out} = 285~mW
+\end{equation}
+\myequations{Werte des RLD94PZJ5}
+
+\begin{equation}\label{eq:rbpv23nf_num}
+    \begin{split}
+        A &= 4.4~mm^2\\
+        S &= 0.6~\frac{A}{W}
+    \end{split}
+\end{equation}
+\myequations{Werte des BPV23NF}
+
+\begin{equation}\label{eq:rld94pzj5_rbpv23nf_num}
+    \begin{split}
+        I_e    &= \frac{P_{out}}{\Omega} = \frac{285~mW}{\frac{4\cdot \pi \cdot 0.5}{d}} = \frac{285~mW}{\frac{4\cdot \pi \cdot 0.5}{10~m}} = 45~\frac{mW}{sr}\\
+        P_{in} &= \frac{I_e}{r^2} \cdot A = 45~\frac{mW}{sr} \cdot 4.4~mm^2 = 2~nW\\
+        I_{ph} &= S \cdot P_{in} = 0.6~\frac{A}{W} \cdot 2~nW = 1.2~nA
+    \end{split}
+\end{equation}
+\myequations{Nummerische Resultate mit RLD94PZJ5 und BPV23NF}
+
+\subsubsection{Berechnung mit RLD65NZX1 and NJL6401R-3}
+
+\begin{equation}\label{eq:rld94pzj5_num}
+    P_{out} = 10~mW
+\end{equation}
+\myequations{Werte des RLD94PZJ5}
+
+\begin{equation}\label{eq:rbpv23nf_num}
+    \begin{split}
+        A &= 0.7~mm \cdot 0.7~mm = 0.49~mm^2\\
+        S &= 0.42~\frac{A}{W}
+    \end{split}
+\end{equation}
+\myequations{Werte des BPV23NF}
+
+\begin{equation}\label{eq:rld94pzj5_rbpv23nf_num}
+    \begin{split}
+        I_e    &= \frac{P_{out}}{\Omega} = \frac{10~mW}{\frac{4\cdot \pi \cdot 0.5}{d}} = \frac{10~mW}{\frac{4\cdot \pi \cdot 0.5}{10~m}} = 1.6~\frac{mW}{sr}\\
+        P_{in} &= \frac{I_e}{r^2} \cdot A = 45~\frac{mW}{sr} \cdot 0.49~mm^2 = 8~pW\\
+        I_{ph} &= S \cdot P_{in} = 0.42~\frac{A}{W} \cdot 8~pW = 3.3~pA
+    \end{split}
+\end{equation}
+\myequations{Nummerische Resultate mit RLD94PZJ5 und BPV23NF}
+
 \subsection{Transimpedanzverstärker}
 
 \pagebreak
