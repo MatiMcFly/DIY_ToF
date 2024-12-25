@@ -5,6 +5,7 @@
 	(uuid "0c5bf7de-a808-4907-9c1d-a57b37f6dac5")
 	(paper "A3")
 	(title_block
+		(title "Optoelectronics")
 		(rev "0.1")
 		(comment 2 "schematics")
 		(comment 3 "w.i.p.")
