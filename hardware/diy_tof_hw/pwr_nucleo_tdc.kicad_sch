@@ -2952,6 +2952,12 @@
 		(uuid "149dce84-c959-4157-8617-7d2b2f0c11df")
 	)
 	(junction
+		(at 66.04 149.86)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "5784c29e-684f-4128-96fe-ebc11038fe4d")
+	)
+	(junction
 		(at 68.58 232.41)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3099,6 +3105,16 @@
 			(type default)
 		)
 		(uuid "02ce312e-22ab-433a-8c41-f845c63e8355")
+	)
+	(wire
+		(pts
+			(xy 66.04 149.86) (xy 80.01 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "041ac387-0561-4f20-9edf-8b97ae31ab1a")
 	)
 	(wire
 		(pts
@@ -3742,7 +3758,7 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 149.86) (xy 80.01 149.86)
+			(xy 62.23 149.86) (xy 66.04 149.86)
 		)
 		(stroke
 			(width 0)
@@ -4399,6 +4415,16 @@
 			(type default)
 		)
 		(uuid "fd8f346b-c513-4d08-a886-3cb638c56880")
+	)
+	(wire
+		(pts
+			(xy 66.04 151.13) (xy 66.04 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fdb2cdf0-453c-459d-85cf-4952933ee8ec")
 	)
 	(wire
 		(pts
@@ -9056,6 +9082,71 @@
 			(project "diy_tof_hw"
 				(path "/0f7bf370-0a80-4101-a61d-d850fd66ab1d/e3345fca-f581-4274-8897-90c8927ce695"
 					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x01_Pin")
+		(at 66.04 156.21 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ae06291f-6dbe-410f-a274-52ed4e31b115")
+		(property "Reference" "TP20"
+			(at 64.262 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x01_Pin"
+			(at 63.5 155.575 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
+			(at 66.04 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 66.04 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x01, script generated"
+			(at 66.04 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d1fb9564-f85d-447d-871f-739687450adc")
+		)
+		(instances
+			(project "diy_tof_hw"
+				(path "/0f7bf370-0a80-4101-a61d-d850fd66ab1d/e3345fca-f581-4274-8897-90c8927ce695"
+					(reference "TP20")
 					(unit 1)
 				)
 			)
