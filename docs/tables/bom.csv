@@ -1,0 +1,35 @@
+Reference;Value;Datasheet;Footprint;Qty;DNP
+C1,C4,C22,C23,C26,C28;100n;~;Capacitor\_SMD:C\_0402\_1005Metric\_Pad0.74x0.62mm;6;
+C2,C3;1u;~;Capacitor\_SMD:C\_0402\_1005Metric\_Pad0.74x0.62mm;2;
+C20;1p;~;Capacitor\_SMD:C\_0402\_1005Metric\_Pad0.74x0.62mm;1;
+C21;10p;~;Capacitor\_SMD:C\_0402\_1005Metric\_Pad0.74x0.62mm;1;
+C24,C29;2.2u;~;Capacitor\_SMD:C\_0603\_1608Metric\_Pad1.08x0.95mm;2;
+C25,C27;6.8u;~;Capacitor\_Tantalum\_SMD:CP\_EIA-7343-43\_Kemet-X\_Pad2.25x2.55mm;2;
+D1;NJL6401R-3-TE1;;NJL6401R3TE1;1;
+FB1,FB2;FerriteBead;~;Inductor\_SMD:L\_0402\_1005Metric\_Pad0.77x0.64mm;2;
+IC1,IC2;TDC7200PWR;\cite{ti2016tdc7200datasheet};SOP65P640X120-14N;2;
+IC21;74LVC1G08QW5-7;;74LVC1G08QW57;1;
+IC22;LMG1025QDEETQ1;;SON65P200X200X80-7N;1;
+J1,J3;Conn\_01x02\_Pin;~;Connector:Molex\_KK-254\_AE-6410-02A\_1x02\_P2.54mm\_Vertical;2;
+J2;Conn\_01x03\_Pin;~;Connector:Molex\_SL\_171971-0003\_1x03\_P2.54mm\_Vertical;1;
+JP1,JP2;Jumper\_2\_Open;~;TestPoint:TestPoint\_2Pads\_Pitch2.54mm\_Drill0.8mm;2;
+JP3;12Vin select;~;TestPoint:TestPoint\_2Pads\_Pitch2.54mm\_Drill0.8mm;1;
+LD1,X2,X3;~;;-- mixed values --;3;
+R1;20k;~;Resistor\_SMD:R\_0402\_1005Metric\_Pad0.72x0.64mm;1;
+R2;39k;~;Resistor\_SMD:R\_0402\_1005Metric\_Pad0.72x0.64mm;1;
+R3;0;~;Resistor\_SMD:R\_0402\_1005Metric\_Pad0.72x0.64mm;1;
+R21;51;~;Resistor\_SMD:R\_0402\_1005Metric\_Pad0.72x0.64mm;1;
+R22;0;~;Resistor\_SMD:R\_0402\_1005Metric\_Pad0.72x0.64mm;1;DNP
+R23,R24;2;~;Resistor\_SMD:R\_0402\_1005Metric\_Pad0.72x0.64mm;2;
+R25;XXX;~;Resistor\_SMD:R\_4020\_10251Metric;1;
+R26;51k;~;Resistor\_SMD:R\_0402\_1005Metric\_Pad0.72x0.64mm;1;
+R27;100;~;Resistor\_SMD:R\_0402\_1005Metric\_Pad0.72x0.64mm;1;
+RV21;10k;~;Potentiometer\_SMD:Potentiometer\_Bourns\_3224W\_Vertical;1;
+RV22,RV23;1k;~;Potentiometer\_SMD:Potentiometer\_Bourns\_3224W\_Vertical;2;
+SW1,SW2;SW\_Nidec\_CAS-120A1;;Button\_Switch\_SMD:Nidec\_Copal\_CAS-120A;2;
+TP1..TP19;Conn\_01x01\_Pin;~;Connector\_2.54mm:PinHeader\_1x01\_P2.54mm\_Vertical;19;
+U1;NUCLEO-F042K6;;NUCLEO\_F042K6:MODULE\_NUCLEO-F042K6;1;
+U2;OPA858xDSG;;Package\_SON:WSON-8-1EP\_2x2mm\_P0.5mm\_EP0.9x1.6mm;1;
+U3;TLV3501AIDBV;;Package\_TO\_SOT\_SMD:SOT-23-6;1;
+V1;CSD17578Q3A;;DNH0008A;1;
+X1;SG-5032CAN;;Oscillator:Oscillator\_SMD\_SeikoEpson\_SG8002LB-4Pin\_5.0x3.2mm;1;
