@@ -3,845 +3,180 @@
 	(generator "eeschema")
 	(generator_version "8.0")
 	(uuid "0f7bf370-0a80-4101-a61d-d850fd66ab1d")
-	(paper "A4")
-	(lib_symbols
-		(symbol "NUCLEO-F042K6:NUCLEO-F042K6"
-			(pin_names
-				(offset 1.016)
+	(paper "A3")
+	(title_block
+		(title "PCB DIY ToF")
+		(date "2024-12-21")
+		(rev "0.1")
+		(company "OST")
+		(comment 1 "Top level")
+		(comment 2 "schematics")
+		(comment 3 "w.i.p.")
+		(comment 8 "M. Schär")
+	)
+	(lib_symbols)
+	(wire
+		(pts
+			(xy 195.834 119.38) (xy 205.74 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4f3d6d3e-5bb4-4ed7-b868-636a8f9ee1e7")
+	)
+	(wire
+		(pts
+			(xy 195.834 125.73) (xy 205.74 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7778671c-3f01-494d-9cac-8a291287e345")
+	)
+	(wire
+		(pts
+			(xy 195.834 115.57) (xy 205.74 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f301fdb-094b-4e57-b08e-e865d6c0be56")
+	)
+	(sheet
+		(at 205.74 110.998)
+		(size 31.242 24.13)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "1536e9f2-3315-42ae-af66-5ae730c43aea")
+		(property "Sheetname" "Optoelectronics"
+			(at 205.74 110.2864 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
 			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at -15.24 21.082 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
+		)
+		(property "Sheetfile" "optoelectronics.kicad_sch"
+			(at 205.74 135.7126 0)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
+				(justify left top)
 			)
-			(property "Value" "NUCLEO-F042K6"
-				(at -15.24 -22.86 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
+		)
+		(pin "~{LD_enable}" input
+			(at 205.74 115.57 180)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
+				(justify left)
 			)
-			(property "Footprint" "NUCLEO-F042K6:MODULE_NUCLEO-F042K6"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
+			(uuid "fd789b57-9e6c-444e-8c07-2b9204d57fdd")
+		)
+		(pin "stop_opt" output
+			(at 205.74 125.73 180)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
+				(justify left)
 			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
+			(uuid "2023355d-dbde-4fc2-84df-d6081bc2603f")
+		)
+		(pin "LD_pulse" input
+			(at 205.74 119.38 180)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
+				(justify left)
 			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "PARTREV" "8"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "STANDARD" "Manufacturer Recommendations"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "MAXIMUM_PACKAGE_HEIGHT" "14.5mm"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "MANUFACTURER" "STMicroelectronics"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(symbol "NUCLEO-F042K6_0_0"
-				(rectangle
-					(start -15.24 -20.32)
-					(end 15.24 20.32)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(pin bidirectional line
-					(at -20.32 17.78 0)
-					(length 5.08)
-					(name "PA9/D1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -20.32 -5.08 0)
-					(length 5.08)
-					(name "PF0/D7"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_10"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -20.32 -7.62 0)
-					(length 5.08)
-					(name "PF1/D8"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_11"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -20.32 -10.16 0)
-					(length 5.08)
-					(name "PA8/D9"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_12"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -20.32 -12.7 0)
-					(length 5.08)
-					(name "PA11/D10"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_13"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -20.32 -15.24 0)
-					(length 5.08)
-					(name "PB5/D11"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_14"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -20.32 -17.78 0)
-					(length 5.08)
-					(name "PB4/D12"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_15"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -20.32 15.24 0)
-					(length 5.08)
-					(name "PA10/D0"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -20.32 12.7 0)
-					(length 5.08)
-					(name "~{RST}_CN3"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_3"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at -20.32 10.16 0)
-					(length 5.08)
-					(name "GND_CN3"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_4"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -20.32 7.62 0)
-					(length 5.08)
-					(name "PA12/D2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_5"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -20.32 5.08 0)
-					(length 5.08)
-					(name "PB0/D3"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_6"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -20.32 2.54 0)
-					(length 5.08)
-					(name "PB7/D4"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_7"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -20.32 0 0)
-					(length 5.08)
-					(name "PB6/D5"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_8"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -20.32 -2.54 0)
-					(length 5.08)
-					(name "PB1/D6"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN3_9"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 20.32 17.78 180)
-					(length 5.08)
-					(name "VIN"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 20.32 -5.08 180)
-					(length 5.08)
-					(name "PA3/A2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_10"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 20.32 -7.62 180)
-					(length 5.08)
-					(name "PA1/A1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_11"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 20.32 -10.16 180)
-					(length 5.08)
-					(name "PA0/A0"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_12"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 20.32 -12.7 180)
-					(length 5.08)
-					(name "AREF"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_13"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 20.32 -15.24 180)
-					(length 5.08)
-					(name "+3V3"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_14"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 20.32 -17.78 180)
-					(length 5.08)
-					(name "PB3/D13"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_15"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 20.32 15.24 180)
-					(length 5.08)
-					(name "GND_CN4"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 20.32 12.7 180)
-					(length 5.08)
-					(name "~{RST}_CN4"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_3"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 20.32 10.16 180)
-					(length 5.08)
-					(name "+5V"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_4"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 20.32 7.62 180)
-					(length 5.08)
-					(name "PA2/A7"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_5"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 20.32 5.08 180)
-					(length 5.08)
-					(name "PA7/A6"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_6"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 20.32 2.54 180)
-					(length 5.08)
-					(name "PA6/A5"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_7"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 20.32 0 180)
-					(length 5.08)
-					(name "PA5/A4"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_8"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 20.32 -2.54 180)
-					(length 5.08)
-					(name "PA4/A3"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "CN4_9"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
+			(uuid "338855f3-e52d-45be-ae02-14577f2c628d")
+		)
+		(instances
+			(project "diy_tof_hw"
+				(path "/0f7bf370-0a80-4101-a61d-d850fd66ab1d"
+					(page "3")
 				)
 			)
 		)
 	)
-	(symbol
-		(lib_id "NUCLEO-F042K6:NUCLEO-F042K6")
-		(at 67.31 55.88 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
+	(sheet
+		(at 160.02 95.25)
+		(size 35.814 50.8)
 		(fields_autoplaced yes)
-		(uuid "8bdc349b-f752-4f5c-88fe-01121a8c1611")
-		(property "Reference" "U1"
-			(at 67.31 30.48 0)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "e3345fca-f581-4274-8897-90c8927ce695")
+		(property "Sheetname" "Power_Nucleo_TDC"
+			(at 160.02 94.5384 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left bottom)
 			)
 		)
-		(property "Value" "NUCLEO-F042K6"
-			(at 67.31 33.02 0)
+		(property "Sheetfile" "pwr_nucleo_tdc.kicad_sch"
+			(at 160.02 146.6346 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left top)
 			)
 		)
-		(property "Footprint" "NUCLEO_F042K6:MODULE_NUCLEO-F042K6"
-			(at 67.31 55.88 0)
+		(pin "LD_pulse" output
+			(at 195.834 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
-				(hide yes)
+				(justify right)
 			)
+			(uuid "5d634d3f-b54c-4034-a9e8-5c5ee0252110")
 		)
-		(property "Datasheet" ""
-			(at 67.31 55.88 0)
+		(pin "stop_opt" input
+			(at 195.834 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
+				(justify right)
 			)
+			(uuid "c32ee16c-5cb8-4998-a883-54539efd6a3f")
 		)
-		(property "Description" ""
-			(at 67.31 55.88 0)
+		(pin "~{LD_enable}" output
+			(at 195.834 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
+				(justify right)
 			)
-		)
-		(property "PARTREV" "8"
-			(at 67.31 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "STANDARD" "Manufacturer Recommendations"
-			(at 67.31 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" "14.5mm"
-			(at 67.31 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "STMicroelectronics"
-			(at 67.31 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "CN3_14"
-			(uuid "35a2d3c3-7e9a-4465-b27a-49e9c8476242")
-		)
-		(pin "CN4_15"
-			(uuid "e4718378-220b-483e-b3b2-d88f7d7e7640")
-		)
-		(pin "CN4_8"
-			(uuid "41a30806-b5c2-4dcf-8bd9-cc572e51101b")
-		)
-		(pin "CN4_2"
-			(uuid "b221ba2e-9270-4039-978b-71ff86c1542b")
-		)
-		(pin "CN4_13"
-			(uuid "083441ab-04a6-4020-afd6-1cc93357b6dd")
-		)
-		(pin "CN4_14"
-			(uuid "6badb918-a1bd-44e1-9b0c-4e5a35772fd1")
-		)
-		(pin "CN3_3"
-			(uuid "7d488566-c7a0-4fa5-8b6d-04fa765d51b8")
-		)
-		(pin "CN3_10"
-			(uuid "77675d17-a03c-4458-8845-aa65d8f16911")
-		)
-		(pin "CN4_7"
-			(uuid "9d34cb71-e8a7-48ad-9ed6-13c3cefe6e7d")
-		)
-		(pin "CN3_5"
-			(uuid "d9c421a8-8a91-47c2-ae03-c2654276d5a3")
-		)
-		(pin "CN3_11"
-			(uuid "bac888fe-0f72-4d1e-938a-1b1824c6a8ed")
-		)
-		(pin "CN3_12"
-			(uuid "7742fc47-5696-4f9f-9fab-f84a5b05679c")
-		)
-		(pin "CN3_8"
-			(uuid "f3110007-f568-46dc-a14b-c69aafe51db9")
-		)
-		(pin "CN4_5"
-			(uuid "26446e18-badb-4b11-b406-90b6e3c893e9")
-		)
-		(pin "CN4_3"
-			(uuid "b2021734-e665-4a0c-91fc-162769a69828")
-		)
-		(pin "CN4_9"
-			(uuid "9151a1af-b2ac-41b7-b53d-1f3e6a904d03")
-		)
-		(pin "CN3_7"
-			(uuid "3a122513-b125-4c5e-852c-05a33dac1826")
-		)
-		(pin "CN3_4"
-			(uuid "d8727fbc-5879-4dd8-aca4-93aab53fb673")
-		)
-		(pin "CN3_6"
-			(uuid "4d60506a-0ecc-4841-a6df-d77156dd127f")
-		)
-		(pin "CN3_9"
-			(uuid "7e7ce240-a003-473b-9e84-0a96dd81e67c")
-		)
-		(pin "CN4_1"
-			(uuid "0d842ba9-0d89-4cdb-9d69-8994955b3d60")
-		)
-		(pin "CN4_6"
-			(uuid "1663bf60-157d-4e3d-b3de-02230b9bb92f")
-		)
-		(pin "CN3_2"
-			(uuid "928cdb34-d15a-447f-ba8b-fd139a0483a1")
-		)
-		(pin "CN4_4"
-			(uuid "ddcc3265-1722-4b41-bda5-1dcdc814eb10")
-		)
-		(pin "CN3_13"
-			(uuid "12f68edc-6b14-408b-9fc3-647e5ef3dcd5")
-		)
-		(pin "CN3_1"
-			(uuid "02a359d2-ca73-4b6e-8d29-b2ba174ed8ed")
-		)
-		(pin "CN4_10"
-			(uuid "eb9d4db3-e7f8-4ffd-baf9-0b91b698b056")
-		)
-		(pin "CN4_12"
-			(uuid "b3eab5e5-0f18-4a0d-9dbd-cdd282863868")
-		)
-		(pin "CN4_11"
-			(uuid "d560ac90-6f8c-4cd1-9972-e2b3b086b146")
-		)
-		(pin "CN3_15"
-			(uuid "6120220f-2d9e-4af4-a49e-cb03a3848cfb")
+			(uuid "2b38f3e8-5a7a-4d14-83cf-8e4c8cb4ca93")
 		)
 		(instances
-			(project ""
+			(project "diy_tof_hw"
 				(path "/0f7bf370-0a80-4101-a61d-d850fd66ab1d"
-					(reference "U1")
-					(unit 1)
+					(page "2")
 				)
 			)
 		)

@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP TDC7200PWR
+D Time-to-Digital Converter for Time-of-Flight Applications in LIDAR, Magnetostrictive and Flow Meters
+K
+F http://www.ti.com/lit/gpn/tdc7200
+$ENDCMP
+#
+#End Doc Library

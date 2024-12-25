@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP RLD65NZX1-00A
+D 635nm Red Single Mode Laser Diode
+K
+F https://fscdn.rohm.com/en/products/databook/datasheet/opto/laser_diode/red/rld65pzx300a012-e.pdf
+$ENDCMP
+#
+#End Doc Library
