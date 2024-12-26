@@ -121,6 +121,9 @@
 % Settings for the equation list
 \newcommand{\listequationsname}{}
 \newlistof{myequations}{equ}{\listequationsname}
+\renewcommand{\cftmyequationsaftersnum}{\hfill}
+\renewcommand{\cftmyequationspresnum}{\hfill}
+\setlength{\cftmyequationsnumwidth}{3.5em}
 \newcommand{\myequations}[1]{%
 \addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}\par}
 
