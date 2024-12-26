@@ -19,6 +19,7 @@
 \newacronym{tof}{ToF}{Time of Flight}
 \newacronym{diy}{DIY}{Do It Yourself}
 \newacronym{tdc}{TDC}{Time to Digital Converter}
+\newacronym{tia}{TIA}{Trans-Impedance Amplifier}
 
 \begin{document}
 
@@ -35,16 +36,27 @@
 
 \section{Einleitung}
 
+Bei dieser Projektarbeit geht es darum ein \acrfull{diy} optisches \acrfull{tof} Distanzmesssystem aufzubauen. Dazu soll ein \acrfull{tdc} verwendet werden.
+
+\dots
+
 \pagebreak
 
 \section{Theorie}
 
 \subsection{Time of Flight}
+
+Bei \acrshort{tof} handelt es sich um \dots
+
+\pagebreak
+
 \subsection{Photostrom}
 
 Zur Berechnung des theoretisch zu erwartenden Photostrom wird von einer Distanz zur Wand von $10~m$ ausgegangen.
 
 Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform Halbkugel-förmig gestreut. In der Realität wird sich die Streuung nicht uniform verteilen, sondern in der Mitte stärker konzentriert sein. Die folgende Berechnung zeigt also den worst case.
+
+Die Berechnung der empfangenen Strahlungsleistung, der Strahlungsintensität, dem Raumwinkel und dem Photostrom sind in Formel~\ref{eq:pin}, \ref{eq:ie}, \ref{eq:omega} bzw. \ref{eq:iph} gezeigt.
 
 \begin{equation}\label{eq:pin}
     P_{in} = E_e \cdot A = \frac{I_e}{r^2} \cdot A
@@ -68,6 +80,10 @@ Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform 
 
 \subsubsection{Berechnung mit RLD94PZJ5 und BPV23NF}
 
+Ersten Berechnungen wurden mit der Laserdiode RLD94PZJ5 \cite{rohm2020rld94pzj5_datasheet} und der Photodiode BPV23NF \cite{vishay2024bpv23nf_datasheet} durchgeführt.
+
+Die relevanten Werte aus den Datenblättern sind in Formel~\ref{eq:rld94pzj5_num} und \ref{eq:rbpv23nf_num} aufgelistet.
+
 \begin{equation}\label{eq:rld94pzj5_num}
     P_{out} = 285~mW
 \end{equation}
@@ -81,6 +97,8 @@ Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform 
 \end{equation}
 \myequations{Werte des BPV23NF}
 
+Diese Werte eingesetzt in Formel~\ref{eq:ie}, \ref{eq:pin} und \ref{eq:iph} ergibt die Resultate in Formel~\ref{eq:rld94pzj5_rbpv23nf_num}.
+
 \begin{equation}\label{eq:rld94pzj5_rbpv23nf_num}
     \begin{split}
         I_e    &= \frac{P_{out}}{\Omega} = \frac{285~mW}{\frac{4\cdot \pi \cdot 0.5}{d}} = \frac{285~mW}{\frac{4\cdot \pi \cdot 0.5}{10~m}} = 45~\frac{mW}{sr}\\
@@ -92,29 +110,41 @@ Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform 
 
 \subsubsection{Berechnung mit RLD65NZX1 and NJL6401R-3}
 
-\begin{equation}\label{eq:rld94pzj5_num}
+Die Laserdiode RLD94PZJ5 hat im Bezug auf diese Projektarbeit zwei Nachteile: Sehr hohe Leistung, welche für das menschliche Auge gefährlich werden kann und ein Wellenlängenbereich, der für das menschliche Auge nicht sichtbar ist.
+
+Aus diesen Gründen wurde eine zweite Laserdiode evaluiert: RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet}. Gepaart wird sie mit der Photodiode NJL6401R-3 \cite{jrc2014njl6401r3_datasheet}. Die folgenden Berechnungen wurden basierend auf diesen beiden Komponenten durchgeführt.
+
+Die relevanten Werte aus den Datenblättern sind in Formel~\ref{eq:rld65nzx1_num} und \ref{eq:njl6401r3_num} aufgelistet.
+
+\begin{equation}\label{eq:rld65nzx1_num}
     P_{out} = 10~mW
 \end{equation}
-\myequations{Werte des RLD94PZJ5}
+\myequations{Werte des RLD65NZX1}
 
-\begin{equation}\label{eq:rbpv23nf_num}
+\begin{equation}\label{eq:njl6401r3_num}
     \begin{split}
         A &= 0.7~mm \cdot 0.7~mm = 0.49~mm^2\\
         S &= 0.42~\frac{A}{W}
     \end{split}
 \end{equation}
-\myequations{Werte des BPV23NF}
+\myequations{Werte des NJL6401R-3}
 
-\begin{equation}\label{eq:rld94pzj5_rbpv23nf_num}
+Diese Werte eingesetzt in Formel~\ref{eq:ie}, \ref{eq:pin} und \ref{eq:iph} ergibt die Resultate in Formel~\ref{eq:rld65nzx1_njl6401r3_num}.
+
+\begin{equation}\label{eq:rld65nzx1_njl6401r3_num}
     \begin{split}
         I_e    &= \frac{P_{out}}{\Omega} = \frac{10~mW}{\frac{4\cdot \pi \cdot 0.5}{d}} = \frac{10~mW}{\frac{4\cdot \pi \cdot 0.5}{10~m}} = 1.6~\frac{mW}{sr}\\
         P_{in} &= \frac{I_e}{r^2} \cdot A = 45~\frac{mW}{sr} \cdot 0.49~mm^2 = 8~pW\\
         I_{ph} &= S \cdot P_{in} = 0.42~\frac{A}{W} \cdot 8~pW = 3.3~pA
     \end{split}
 \end{equation}
-\myequations{Nummerische Resultate mit RLD94PZJ5 und BPV23NF}
+\myequations{Nummerische Resultate mit RLD65NZX1 and NJL6401R-3}
+
+\pagebreak
 
 \subsection{Transimpedanzverstärker}
+
+Bei einem \acrfull{tia} handelt es sich um \dots
 
 \pagebreak
 
@@ -128,13 +158,44 @@ Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform 
 
 \subsubsection{Selective Input Voltage}
 
+Abbildung~\ref{fig:selective_input_voltage} zeigt die Beschaltung zur Selektion der Speisung.
+
 \begin{figure}[H]
     \centering
     \includegraphics[page=2, trim=80 590 750 50, clip, width=0.9\textwidth]{attachments/schematic.pdf}
     \caption{Selective Input Voltage}\label{fig:selective_input_voltage}
 \end{figure}
 
-\subsubsection{Nucleo Board}
+Für die Speisung des Nucleo-Boards bestehen die folgenden Möglichkeiten:
+
+\begin{itemize}
+    \item 5V von USB-Buchse
+    \item 5V von externem Power-Supply (JP1 + JP2)
+    \item 12V von externem Power-Supply (JP3)
+\end{itemize}
+
+Siehe dazu auch Kapitel~\ref{sec:schematic_nucleo}.
+
+Für die Speisung der 5V-Elektronik bestehen die folgenden Möglichkeiten:
+
+\begin{itemize}
+    \item 5V von Nucleo-Board (JP1)
+    \item 5V von externem Power-Supply (JP2)
+    \item 12V von externem Power-Supply via Nucleo-Board (JP1 + JP3)
+\end{itemize}
+
+Für die Speisung der Photodiode bestehen die folgenden Möglichkeiten:
+
+\begin{itemize}
+    \item 5V von 5V-Elektronik (SW2 Position 3)
+    \item 12V von externem Power-Supply (SW2 Position 1)
+\end{itemize}
+
+Siehe dazu auch Kapitel~\ref{sec:schematic_photo_receiver}.
+
+\subsubsection{Nucleo Board}\label{sec:schematic_nucleo}
+
+Die Beschaltung des NUCLEO-F042K6 Boards \cite{st2024nucleof042k6_usermanual} ist in Abbildung~\ref{fig:nucleo_board} gezeigt.
 
 \begin{figure}[H]
     \centering
@@ -144,6 +205,8 @@ Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform 
 
 \subsubsection{TDC Electrical Signal}
 
+Die Beschaltung des TDC7200 \cite{ti2016tdc7200_datasheet} für den elektrischen Teil ist in Abbildung~\ref{fig:tdc_ele_signal} gezeigt.
+
 \begin{figure}[H]
     \centering
     \includegraphics[page=2, trim=80 330 750 310, clip, width=0.9\textwidth]{attachments/schematic.pdf}
@@ -152,6 +215,7 @@ Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform 
 
 \subsubsection{TDC Optical Signal}
 
+Die Beschaltung des TDC7200 \cite{ti2016tdc7200_datasheet} für den optischen Teil ist in Abbildung~\ref{fig:tdc_opt_signal} gezeigt.
 
 \begin{figure}[H]
     \centering
@@ -161,6 +225,8 @@ Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform 
 
 \subsubsection{Oscillator For TDCs}
 
+Die Beschaltung des Oszillators für die beiden \acrshort{tdc} ist in Abbildung~\ref{fig:oscillator_tdc} gezeigt.
+
 \begin{figure}[H]
     \centering
     \includegraphics[page=2, trim=80 90 930 550, clip, width=0.45\textwidth]{attachments/schematic.pdf}
@@ -168,6 +234,10 @@ Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform 
 \end{figure}
 
 \subsubsection{Power Supply Separation}
+
+Für die Beschaltung der Photodiode, inkl. \acrshort{tia} und Komparator, macht es Sinn eine Spannungsversorgung mit möglichst wenig Rauschen zu haben.
+
+Dazu wurde die Separierung vorgenommen, welche in Abbildung~\ref{fig:power_supply_separation} dargestellt ist.
 
 \begin{figure}[H]
     \centering
@@ -177,13 +247,17 @@ Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform 
 
 \subsubsection{Laser Driver}
 
+Die Laser Diode RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet} wird mittels Lasertreiber LMG1025-Q1 \cite{ti2024lmg1025q1_datasheet} und NexFET \cite{ti2016csd17578q3a_datasheet} angesteuert. Für die Generierung eines kurzen Pulses (0.5 \dots 100~ns) wurde mittels Hochpass und AND-Gatter \cite{diodes202074lvc1g08q_datasheet} implementiert. Siehe dazu Abbildung~\ref{fig:laser_driver}.
+
 \begin{figure}[H]
     \centering
     \includegraphics[page=3, trim=100 520 550 60, clip, width=0.9\textwidth]{attachments/schematic.pdf}
     \caption{Laser Driver}\label{fig:laser_driver}
 \end{figure}
 
-\subsubsection{Photo Receiver}
+\subsubsection{Photo Receiver}\label{sec:schematic_photo_receiver}
+
+Um den Photostrom der Photodiode NJL6401R \cite{jrc2014njl6401r3_datasheet} zu verstärken und in eine Spannung umzuwandeln, wurde mit dem Operationsverstärker OPA858 \cite{ti2018opa858_datasheet} ein Transimpedanzverstärker aufgebaut. Der Ausgangs des Transimpedanzverstärkers geht auf den Komparator TLV3501 \cite{ti2016tlv3501_datasheet}, um das STOP-Signal für den \acrshort{tdc} zu generieren. Siehe dazu Abbildung~\ref{fig:photo_receiver}.
 
 \begin{figure}[H]
     \centering
@@ -192,6 +266,8 @@ Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform 
 \end{figure}
 
 \subsubsection{Decoupling Capacitors}
+
+Die Beschaltung der Entkopplungs-Kondensatoren ist in Abbildung~\ref{fig:decoupling_capacitors} dargestellt.
 
 \begin{figure}[H]
     \centering
@@ -202,6 +278,10 @@ Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform 
 \pagebreak
 
 \subsection{Layout}
+
+In diesem Kapitel werden die \acrshort{pcb}-Layouts dokumentiert.
+
+\dots
 
 \pagebreak
 
