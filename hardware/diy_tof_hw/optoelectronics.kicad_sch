@@ -5070,6 +5070,17 @@
 		)
 		(uuid "63f7fb39-18bb-46bc-baa6-3b39cad2a932")
 	)
+	(text "R = 3V / I_ld\nI_ld = 40 ... 100 mA"
+		(exclude_from_sim no)
+		(at 198.882 46.482 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6df5d764-3c70-4a47-8363-5c3d7508cdbd")
+	)
 	(text "Tp equals ~tau \n     -> 0.5 ... 100 ns"
 		(exclude_from_sim no)
 		(at 67.818 64.516 0)
@@ -8452,7 +8463,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "XXX"
+		(property "Value" "75"
 			(at 189.23 48.2599 0)
 			(effects
 				(font
@@ -8461,7 +8472,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_4020_10251Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 184.912 46.99 90)
 			(effects
 				(font
