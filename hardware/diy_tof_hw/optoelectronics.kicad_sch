@@ -870,6 +870,20 @@
 					(hide yes)
 				)
 			)
+			(symbol "CSD17578Q3A_0_1"
+				(polyline
+					(pts
+						(xy 1.27 5.08) (xy 1.27 3.81) (xy 3.81 3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
 			(symbol "CSD17578Q3A_1_1"
 				(polyline
 					(pts
@@ -1308,6 +1322,24 @@
 						)
 					)
 					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin tri_state line
+					(at 1.27 7.62 270)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3861,6 +3893,16 @@
 	)
 	(wire
 		(pts
+			(xy 186.69 76.2) (xy 186.69 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "13846a07-1541-4b2c-8f63-786dd77e3ca2")
+	)
+	(wire
+		(pts
 			(xy 78.74 156.21) (xy 86.36 156.21)
 		)
 		(stroke
@@ -4508,6 +4550,16 @@
 			(type default)
 		)
 		(uuid "94202c87-7b66-4360-b17e-0891003d2de3")
+	)
+	(wire
+		(pts
+			(xy 186.69 72.39) (xy 189.23 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "967f6d2e-74c2-4709-b040-fc9b9fd85e3e")
 	)
 	(wire
 		(pts
@@ -9484,6 +9536,9 @@
 		)
 		(pin "4"
 			(uuid "3d68b9e0-0e66-47c2-b184-02829dd59bfa")
+		)
+		(pin "9"
+			(uuid "56e51269-32c6-4adf-8809-f2d50c8ef8b0")
 		)
 		(instances
 			(project ""
