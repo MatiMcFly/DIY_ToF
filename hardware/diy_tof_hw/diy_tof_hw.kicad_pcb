@@ -8402,7 +8402,7 @@
 				)
 			)
 		)
-		(property "Value" "~"
+		(property "Value" "G061041000"
 			(at 0 1 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12022,7 +12022,7 @@
 				)
 			)
 		)
-		(property "Value" "~"
+		(property "Value" "G061041000"
 			(at 0 1 0)
 			(unlocked yes)
 			(layer "F.Fab")

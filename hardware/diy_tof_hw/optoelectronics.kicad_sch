@@ -7281,10 +7281,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "57895ee3-667a-4324-a802-25c2b5bd7689")
 		(property "Reference" "X2"
-			(at 50.8 159.3849 0)
+			(at 42.164 164.9729 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7292,8 +7291,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "~"
-			(at 50.8 161.29 0)
+		(property "Value" "G061041000"
+			(at 42.164 166.878 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9401,10 +9400,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "b4991c8a-6d05-47ff-bf3d-095b39062fe9")
 		(property "Reference" "X3"
-			(at 182.88 53.9749 0)
+			(at 170.942 47.6249 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9412,8 +9410,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "~"
-			(at 182.88 55.88 0)
+		(property "Value" "G061041000"
+			(at 170.942 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
