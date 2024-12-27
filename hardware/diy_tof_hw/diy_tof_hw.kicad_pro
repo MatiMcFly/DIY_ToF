@@ -500,15 +500,15 @@
       },
       {
         "netclass": "Power",
-        "pattern": "+12V"
+        "pattern": "12V"
       },
       {
         "netclass": "Power",
-        "pattern": "+5V_ext"
+        "pattern": "5V_ext"
       },
       {
         "netclass": "Power",
-        "pattern": "+5V_nuc"
+        "pattern": "5V_nuc"
       },
       {
         "netclass": "Power",

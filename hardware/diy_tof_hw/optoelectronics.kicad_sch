@@ -5040,16 +5040,6 @@
 		)
 		(uuid "461d7709-1fcc-4423-9bf2-730fbcf57f41")
 	)
-	(text "RLD65NZX1"
-		(exclude_from_sim no)
-		(at 199.644 63.5 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "47043643-0004-4393-b966-b1d92ec76588")
-	)
 	(text "IC22"
 		(exclude_from_sim no)
 		(at 81.026 263.906 0)
@@ -5584,7 +5574,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "~"
+		(property "Value" "RLD65NZX1"
 			(at 194.31 62.23 90)
 			(effects
 				(font
