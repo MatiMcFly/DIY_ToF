@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "TDC/TDC.h"
 
 /* USER CODE END Includes */
 
