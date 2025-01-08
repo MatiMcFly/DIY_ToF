@@ -54,6 +54,75 @@ typedef enum {
 extern const uint8_t TDC_REG_SIZE[TDC_ADR_AMOUNT];
 
 /**
+ * @brief Bit description of the TDC CONFIG1 register
+ *
+ */
+typedef enum {
+    TDC_CONFIG1_FORCE_CAL_OFF   = (0b0 << 7), // Calibration is not performed after interrupted measurement (for example, due to counter overflow or missing STOP signal)
+    TDC_CONFIG1_FORCE_CAL_ON    = (0b1 << 7), // Calibration is always performed at the end (for example, after a counter overflow)
+    TDC_CONFIG1_PARITY_EN_OFF   = (0b0 << 6), // Parity bit for Measurement Result Registers disabled (Parity Bit always 0)
+    TDC_CONFIG1_PARITY_EN_ON    = (0b1 << 6), // Parity bit for Measurement Result Registers enabled (Even Parity)
+    TDC_CONFIG1_TRIGG_EDGE_RISE = (0b0 << 5), // TRIGG is output as a Rising edge signal
+    TDC_CONFIG1_TRIGG_EDGE_FALL = (0b1 << 5), // TRIGG is output as a Falling edge signal
+    TDC_CONFIG1_STOP_EDGE_RISE  = (0b0 << 4), // Measurement is stopped on Rising edge of STOP signal
+    TDC_CONFIG1_STOP_EDGE_FALL  = (0b1 << 4), // Measurement is stopped on Falling edge of STOP signal
+    TDC_CONFIG1_START_EDGE_RISE = (0b0 << 3), // Measurement is started on Rising edge of START signal
+    TDC_CONFIG1_START_EDGE_FALL = (0b1 << 3), // Measurement is started on Falling edge of START signal
+    TDC_CONFIG1_MEAS_MODE_1     = (0b00 << 1), // Measurement Mode 1 (for expected time-of-flight < 500 ns).
+    TDC_CONFIG1_MEAS_MODE_2     = (0b01 << 1), // Measurement Mode 2 (recommended)
+    TDC_CONFIG1_START_MEAS      = (0b1 << 0),  // Start New Measurement. Writing a 1 will clear all bits in the Interrupt Status Register and Start the measurement (by generating an TRIGG signal) and will reset the content of all Measurement Results registers
+} TDC_config1_t;
+
+/**
+ * @brief Bit description of the TDC CONFIG2 register
+ *
+ */
+typedef enum {
+    TDC_CONFIG2_CALIBRATION2_PERIODS_2  = (0b00 << 6),  // Measuring 2 CLOCK periods
+    TDC_CONFIG2_CALIBRATION2_PERIODS_10 = (0b01 << 6),  // Measuring 10 CLOCK periods
+    TDC_CONFIG2_CALIBRATION2_PERIODS_20 = (0b10 << 6),  // Measuring 20 CLOCK periods
+    TDC_CONFIG2_CALIBRATION2_PERIODS_40 = (0b11 << 6),  // Measuring 40 CLOCK periods
+    TDC_CONFIG2_AVG_CYCLES_1            = (0b000 << 3), // 1 Measurement Cycle only (no Multi-Cycle Averaging Mode)
+    TDC_CONFIG2_AVG_CYCLES_2            = (0b001 << 3), // 2 Measurement Cycles
+    TDC_CONFIG2_AVG_CYCLES_4            = (0b010 << 3), // 4 Measurement Cycles
+    TDC_CONFIG2_AVG_CYCLES_8            = (0b011 << 3), // 8 Measurement Cycles
+    TDC_CONFIG2_AVG_CYCLES_16           = (0b100 << 3), // 16 Measurement Cycles
+    TDC_CONFIG2_AVG_CYCLES_32           = (0b101 << 3), // 32 Measurement Cycles
+    TDC_CONFIG2_AVG_CYCLES_64           = (0b110 << 3), // 64 Measurement Cycles
+    TDC_CONFIG2_AVG_CYCLES_128          = (0b111 << 3), // 128 Measurement Cycles
+    TDC_CONFIG2_NUM_STOP_1              = (0b000 << 0), // Single Stop
+    TDC_CONFIG2_NUM_STOP_2              = (0b001 << 0), // Two Stops
+    TDC_CONFIG2_NUM_STOP_3              = (0b010 << 0), // Three Stops
+    TDC_CONFIG2_NUM_STOP_4              = (0b011 << 0), // Four Stops
+    TDC_CONFIG2_NUM_STOP_5              = (0b100 << 0), // Five Stops
+} TDC_config2_t;
+
+/**
+ * @brief Bit description of the TDC INT_STATUS register
+ *
+ */
+typedef enum {
+    TDC_STATUS_MEAS_COMPLETE_FLAG  = (1 << 4), // Measurement has completed
+    TDC_STATUS_MEAS_STARTED_FLAG   = (1 << 3), // Measurement has started (START signal received)
+    TDC_STATUS_CLOCK_CNTR_OVF_INT  = (1 << 2), // Clock overflow detected, running measurement will be stopped immediately
+    TDC_STATUS_COARSE_CNTR_OVF_INT = (1 << 1), // Coarse overflow detected, running measurement will be stopped immediately
+    TDC_STATUS_NEW_MEAS_INT        = (1 << 0), // Interrupt detected - New Measurement has been completed
+} TDC_status_t;
+
+/**
+ * @brief Bit description of the TDC INT_MASK register
+ *
+ */
+typedef enum {
+    TDC_MASK_CLOCK_CNTR_OVF_MASK_OFF  = (0 << 2), // CLOCK Counter Overflow Interrupt disabled
+    TDC_MASK_CLOCK_CNTR_OVF_MASK_ON   = (1 << 2), // CLOCK Counter Overflow Interrupt enabled
+    TDC_MASK_COARSE_CNTR_OVF_MASK_OFF = (0 << 1), // Coarse Counter Overflow Interrupt disabled
+    TDC_MASK_COARSE_CNTR_OVF_MASK_ON  = (1 << 1), // Coarse Counter Overflow Interrupt enabled
+    TDC_MASK_NEW_MEAS_MASK_OFF        = (0 << 0), // New Measurement Interrupt disabled
+    TDC_MASK_NEW_MEAS_MASK_ON         = (1 << 0), // New Measurement Interrupt enabled
+} TDC_mask_t;
+
+/**
  * @brief Error codes of the TDC module
  *
  */

@@ -10,8 +10,14 @@
 #include "TDC/TDC.h"
 #include <stdbool.h>
 
-#define TDC_CMD_READ 0x80  // Auto increment = ON (1), Mode = Read (0)
-#define TDC_CMD_WRITE 0xC0 // Auto increment = ON (1), Mode = Write (1)
+#define TDC_AUTO_INC_OFF (0 << 7)
+#define TDC_AUTO_INC_ON  (1 << 7)
+
+#define TDC_RW_READ  (0 << 6)
+#define TDC_RW_WRITE (1 << 6)
+
+#define TDC_CMD_READ  (TDC_AUTO_INC_ON | TDC_RW_READ)
+#define TDC_CMD_WRITE (TDC_AUTO_INC_ON | TDC_RW_WRITE)
 
 const uint8_t TDC_REG_SIZE[TDC_ADR_AMOUNT] = {
     // Register Address              Register Size [bytes]
