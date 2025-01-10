@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "TDC/TDC.h"
 
 /* USER CODE END Includes */
 
@@ -70,6 +71,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+  TDC_t tdc_ele;
 
   /* USER CODE END 1 */
 
@@ -94,6 +96,43 @@ int main(void)
   MX_USART2_UART_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
+  if (TDC_init(&tdc_ele, &hspi1, SPI_CS_ELE_GPIO_Port, SPI_CS_ELE_Pin, TDC_ELE_ENABLE_GPIO_Port, TDC_ELE_ENABLE_Pin) != TDC_OK) {
+    for (;;) {} // TODO: Error handling...
+  }
+
+  if (TDC_enable(&tdc_ele) != TDC_OK) {
+    for (;;) {} // TODO: Error handling...
+  }
+
+  uint8_t data[TDC_REG_SIZE[TDC_ADR_CONFIG1]];
+
+  if (TDC_read(&tdc_ele, TDC_ADR_CONFIG1, data) != TDC_OK) {
+    for (;;) {} // TODO: Error handling...
+  }
+
+  if (TDC_read(&tdc_ele, TDC_ADR_CONFIG2, data) != TDC_OK) {
+    for (;;) {} // TODO: Error handling...
+  }
+
+  data[0] = TDC_CONFIG1_START_MEAS;
+
+  if (TDC_write(&tdc_ele, TDC_ADR_CONFIG1, data) != TDC_OK) {
+    for (;;) {} // TODO: Error handling...
+  }
+
+  data[0] = TDC_CONFIG2_CALIBRATION2_PERIODS_10 | TDC_CONFIG2_NUM_STOP_5;
+
+  if (TDC_write(&tdc_ele, TDC_ADR_CONFIG2, data) != TDC_OK) {
+    for (;;) {} // TODO: Error handling...
+  }
+
+  if (TDC_read(&tdc_ele, TDC_ADR_CONFIG1, data) != TDC_OK) {
+    for (;;) {} // TODO: Error handling...
+  }
+
+  if (TDC_read(&tdc_ele, TDC_ADR_CONFIG2, data) != TDC_OK) {
+    for (;;) {} // TODO: Error handling...
+  }
 
   /* USER CODE END 2 */
 
@@ -162,7 +201,7 @@ static void MX_SPI1_Init(void)
   hspi1.Instance = SPI1;
   hspi1.Init.Mode = SPI_MODE_MASTER;
   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi1.Init.DataSize = SPI_DATASIZE_4BIT;
+  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
@@ -172,7 +211,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
   hspi1.Init.CRCPolynomial = 7;
   hspi1.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
-  hspi1.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
+  hspi1.Init.NSSPMode = SPI_NSS_PULSE_DISABLE;
   if (HAL_SPI_Init(&hspi1) != HAL_OK)
   {
     Error_Handler();
