@@ -6,13 +6,14 @@
 	(paper "A3")
 	(title_block
 		(title "PCB DIY ToF")
-		(date "2024-12-21")
-		(rev "0.1")
+		(date "2024-12-27")
+		(rev "1.0")
 		(company "OST")
 		(comment 1 "Top level")
 		(comment 2 "schematics")
-		(comment 3 "w.i.p.")
+		(comment 3 "released")
 		(comment 8 "M. Schär")
+		(comment 9 "T. Burkard")
 	)
 	(lib_symbols)
 	(wire
