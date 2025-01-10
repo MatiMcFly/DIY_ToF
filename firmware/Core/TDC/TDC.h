@@ -13,6 +13,13 @@
 #include <stdint.h>
 #include "stm32f0xx_hal.h"
 
+#define TDC_CLOCK_PERIOD_FS 62500000 // 16 MHz in [fs]
+
+/**
+ * Convert 24bit buffer received from SPI to integer
+ */
+#define TDC_24BIT_BUF_TO_INT(buf) ((buf[0] << 16) + (buf[1] << 8) + buf[2])
+
 /**
  * @brief Register addresses of the TDC
  *
@@ -205,5 +212,24 @@ TDC_error_t TDC_read(TDC_t* tdc, TDC_adr_t address, uint8_t* rx_data);
  * @return TDC_error_t -- Error code
  */
 TDC_error_t TDC_write(TDC_t* tdc, TDC_adr_t address, uint8_t* tx_data);
+
+/**
+ * @brief Start measurement of TDC
+ *
+ * @param[in] tdc -- Pointer to TDC handle
+ *
+ * @return TDC_error_t -- Error code
+ */
+TDC_error_t TDC_start(TDC_t* tdc);
+
+/**
+ * @brief Read ToF measurement result from TDC
+ *
+ * @param[in] tdc  -- Pointer to TDC handle
+ * @param[out] tof_fs -- ToF Measurement result [fs]
+ *
+ * @return TDC_error_t -- Error code
+ */
+TDC_error_t TDC_read_result(TDC_t* tdc, uint64_t* tof_fs);
 
 #endif /* TDC_H_ */
