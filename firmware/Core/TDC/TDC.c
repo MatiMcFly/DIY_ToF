@@ -142,6 +142,7 @@ static TDC_error_t send(TDC_t* tdc, TDC_adr_t address, uint8_t* data, bool write
     }
 
     HAL_GPIO_WritePin(tdc->cs_port, tdc->cs_pin, GPIO_PIN_SET);
+    HAL_Delay(1); // 1 ms
 
     return TDC_OK;
 }
