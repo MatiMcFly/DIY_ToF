@@ -26,6 +26,8 @@
 \newacronym{gpio}{GPIO}{General Purpose Input/Output}
 \newacronym{uart}{UART}{Universal Asynchronous Receiver/Transmitter}
 \newacronym{dso}{DSO}{Digital Storage Oscilloscope}
+\newacronym{spi}{SPI}{Serial Peripheral Interface}
+\newacronym{ic}{IC}{Integrated Circuit}
 
 \begin{document}
 
@@ -164,6 +166,43 @@ Bei einem \acrfull{tia} handelt es sich um \dots
 
 \pagebreak
 
+
+\section{Konzept}
+
+\subsection{Signalkette}
+
+\textcolor{red}{Signalkette erklären: Puls -> Gate-Treiber-> Laser -> Luft -> PD -> TIA -> Comp.}
+
+\subsection{Zeitmessung}
+
+Damit ein direct \acrshort{tof}-Signal ausgewertet werden kann, benötigt es eine hochaufgelöste
+Zeitmessung. Die Firma Texas Instruments bietet dafür mit dem \acrshort{tdc}7200 eine gute Lösung
+an. Laut Datenblatt \cite{ti2016tdc7200_datasheet} kann dieser bis zu 55 ps auflösen, mit einer
+Standardabweichung von 35 ps. Setzt man nun die Lichtgeschwindigkeit sowie diese minimale
+zeitliche Auflösung in eine Bewegungsgleichung ein, sollte der Baustein theoretisch folgende
+räumliche Auflösung erreichen:
+
+\begin{equation}\label{eq:tdc_max_resolution}
+        s_{min} = v \cdot t = 299.8e6 \frac{m}{s} \cdot 55ps = 1.5mm
+\end{equation}
+\myequations{Maximale räumliche Auflösung des TDC7200}
+
+
+Prinzipiell soll die \acrshort{tof}-Funktionalität in zwei Schritten in Betrieb genommen werden.
+In einem ersten Teil soll es rein darum gehen, den \acrshort{tdc}7200 \acrshort{ic} genauer
+kennenzulernen.
+
+
+\textcolor{red}{TODO: Evtl erwähnen, nicht, dass jetzt falsche Erwartungen entstehen:}
+
+Bemerkung: In der Realität wird eine solche Auflösung nicht erreichbar sein. Die Herausforderungen
+bestehen beispielsweise darin, dass in der gesamten Signalkette diverse Verzögerungen vorhanden sind.
+So spielen zum Beispiel das Einschalten der Laser-Diode, die Bandbreite des Verstärkers sowie
+die Schaltzeit des Komparators eine grosse Rolle.
+
+\subsection{Vorangehensweise}
+\textcolor{red}{TODO: Erklären, warum wir 2 TDCs einsetzen}
+
 \section{Umsetzung}
 
 \subsection{Firmware}
@@ -221,6 +260,20 @@ gezeigt.
     \includegraphics[page=2, trim=530 580 300 50, clip, width=0.9\textwidth]{attachments/schematic.pdf}
     \caption{Nucleo Board}\label{fig:nucleo_board}
 \end{figure}
+
+Das NUCLEO Board ist ein sogenanntes \glqq Development-Kit\grqq, welches einen STM32F042K6 Mikrocontroller
+beinhaltet. Am Rand des Boards werden diverse Pins der \acrfull{mcu} via Pin-Header
+einfach zur Verfügung gestellt. Dies erleichtert die Integration in eine eigene Elektronik
+enorm. Programmiert wird der Mikrokontroller über eine USB-Schnittstelle.
+
+In diesem Design wird das Entwicklerboard dazu benötigt, die TDC7200 ICs zu
+bedienen. Dazu wird einerseits ein \acrfull{spi} benötigt, um die Mess-ICs zu konfigurieren
+und auch auszulesen (siehe SPI-Bus in der Abbildung). Weiter können auf beiden TDCs Messungen
+gestartet werden mit den Signalen \glqq start\_ele\grqq, resp. \glqq start\_opt\grqq. Für den
+TDC welcher sich um die elektrischen Signale kümmert kann zudem mit \glqq stop\_ele\grqq ein
+Stopp-Puls generiert werden.
+Zuguterletzt ist das NUCLEO dafür zuständig, die Laser-Diode anzusteuern, was mit den Signalen
+\glqq LD\_pulse\grqq sowie  \glqq $\overline{\mbox{LD\_enable}}$\grqq geschieht.
 
 \subsubsection{TDC Electrical Signal}
 
