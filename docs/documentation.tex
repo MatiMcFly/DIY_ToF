@@ -468,6 +468,68 @@ Messungen sind in Abbildung~\ref{fig:gpio_toggle_with_hal_dso} und \ref{fig:gpio
     \caption{\acrshort{gpio} Toggle mit \acrshort{hal} - \acrshort{dso} (Zoom)}\label{fig:gpio_toggle_with_hal_dso_zoom}
 \end{figure}
 
+\subsubsection{GPIO Toggle ohne HAL}
+
+Als nächstes wird gemessen wie lange es für die \acrshort{cpu} der \acrshort{mcu} dauert mit direktem Register-Zugriff
+(via Pointer; ohne \acrshort{hal}-Library) zwei \acrshort{gpio}-Pins zu schalten.
+
+In Code~\ref{code:gpio_toggle_without_hal} ist die Firmware-Implementation dazu gezeigt.
+
+\lstinputlisting[language={C}, label={code:gpio_toggle_without_hal}, caption={\acrshort{gpio} Toggle ohne \acrshort{hal}}]{sourcecode/gpio_toggle_without_hal.c}
+
+Vom \acrshort{tdc} wird also die Zeit gemessen zwischen Zeile 15 und 16 in Code~\ref{code:gpio_toggle_without_hal}. Dazu
+wird \lstinline|SW1| mit \lstinline|stop_ele| verbunden und \lstinline|J3| kurzgeschlossen
+(siehe Abbildung~\ref{fig:tdc_ele_signal}).
+
+Via \acrshort{uart} wurden 2000 Messwerte erfasst. Ein Ausschnitt davon ist in Code
+\ref{code:gpio_toggle_without_hal_log} gezeigt.
+
+\lstinputlisting[language={}, label={code:gpio_toggle_without_hal_log}, caption={\acrshort{gpio} Toggle ohne \acrshort{hal}}]{sourcecode/gpio_toggle_without_hal_log.txt}
+
+Arithmetischer Mittelwert und Standardabweichung sind in Formel \ref{eq:gpio_toggle_without_hal} aufgeführt.
+
+\begin{equation}\label{eq:gpio_toggle_without_hal}
+    \begin{split}
+        \overline{ToF} &= 1'377'772.6~ps\\
+        \sigma         &= 401.6~ps
+    \end{split}
+\end{equation}
+\myequations{\acrshort{gpio} Toggle ohne \acrshort{hal}}
+
+Da die \acrshort{cpu} mit 8~MHz läuft, lässt sich daraus schliessen, dass ein Pin-Toggle ohne \acrshort{hal} ca. 10
+\acrshort{cpu}-Cycles benötigt. Dies erscheint plausibel.
+
+Histogramm und Boxplot sind in Abbildung~\ref{fig:gpio_toggle_without_hal_histogram} bzw.
+\ref{fig:gpio_toggle_without_hal_boxplot} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includesvg[width=0.8\textwidth]{graphics/gpio_toggle_without_hal_histogram.svg}
+    \caption{\acrshort{gpio} Toggle ohne \acrshort{hal} - Histogramm}\label{fig:gpio_toggle_without_hal_histogram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includesvg[width=0.8\textwidth]{graphics/gpio_toggle_without_hal_boxplot.svg}
+    \caption{\acrshort{gpio} Toggle ohne \acrshort{hal} - Boxplot}\label{fig:gpio_toggle_without_hal_boxplot}
+\end{figure}
+
+Um die Resultate des \acrshort{tdc} zu validieren, wurde dieselbe Messung auch mittels \acrfull{dso} durchgeführt. Die
+Messungen sind in Abbildung~\ref{fig:gpio_toggle_without_hal_dso} und \ref{fig:gpio_toggle_without_hal_dso_zoom}
+dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/gpio_toggle_without_hal_dso.png}
+    \caption{\acrshort{gpio} Toggle ohne \acrshort{hal} - \acrshort{dso}}\label{fig:gpio_toggle_without_hal_dso}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/gpio_toggle_without_hal_dso_zoom.png}
+    \caption{\acrshort{gpio} Toggle ohne \acrshort{hal} - \acrshort{dso} (Zoom)}\label{fig:gpio_toggle_without_hal_dso_zoom}
+\end{figure}
+
 \pagebreak
 
 \subsection{Optische Messungen}
