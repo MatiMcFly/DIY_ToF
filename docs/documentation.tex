@@ -36,7 +36,8 @@
 
 \section{Einleitung}
 
-Bei dieser Projektarbeit geht es darum ein \acrfull{diy} optisches \acrfull{tof} Distanzmesssystem aufzubauen. Dazu soll ein \acrfull{tdc} verwendet werden.
+Bei dieser Projektarbeit geht es darum ein \acrfull{diy} optisches \acrfull{tof} Distanzmesssystem aufzubauen. Dazu soll
+ein \acrfull{tdc} verwendet werden.
 
 \dots
 
@@ -54,9 +55,12 @@ Bei \acrshort{tof} handelt es sich um \dots
 
 Zur Berechnung des theoretisch zu erwartenden Photostrom wird von einer Distanz zur Wand von $10~m$ ausgegangen.
 
-Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform Halbkugel-förmig gestreut. In der Realität wird sich die Streuung nicht uniform verteilen, sondern in der Mitte stärker konzentriert sein. Die folgende Berechnung zeigt also den worst case.
+Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform Halbkugel-förmig gestreut. In der
+Realität wird sich die Streuung nicht uniform verteilen, sondern in der Mitte stärker konzentriert sein. Die folgende
+Berechnung zeigt also den worst case.
 
-Die Berechnung der empfangenen Strahlungsleistung, der Strahlungsintensität, dem Raumwinkel und dem Photostrom sind in Formel~\ref{eq:pin}, \ref{eq:ie}, \ref{eq:omega} bzw. \ref{eq:iph} gezeigt.
+Die Berechnung der empfangenen Strahlungsleistung, der Strahlungsintensität, dem Raumwinkel und dem Photostrom sind in
+Formel~\ref{eq:pin}, \ref{eq:ie}, \ref{eq:omega} bzw. \ref{eq:iph} gezeigt.
 
 \begin{equation}\label{eq:pin}
     P_{in} = E_e \cdot A = \frac{I_e}{r^2} \cdot A
@@ -80,7 +84,8 @@ Die Berechnung der empfangenen Strahlungsleistung, der Strahlungsintensität, de
 
 \subsubsection{Berechnung mit RLD94PZJ5 und BPV23NF}
 
-Ersten Berechnungen wurden mit der Laserdiode RLD94PZJ5 \cite{rohm2020rld94pzj5_datasheet} und der Photodiode BPV23NF \cite{vishay2024bpv23nf_datasheet} durchgeführt.
+Ersten Berechnungen wurden mit der Laserdiode RLD94PZJ5 \cite{rohm2020rld94pzj5_datasheet} und der Photodiode BPV23NF
+\cite{vishay2024bpv23nf_datasheet} durchgeführt.
 
 Die relevanten Werte aus den Datenblättern sind in Formel~\ref{eq:rld94pzj5_num} und \ref{eq:rbpv23nf_num} aufgelistet.
 
@@ -97,7 +102,8 @@ Die relevanten Werte aus den Datenblättern sind in Formel~\ref{eq:rld94pzj5_num
 \end{equation}
 \myequations{Werte des BPV23NF}
 
-Diese Werte eingesetzt in Formel~\ref{eq:ie}, \ref{eq:pin} und \ref{eq:iph} ergibt die Resultate in Formel~\ref{eq:rld94pzj5_rbpv23nf_num}.
+Diese Werte eingesetzt in Formel~\ref{eq:ie}, \ref{eq:pin} und \ref{eq:iph} ergibt die Resultate in
+Formel~\ref{eq:rld94pzj5_rbpv23nf_num}.
 
 \begin{equation}\label{eq:rld94pzj5_rbpv23nf_num}
     \begin{split}
@@ -110,9 +116,12 @@ Diese Werte eingesetzt in Formel~\ref{eq:ie}, \ref{eq:pin} und \ref{eq:iph} ergi
 
 \subsubsection{Berechnung mit RLD65NZX1 and NJL6401R-3}
 
-Die Laserdiode RLD94PZJ5 hat im Bezug auf diese Projektarbeit zwei Nachteile: Sehr hohe Leistung, welche für das menschliche Auge gefährlich werden kann und ein Wellenlängenbereich, der für das menschliche Auge nicht sichtbar ist.
+Die Laserdiode RLD94PZJ5 hat im Bezug auf diese Projektarbeit zwei Nachteile: Sehr hohe Leistung, welche für das
+menschliche Auge gefährlich werden kann und ein Wellenlängenbereich, der für das menschliche Auge nicht sichtbar ist.
 
-Aus diesen Gründen wurde eine zweite Laserdiode evaluiert: RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet}. Gepaart wird sie mit der Photodiode NJL6401R-3 \cite{jrc2014njl6401r3_datasheet}. Die folgenden Berechnungen wurden basierend auf diesen beiden Komponenten durchgeführt.
+Aus diesen Gründen wurde eine zweite Laserdiode evaluiert: RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet}. Gepaart wird
+sie mit der Photodiode NJL6401R-3 \cite{jrc2014njl6401r3_datasheet}. Die folgenden Berechnungen wurden basierend auf
+diesen beiden Komponenten durchgeführt.
 
 Die relevanten Werte aus den Datenblättern sind in Formel~\ref{eq:rld65nzx1_num} und \ref{eq:njl6401r3_num} aufgelistet.
 
@@ -129,7 +138,8 @@ Die relevanten Werte aus den Datenblättern sind in Formel~\ref{eq:rld65nzx1_num
 \end{equation}
 \myequations{Werte des NJL6401R-3}
 
-Diese Werte eingesetzt in Formel~\ref{eq:ie}, \ref{eq:pin} und \ref{eq:iph} ergibt die Resultate in Formel~\ref{eq:rld65nzx1_njl6401r3_num}.
+Diese Werte eingesetzt in Formel~\ref{eq:ie}, \ref{eq:pin} und \ref{eq:iph} ergibt die Resultate in
+Formel~\ref{eq:rld65nzx1_njl6401r3_num}.
 
 \begin{equation}\label{eq:rld65nzx1_njl6401r3_num}
     \begin{split}
@@ -195,7 +205,8 @@ Siehe dazu auch Kapitel~\ref{sec:schematic_photo_receiver}.
 
 \subsubsection{Nucleo Board}\label{sec:schematic_nucleo}
 
-Die Beschaltung des NUCLEO-F042K6 Boards \cite{st2024nucleof042k6_usermanual} ist in Abbildung~\ref{fig:nucleo_board} gezeigt.
+Die Beschaltung des NUCLEO-F042K6 Boards \cite{st2024nucleof042k6_usermanual} ist in Abbildung~\ref{fig:nucleo_board}
+gezeigt.
 
 \begin{figure}[H]
     \centering
@@ -205,7 +216,8 @@ Die Beschaltung des NUCLEO-F042K6 Boards \cite{st2024nucleof042k6_usermanual} is
 
 \subsubsection{TDC Electrical Signal}
 
-Die Beschaltung des TDC7200 \cite{ti2016tdc7200_datasheet} für den elektrischen Teil ist in Abbildung~\ref{fig:tdc_ele_signal} gezeigt.
+Die Beschaltung des TDC7200 \cite{ti2016tdc7200_datasheet} für den elektrischen Teil ist in
+Abbildung~\ref{fig:tdc_ele_signal} gezeigt.
 
 \begin{figure}[H]
     \centering
@@ -215,7 +227,8 @@ Die Beschaltung des TDC7200 \cite{ti2016tdc7200_datasheet} für den elektrischen
 
 \subsubsection{TDC Optical Signal}
 
-Die Beschaltung des TDC7200 \cite{ti2016tdc7200_datasheet} für den optischen Teil ist in Abbildung~\ref{fig:tdc_opt_signal} gezeigt.
+Die Beschaltung des TDC7200 \cite{ti2016tdc7200_datasheet} für den optischen Teil ist in
+Abbildung~\ref{fig:tdc_opt_signal} gezeigt.
 
 \begin{figure}[H]
     \centering
@@ -235,7 +248,8 @@ Die Beschaltung des Oszillators für die beiden \acrshort{tdc} ist in Abbildung~
 
 \subsubsection{Power Supply Separation}
 
-Für die Beschaltung der Photodiode, inkl. \acrshort{tia} und Komparator, macht es Sinn eine Spannungsversorgung mit möglichst wenig Rauschen zu haben.
+Für die Beschaltung der Photodiode, inkl. \acrshort{tia} und Komparator, macht es Sinn eine Spannungsversorgung mit
+möglichst wenig Rauschen zu haben.
 
 Dazu wurde die Separierung vorgenommen, welche in Abbildung~\ref{fig:power_supply_separation} dargestellt ist.
 
@@ -247,7 +261,10 @@ Dazu wurde die Separierung vorgenommen, welche in Abbildung~\ref{fig:power_suppl
 
 \subsubsection{Laser Driver}
 
-Die Laser Diode RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet} wird mittels Lasertreiber LMG1025-Q1 \cite{ti2024lmg1025q1_datasheet} und NexFET \cite{ti2016csd17578q3a_datasheet} angesteuert. Für die Generierung eines kurzen Pulses (0.5 \dots 100~ns) wurde mittels Hochpass und AND-Gatter \cite{diodes202074lvc1g08q_datasheet} implementiert. Siehe dazu Abbildung~\ref{fig:laser_driver}.
+Die Laser Diode RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet} wird mittels Lasertreiber LMG1025-Q1
+\cite{ti2024lmg1025q1_datasheet} und NexFET \cite{ti2016csd17578q3a_datasheet} angesteuert. Für die Generierung eines
+kurzen Pulses (0.5 \dots 100~ns) wurde mittels Hochpass und AND-Gatter \cite{diodes202074lvc1g08q_datasheet}
+implementiert. Siehe dazu Abbildung~\ref{fig:laser_driver}.
 
 \begin{figure}[H]
     \centering
@@ -257,7 +274,10 @@ Die Laser Diode RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet} wird mittels Lasert
 
 \subsubsection{Photo Receiver}\label{sec:schematic_photo_receiver}
 
-Um den Photostrom der Photodiode NJL6401R \cite{jrc2014njl6401r3_datasheet} zu verstärken und in eine Spannung umzuwandeln, wurde mit dem Operationsverstärker OPA858 \cite{ti2018opa858_datasheet} ein Transimpedanzverstärker aufgebaut. Der Ausgangs des Transimpedanzverstärkers geht auf den Komparator TLV3501 \cite{ti2016tlv3501_datasheet}, um das STOP-Signal für den \acrshort{tdc} zu generieren. Siehe dazu Abbildung~\ref{fig:photo_receiver}.
+Um den Photostrom der Photodiode NJL6401R \cite{jrc2014njl6401r3_datasheet} zu verstärken und in eine Spannung
+umzuwandeln, wurde mit dem Operationsverstärker OPA858 \cite{ti2018opa858_datasheet} ein Transimpedanzverstärker
+aufgebaut. Der Ausgangs des Transimpedanzverstärkers geht auf den Komparator TLV3501 \cite{ti2016tlv3501_datasheet},
+um das STOP-Signal für den \acrshort{tdc} zu generieren. Siehe dazu Abbildung~\ref{fig:photo_receiver}.
 
 \begin{figure}[H]
     \centering
