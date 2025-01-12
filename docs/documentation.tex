@@ -416,9 +416,9 @@ In Code~\ref{code:gpio_toggle_with_hal} ist die Firmware-Implementation dazu gez
 
 \lstinputlisting[language={C}, label={code:gpio_toggle_with_hal}, caption={\acrshort{gpio} Toggle mit \acrshort{hal}}]{sourcecode/gpio_toggle_with_hal.c}
 
-Vom \acrshort{tdc} wird also die Zeit gemessen zwischen Zeile 15 und 16 in Code~\ref{code:gpio_toggle_with_hal}. Dazu
-wird \lstinline|SW1| mit \lstinline|stop_ele| verbunden und \lstinline|J3| kurzgeschlossen (siehe
-Abbildung~\ref{fig:tdc_ele_signal}).
+Der \acrshort{tdc} misst also die Zeit zwischen Zeile 15 und 16 in Code~\ref{code:gpio_toggle_with_hal}. Dazu wird der
+STOP-Pin des \acrshort{tdc} via \lstinline|SW1| mit \lstinline|stop_ele| verbunden. Der Kabelanschluss \lstinline|J3|
+wird kurzgeschlossen. Siehe Abbildung~\ref{fig:tdc_ele_signal}.
 
 Via \acrshort{uart} wurden 2000 Messwerte erfasst. Ein Ausschnitt davon ist in Code \ref{code:gpio_toggle_with_hal_log}
 gezeigt. Die restlichen Daten befinden sich im elektronischen Anhang.
@@ -477,9 +477,10 @@ In Code~\ref{code:gpio_toggle_without_hal} ist die Firmware-Implementation dazu 
 
 \lstinputlisting[language={C}, label={code:gpio_toggle_without_hal}, caption={\acrshort{gpio} Toggle ohne \acrshort{hal}}]{sourcecode/gpio_toggle_without_hal.c}
 
-Vom \acrshort{tdc} wird also die Zeit gemessen zwischen Zeile 15 und 16 in Code~\ref{code:gpio_toggle_without_hal}. Dazu
-wird \lstinline|SW1| mit \lstinline|stop_ele| verbunden und \lstinline|J3| kurzgeschlossen
-(siehe Abbildung~\ref{fig:tdc_ele_signal}).
+Der \acrshort{tdc} misst also die Zeit zwischen Zeile 15 und 16 in Code~\ref{code:gpio_toggle_without_hal}. Dazu wird,
+wie in Kapitel \ref{sec:gpio_toggle_with_hal}, der STOP-Pin des \acrshort{tdc} via \lstinline|SW1| mit
+\lstinline|stop_ele| verbunden. Der Kabelanschluss \lstinline|J3| wird kurzgeschlossen. Siehe
+Abbildung~\ref{fig:tdc_ele_signal}.
 
 Via \acrshort{uart} wurden 2000 Messwerte erfasst. Ein Ausschnitt davon ist in Code
 \ref{code:gpio_toggle_without_hal_log} gezeigt. Die restlichen Daten befinden sich im elektronischen Anhang.
