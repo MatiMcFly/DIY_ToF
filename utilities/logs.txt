@@ -1,0 +1,3 @@
+# Aufbau dieses Files (XXXXXXX als integer in ps):
+# Measurement1;Measurement2;Measurement3;Measurement4;Measurement5;Measurement6:
+XXXXXXX;XXXXXXX;XXXXXXX;XXXXXXX;XXXXXXX;XXXXXXX
