@@ -407,7 +407,7 @@ wurde.
 Die Zeitmessungen werden von \lstinline|IC1| (siehe Abbildung~\ref{fig:tdc_ele_signal}) durchgeführt und von der
 Firmware, welche auf dem Nucleo Board \lstinline|U1| (siehe Abbildung~\ref{fig:nucleo_board}) getriggert und ausgelesen.
 
-\subsubsection{GPIO Toggle mit HAL}
+\subsubsection{GPIO Toggle mit HAL}\label{sec:gpio_toggle_with_hal}
 
 Als erstes wird gemessen, wie lange es für die \acrshort{cpu} der \acrshort{mcu} dauert mittels \acrfull{hal} - Library
 \cite{st2020stm32f0_hal} zwei \acrshort{gpio}-Pins zu schalten.
@@ -468,7 +468,7 @@ Messungen sind in Abbildung~\ref{fig:gpio_toggle_with_hal_dso} und \ref{fig:gpio
     \caption{\acrshort{gpio} Toggle mit \acrshort{hal} - \acrshort{dso} (Zoom)}\label{fig:gpio_toggle_with_hal_dso_zoom}
 \end{figure}
 
-\subsubsection{GPIO Toggle ohne HAL}
+\subsubsection{GPIO Toggle ohne HAL}\label{sec:gpio_toggle_without_hal}
 
 Als nächstes wird gemessen wie lange es für die \acrshort{cpu} der \acrshort{mcu} dauert mit direktem Register-Zugriff
 (via Pointer; ohne \acrshort{hal}-Library) zwei \acrshort{gpio}-Pins zu schalten.
@@ -529,6 +529,65 @@ dargestellt.
     \includegraphics[width=0.8\textwidth]{graphics/gpio_toggle_without_hal_dso_zoom.png}
     \caption{\acrshort{gpio} Toggle ohne \acrshort{hal} - \acrshort{dso} (Zoom)}\label{fig:gpio_toggle_without_hal_dso_zoom}
 \end{figure}
+
+\subsubsection{Unterschiedliche Kabellängen}\label{sec:different_cable_lengths}
+
+Für diese Messung wird dasselbe Setup wie in Kapitel \ref{sec:gpio_toggle_without_hal} verwendet.
+
+Anstelle eines Kurzschlusses von \lstinline|J3| (siehe Abbildung \ref{fig:tdc_ele_signal}) werden nun verschiedene
+Kabellängen angeschlossen.
+
+Es hat sich herausgestellt, dass eine kreisförmige Anordnung des Kabels wichtig ist. Denn bei einer Überlappung der
+beiden Kabelenden werden kürze Zeiten gemessen. Dies hat mit der kapazitiven Kopplung zwischen den Leitern zu tun.
+
+Die Resultate sind in Abbildung~\ref{fig:different_cable_lengths} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includesvg[width=0.9\textwidth]{graphics/different_cable_lengths.svg}
+    \caption{Unterschiedliche Kabellängen}\label{fig:different_cable_lengths}
+\end{figure}
+
+Die arithmetischen Mittelwerte und Standardabweichungen sind in Tabelle \ref{tab:different_cable_lengths} aufgeführt.
+
+\begin{table}[H]
+    \mytable
+        {|l|l|l|}
+        {\textbf{Länge} & \textbf{Mittelwert} & \textbf{Standardabweichung}}
+        {\length & \mean & \stddev}
+        {tables/different_cable_lengths.csv}
+    \caption{Unterschiedliche Kabellängen}\label{tab:different_cable_lengths}
+\end{table}
+
+Die Signal-Ausbreitungsgeschwindigkeit in Kupfer beträgt ca. 2/3 der Lichtgeschwindigkeit
+\cite{firewallcx2025propagationdelay}. Um die Resultate in Tabelle \ref{tab:different_cable_lengths} zu validieren,
+rechnen wir wie in Formel \ref{eq:cable_length} gezeigt, auf die Kabellänge zurück. Die Laufzeit bei 0~m wird dabei
+abgezogen, um die Verzögerung zu kompensieren, welche durch das Schalten der \acrshort{gpio}s entsteht.
+
+\begin{equation}\label{eq:cable_length}
+    \begin{split}
+        c_{cu} &\approx \frac{2}{3} \cdot c_0 = \frac{2}{3} \cdot 299'792'458~\frac{m}{s} \approx 200'000'000~\frac{m}{s}\\
+        ToF_{n} &= ToF_{n_{abs}} - ToF_{0}\\
+        l_{n}   &= ToF_{n} \cdot c_{cu}
+    \end{split}
+\end{equation}
+\myequations{Zurückrechnen auf Kabellänge}
+
+Die Resultate sind in Tabelle \ref{tab:different_cable_lengths_calc} dargestellt.
+
+\begin{table}[H]
+    \mytable
+        {|l|l|l|}
+        {\textbf{Tatsächliche Länge} & \textbf{ToF\_n} & \textbf{Zurückgerechnete Länge}}
+        {\reallength & \tofn & \calclength}
+        {tables/different_cable_lengths_calc.csv}
+    \caption{Kabellängen zurückgerechnet}\label{tab:different_cable_lengths_calc}
+\end{table}
+
+Es fällt auf, dass die Resultate nicht genau übereinstimmen. Dies hat mehrere Ursachen: Die Ausbreitungsgeschwindigkeit
+ist nicht genau bekannt und die tatsächlichen Kabellängen wurden nicht genau gemessen.
+
+Es ist jedoch eine klare Korrelation zu erkennen.
 
 \pagebreak
 
