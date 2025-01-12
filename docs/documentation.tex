@@ -20,6 +20,12 @@
 \newacronym{diy}{DIY}{Do It Yourself}
 \newacronym{tdc}{TDC}{Time to Digital Converter}
 \newacronym{tia}{TIA}{Trans-Impedance Amplifier}
+\newacronym{mcu}{MCU}{Microcontroller Unit}
+\newacronym{cpu}{CPU}{Central Processing Unit}
+\newacronym{hal}{HAL}{Hardware Abstraction Layer}
+\newacronym{gpio}{GPIO}{General Purpose Input/Output}
+\newacronym{uart}{UART}{Universal Asynchronous Receiver/Transmitter}
+\newacronym{dso}{DSO}{Digital Storage Oscilloscope}
 
 \begin{document}
 
@@ -36,7 +42,8 @@
 
 \section{Einleitung}
 
-Bei dieser Projektarbeit geht es darum ein \acrfull{diy} optisches \acrfull{tof} Distanzmesssystem aufzubauen. Dazu soll ein \acrfull{tdc} verwendet werden.
+Bei dieser Projektarbeit geht es darum ein \acrfull{diy} optisches \acrfull{tof} Distanzmesssystem aufzubauen. Dazu soll
+ein \acrfull{tdc} verwendet werden.
 
 \dots
 
@@ -54,9 +61,12 @@ Bei \acrshort{tof} handelt es sich um \dots
 
 Zur Berechnung des theoretisch zu erwartenden Photostrom wird von einer Distanz zur Wand von $10~m$ ausgegangen.
 
-Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform Halbkugel-förmig gestreut. In der Realität wird sich die Streuung nicht uniform verteilen, sondern in der Mitte stärker konzentriert sein. Die folgende Berechnung zeigt also den worst case.
+Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform Halbkugel-förmig gestreut. In der
+Realität wird sich die Streuung nicht uniform verteilen, sondern in der Mitte stärker konzentriert sein. Die folgende
+Berechnung zeigt also den worst case.
 
-Die Berechnung der empfangenen Strahlungsleistung, der Strahlungsintensität, dem Raumwinkel und dem Photostrom sind in Formel~\ref{eq:pin}, \ref{eq:ie}, \ref{eq:omega} bzw. \ref{eq:iph} gezeigt.
+Die Berechnung der empfangenen Strahlungsleistung, der Strahlungsintensität, dem Raumwinkel und dem Photostrom sind in
+Formel~\ref{eq:pin}, \ref{eq:ie}, \ref{eq:omega} bzw. \ref{eq:iph} gezeigt.
 
 \begin{equation}\label{eq:pin}
     P_{in} = E_e \cdot A = \frac{I_e}{r^2} \cdot A
@@ -80,7 +90,8 @@ Die Berechnung der empfangenen Strahlungsleistung, der Strahlungsintensität, de
 
 \subsubsection{Berechnung mit RLD94PZJ5 und BPV23NF}
 
-Ersten Berechnungen wurden mit der Laserdiode RLD94PZJ5 \cite{rohm2020rld94pzj5_datasheet} und der Photodiode BPV23NF \cite{vishay2024bpv23nf_datasheet} durchgeführt.
+Ersten Berechnungen wurden mit der Laserdiode RLD94PZJ5 \cite{rohm2020rld94pzj5_datasheet} und der Photodiode BPV23NF
+\cite{vishay2024bpv23nf_datasheet} durchgeführt.
 
 Die relevanten Werte aus den Datenblättern sind in Formel~\ref{eq:rld94pzj5_num} und \ref{eq:rbpv23nf_num} aufgelistet.
 
@@ -97,7 +108,8 @@ Die relevanten Werte aus den Datenblättern sind in Formel~\ref{eq:rld94pzj5_num
 \end{equation}
 \myequations{Werte des BPV23NF}
 
-Diese Werte eingesetzt in Formel~\ref{eq:ie}, \ref{eq:pin} und \ref{eq:iph} ergibt die Resultate in Formel~\ref{eq:rld94pzj5_rbpv23nf_num}.
+Diese Werte eingesetzt in Formel~\ref{eq:ie}, \ref{eq:pin} und \ref{eq:iph} ergibt die Resultate in
+Formel~\ref{eq:rld94pzj5_rbpv23nf_num}.
 
 \begin{equation}\label{eq:rld94pzj5_rbpv23nf_num}
     \begin{split}
@@ -110,9 +122,12 @@ Diese Werte eingesetzt in Formel~\ref{eq:ie}, \ref{eq:pin} und \ref{eq:iph} ergi
 
 \subsubsection{Berechnung mit RLD65NZX1 and NJL6401R-3}
 
-Die Laserdiode RLD94PZJ5 hat im Bezug auf diese Projektarbeit zwei Nachteile: Sehr hohe Leistung, welche für das menschliche Auge gefährlich werden kann und ein Wellenlängenbereich, der für das menschliche Auge nicht sichtbar ist.
+Die Laserdiode RLD94PZJ5 hat im Bezug auf diese Projektarbeit zwei Nachteile: Sehr hohe Leistung, welche für das
+menschliche Auge gefährlich werden kann und ein Wellenlängenbereich, der für das menschliche Auge nicht sichtbar ist.
 
-Aus diesen Gründen wurde eine zweite Laserdiode evaluiert: RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet}. Gepaart wird sie mit der Photodiode NJL6401R-3 \cite{jrc2014njl6401r3_datasheet}. Die folgenden Berechnungen wurden basierend auf diesen beiden Komponenten durchgeführt.
+Aus diesen Gründen wurde eine zweite Laserdiode evaluiert: RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet}. Gepaart wird
+sie mit der Photodiode NJL6401R-3 \cite{jrc2014njl6401r3_datasheet}. Die folgenden Berechnungen wurden basierend auf
+diesen beiden Komponenten durchgeführt.
 
 Die relevanten Werte aus den Datenblättern sind in Formel~\ref{eq:rld65nzx1_num} und \ref{eq:njl6401r3_num} aufgelistet.
 
@@ -129,7 +144,8 @@ Die relevanten Werte aus den Datenblättern sind in Formel~\ref{eq:rld65nzx1_num
 \end{equation}
 \myequations{Werte des NJL6401R-3}
 
-Diese Werte eingesetzt in Formel~\ref{eq:ie}, \ref{eq:pin} und \ref{eq:iph} ergibt die Resultate in Formel~\ref{eq:rld65nzx1_njl6401r3_num}.
+Diese Werte eingesetzt in Formel~\ref{eq:ie}, \ref{eq:pin} und \ref{eq:iph} ergibt die Resultate in
+Formel~\ref{eq:rld65nzx1_njl6401r3_num}.
 
 \begin{equation}\label{eq:rld65nzx1_njl6401r3_num}
     \begin{split}
@@ -151,6 +167,8 @@ Bei einem \acrfull{tia} handelt es sich um \dots
 \section{Umsetzung}
 
 \subsection{Firmware}
+
+Der selbst entwickelte Firmware-Treiber für den \acrshort{tdc} befindet im Anhang Kapitel \ref{sec:tdc_driver}.
 
 \pagebreak
 
@@ -195,7 +213,8 @@ Siehe dazu auch Kapitel~\ref{sec:schematic_photo_receiver}.
 
 \subsubsection{Nucleo Board}\label{sec:schematic_nucleo}
 
-Die Beschaltung des NUCLEO-F042K6 Boards \cite{st2024nucleof042k6_usermanual} ist in Abbildung~\ref{fig:nucleo_board} gezeigt.
+Die Beschaltung des NUCLEO-F042K6 Boards \cite{st2024nucleof042k6_usermanual} ist in Abbildung~\ref{fig:nucleo_board}
+gezeigt.
 
 \begin{figure}[H]
     \centering
@@ -205,7 +224,8 @@ Die Beschaltung des NUCLEO-F042K6 Boards \cite{st2024nucleof042k6_usermanual} is
 
 \subsubsection{TDC Electrical Signal}
 
-Die Beschaltung des TDC7200 \cite{ti2016tdc7200_datasheet} für den elektrischen Teil ist in Abbildung~\ref{fig:tdc_ele_signal} gezeigt.
+Die Beschaltung des TDC7200 \cite{ti2016tdc7200_datasheet} für den elektrischen Teil ist in
+Abbildung~\ref{fig:tdc_ele_signal} gezeigt.
 
 \begin{figure}[H]
     \centering
@@ -215,7 +235,8 @@ Die Beschaltung des TDC7200 \cite{ti2016tdc7200_datasheet} für den elektrischen
 
 \subsubsection{TDC Optical Signal}
 
-Die Beschaltung des TDC7200 \cite{ti2016tdc7200_datasheet} für den optischen Teil ist in Abbildung~\ref{fig:tdc_opt_signal} gezeigt.
+Die Beschaltung des TDC7200 \cite{ti2016tdc7200_datasheet} für den optischen Teil ist in
+Abbildung~\ref{fig:tdc_opt_signal} gezeigt.
 
 \begin{figure}[H]
     \centering
@@ -235,7 +256,8 @@ Die Beschaltung des Oszillators für die beiden \acrshort{tdc} ist in Abbildung~
 
 \subsubsection{Power Supply Separation}
 
-Für die Beschaltung der Photodiode, inkl. \acrshort{tia} und Komparator, macht es Sinn eine Spannungsversorgung mit möglichst wenig Rauschen zu haben.
+Für die Beschaltung der Photodiode, inkl. \acrshort{tia} und Komparator, macht es Sinn eine Spannungsversorgung mit
+möglichst wenig Rauschen zu haben.
 
 Dazu wurde die Separierung vorgenommen, welche in Abbildung~\ref{fig:power_supply_separation} dargestellt ist.
 
@@ -247,7 +269,10 @@ Dazu wurde die Separierung vorgenommen, welche in Abbildung~\ref{fig:power_suppl
 
 \subsubsection{Laser Driver}
 
-Die Laser Diode RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet} wird mittels Lasertreiber LMG1025-Q1 \cite{ti2024lmg1025q1_datasheet} und NexFET \cite{ti2016csd17578q3a_datasheet} angesteuert. Für die Generierung eines kurzen Pulses (0.5 \dots 100~ns) wurde mittels Hochpass und AND-Gatter \cite{diodes202074lvc1g08q_datasheet} implementiert. Siehe dazu Abbildung~\ref{fig:laser_driver}.
+Die Laser Diode RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet} wird mittels Lasertreiber LMG1025-Q1
+\cite{ti2024lmg1025q1_datasheet} und NexFET \cite{ti2016csd17578q3a_datasheet} angesteuert. Für die Generierung eines
+kurzen Pulses (0.5 \dots 100~ns) wurde mittels Hochpass und AND-Gatter \cite{diodes202074lvc1g08q_datasheet}
+implementiert. Siehe dazu Abbildung~\ref{fig:laser_driver}.
 
 \begin{figure}[H]
     \centering
@@ -257,7 +282,10 @@ Die Laser Diode RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet} wird mittels Lasert
 
 \subsubsection{Photo Receiver}\label{sec:schematic_photo_receiver}
 
-Um den Photostrom der Photodiode NJL6401R \cite{jrc2014njl6401r3_datasheet} zu verstärken und in eine Spannung umzuwandeln, wurde mit dem Operationsverstärker OPA858 \cite{ti2018opa858_datasheet} ein Transimpedanzverstärker aufgebaut. Der Ausgangs des Transimpedanzverstärkers geht auf den Komparator TLV3501 \cite{ti2016tlv3501_datasheet}, um das STOP-Signal für den \acrshort{tdc} zu generieren. Siehe dazu Abbildung~\ref{fig:photo_receiver}.
+Um den Photostrom der Photodiode NJL6401R \cite{jrc2014njl6401r3_datasheet} zu verstärken und in eine Spannung
+umzuwandeln, wurde mit dem Operationsverstärker OPA858 \cite{ti2018opa858_datasheet} ein Transimpedanzverstärker
+aufgebaut. Der Ausgangs des Transimpedanzverstärkers geht auf den Komparator TLV3501 \cite{ti2016tlv3501_datasheet},
+um das STOP-Signal für den \acrshort{tdc} zu generieren. Siehe dazu Abbildung~\ref{fig:photo_receiver}.
 
 \begin{figure}[H]
     \centering
@@ -364,6 +392,304 @@ In diesem Kapitel werden die \acrshort{pcb}-Layouts dokumentiert.
 
 \section{Messungen}
 
+In diesem Kapitel werden die Messresultate dokumentiert.
+
+Die verwendeten Python-Skripte zur Berechnung der statistischen Grössen und zum Plotten der Diagramme befinden sich im
+Anhang Kapitel \ref{sec:python_analyze}.
+
+Das verwendete \acrfull{dso} ist ein Rohde \& Schwarz RTB2004 1.25 GSa/s.
+
+\subsection{Elektrische Messungen}
+
+In diesem Teilkapitel werden die Messresultate dokumentiert, welche rein elektrisch (also ohne optischen Teil) erfasst
+wurde.
+
+Die Zeitmessungen werden von \lstinline|IC1| (siehe Abbildung~\ref{fig:tdc_ele_signal}) durchgeführt und von der
+Firmware, welche auf dem Nucleo Board \lstinline|U1| (siehe Abbildung~\ref{fig:nucleo_board}) getriggert und ausgelesen.
+
+\subsubsection{GPIO Toggle mit HAL}\label{sec:gpio_toggle_with_hal}
+
+Als erstes wird gemessen, wie lange es für die \acrshort{cpu} der \acrshort{mcu} dauert mittels \acrfull{hal} - Library
+\cite{st2020stm32f0_hal} zwei \acrshort{gpio}-Pins zu schalten.
+
+In Code~\ref{code:gpio_toggle_with_hal} ist die Firmware-Implementation dazu gezeigt.
+
+\lstinputlisting[language={C}, label={code:gpio_toggle_with_hal}, caption={\acrshort{gpio} Toggle mit \acrshort{hal}}]{sourcecode/gpio_toggle_with_hal.c}
+
+Der \acrshort{tdc} misst also die Zeit zwischen Zeile 15 und 16 in Code~\ref{code:gpio_toggle_with_hal}. Dazu wird der
+STOP-Pin des \acrshort{tdc} via \lstinline|SW1| mit \lstinline|stop_ele| verbunden. Der Kabelanschluss \lstinline|J3|
+wird kurzgeschlossen. Siehe Abbildung~\ref{fig:tdc_ele_signal}.
+
+Via \acrshort{uart} wurden 2000 Messwerte erfasst. Ein Ausschnitt davon ist in Code \ref{code:gpio_toggle_with_hal_log}
+gezeigt. Die restlichen Daten befinden sich im elektronischen Anhang.
+
+\lstinputlisting[language={}, label={code:gpio_toggle_with_hal_log}, caption={\acrshort{gpio} Toggle mit \acrshort{hal}}]{sourcecode/gpio_toggle_with_hal_log.txt}
+
+Arithmetischer Mittelwert und Standardabweichung sind in Formel \ref{eq:gpio_toggle_with_hal} aufgeführt.
+
+\begin{equation}\label{eq:gpio_toggle_with_hal}
+    \begin{split}
+        \overline{ToF} &= 6'375'887.9~ps\\
+        \sigma         &= 1'059.2~ps
+    \end{split}
+\end{equation}
+\myequations{\acrshort{gpio} Toggle mit \acrshort{hal}}
+
+Da die \acrshort{cpu} mit 8~MHz läuft, lässt sich daraus schliessen, dass ein Pin-Toggle mit \acrshort{hal} ca. 50
+\acrshort{cpu}-Cycles benötigt. Dies erscheint plausibel.
+
+Histogramm und Boxplot sind in Abbildung~\ref{fig:gpio_toggle_with_hal_histogram} bzw.
+\ref{fig:gpio_toggle_with_hal_boxplot} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includesvg[width=0.8\textwidth]{graphics/gpio_toggle_with_hal_histogram.svg}
+    \caption{\acrshort{gpio} Toggle mit \acrshort{hal} - Histogramm}\label{fig:gpio_toggle_with_hal_histogram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includesvg[width=0.8\textwidth]{graphics/gpio_toggle_with_hal_boxplot.svg}
+    \caption{\acrshort{gpio} Toggle mit \acrshort{hal} - Boxplot}\label{fig:gpio_toggle_with_hal_boxplot}
+\end{figure}
+
+Um die Resultate des \acrshort{tdc} zu validieren, wurde dieselbe Messung auch mittels \acrfull{dso} durchgeführt. Die
+Messungen sind in Abbildung~\ref{fig:gpio_toggle_with_hal_dso} und \ref{fig:gpio_toggle_with_hal_dso_zoom} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/gpio_toggle_with_hal_dso.png}
+    \caption{\acrshort{gpio} Toggle mit \acrshort{hal} - \acrshort{dso}}\label{fig:gpio_toggle_with_hal_dso}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/gpio_toggle_with_hal_dso_zoom.png}
+    \caption{\acrshort{gpio} Toggle mit \acrshort{hal} - \acrshort{dso} (Zoom)}\label{fig:gpio_toggle_with_hal_dso_zoom}
+\end{figure}
+
+\subsubsection{GPIO Toggle ohne HAL}\label{sec:gpio_toggle_without_hal}
+
+Als nächstes wird gemessen wie lange es für die \acrshort{cpu} der \acrshort{mcu} dauert mit direktem Register-Zugriff
+(via Pointer; ohne \acrshort{hal}-Library) zwei \acrshort{gpio}-Pins zu schalten.
+
+In Code~\ref{code:gpio_toggle_without_hal} ist die Firmware-Implementation dazu gezeigt.
+
+\lstinputlisting[language={C}, label={code:gpio_toggle_without_hal}, caption={\acrshort{gpio} Toggle ohne \acrshort{hal}}]{sourcecode/gpio_toggle_without_hal.c}
+
+Der \acrshort{tdc} misst also die Zeit zwischen Zeile 15 und 16 in Code~\ref{code:gpio_toggle_without_hal}. Dazu wird,
+wie in Kapitel \ref{sec:gpio_toggle_with_hal}, der STOP-Pin des \acrshort{tdc} via \lstinline|SW1| mit
+\lstinline|stop_ele| verbunden. Der Kabelanschluss \lstinline|J3| wird kurzgeschlossen. Siehe
+Abbildung~\ref{fig:tdc_ele_signal}.
+
+Via \acrshort{uart} wurden 2000 Messwerte erfasst. Ein Ausschnitt davon ist in Code
+\ref{code:gpio_toggle_without_hal_log} gezeigt. Die restlichen Daten befinden sich im elektronischen Anhang.
+
+\lstinputlisting[language={}, label={code:gpio_toggle_without_hal_log}, caption={\acrshort{gpio} Toggle ohne \acrshort{hal}}]{sourcecode/gpio_toggle_without_hal_log.txt}
+
+Arithmetischer Mittelwert und Standardabweichung sind in Formel \ref{eq:gpio_toggle_without_hal} aufgeführt.
+
+\begin{equation}\label{eq:gpio_toggle_without_hal}
+    \begin{split}
+        \overline{ToF} &= 1'377'772.6~ps\\
+        \sigma         &= 401.6~ps
+    \end{split}
+\end{equation}
+\myequations{\acrshort{gpio} Toggle ohne \acrshort{hal}}
+
+Da die \acrshort{cpu} mit 8~MHz läuft, lässt sich daraus schliessen, dass ein Pin-Toggle ohne \acrshort{hal} ca. 10
+\acrshort{cpu}-Cycles benötigt. Dies erscheint plausibel.
+
+Histogramm und Boxplot sind in Abbildung~\ref{fig:gpio_toggle_without_hal_histogram} bzw.
+\ref{fig:gpio_toggle_without_hal_boxplot} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includesvg[width=0.8\textwidth]{graphics/gpio_toggle_without_hal_histogram.svg}
+    \caption{\acrshort{gpio} Toggle ohne \acrshort{hal} - Histogramm}\label{fig:gpio_toggle_without_hal_histogram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includesvg[width=0.8\textwidth]{graphics/gpio_toggle_without_hal_boxplot.svg}
+    \caption{\acrshort{gpio} Toggle ohne \acrshort{hal} - Boxplot}\label{fig:gpio_toggle_without_hal_boxplot}
+\end{figure}
+
+Um die Resultate des \acrshort{tdc} zu validieren, wurde dieselbe Messung auch mittels \acrfull{dso} durchgeführt. Die
+Messungen sind in Abbildung~\ref{fig:gpio_toggle_without_hal_dso} und \ref{fig:gpio_toggle_without_hal_dso_zoom}
+dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/gpio_toggle_without_hal_dso.png}
+    \caption{\acrshort{gpio} Toggle ohne \acrshort{hal} - \acrshort{dso}}\label{fig:gpio_toggle_without_hal_dso}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/gpio_toggle_without_hal_dso_zoom.png}
+    \caption{\acrshort{gpio} Toggle ohne \acrshort{hal} - \acrshort{dso} (Zoom)}\label{fig:gpio_toggle_without_hal_dso_zoom}
+\end{figure}
+
+\subsubsection{Unterschiedliche Kabellängen}\label{sec:different_cable_lengths}
+
+Für diese Messung wird dasselbe Setup wie in Kapitel \ref{sec:gpio_toggle_without_hal} verwendet.
+
+Anstelle eines Kurzschlusses von \lstinline|J3| (siehe Abbildung \ref{fig:tdc_ele_signal}) werden nun verschiedene
+Kabellängen angeschlossen.
+
+Es hat sich herausgestellt, dass eine kreisförmige Anordnung des Kabels wichtig ist. Denn bei einer Überlappung der
+beiden Kabelenden werden kürze Zeiten gemessen. Dies hat mit der kapazitiven Kopplung zwischen den Leitern zu tun.
+
+Die Resultate sind in Abbildung~\ref{fig:different_cable_lengths} dargestellt. Die Liste mit den Datenpunkten befindet
+sich im elektronischen Anhang.
+
+\begin{figure}[H]
+    \centering
+    \includesvg[width=0.9\textwidth]{graphics/different_cable_lengths.svg}
+    \caption{Unterschiedliche Kabellängen}\label{fig:different_cable_lengths}
+\end{figure}
+
+Die arithmetischen Mittelwerte und Standardabweichungen sind in Tabelle \ref{tab:different_cable_lengths} aufgeführt.
+
+\begin{table}[H]
+    \mytable
+        {|l|l|l|}
+        {\textbf{Länge} & \textbf{Mittelwert} & \textbf{Standardabweichung}}
+        {\length & \mean & \stddev}
+        {tables/different_cable_lengths.csv}
+    \caption{Unterschiedliche Kabellängen}\label{tab:different_cable_lengths}
+\end{table}
+
+Die Signal-Ausbreitungsgeschwindigkeit in Kupfer beträgt ca. 2/3 der Lichtgeschwindigkeit
+\cite{firewallcx2025propagationdelay}. Um die Resultate in Tabelle \ref{tab:different_cable_lengths} zu validieren,
+rechnen wir wie in Formel \ref{eq:cable_length} gezeigt, auf die Kabellänge zurück. Die Laufzeit bei 0~m wird dabei
+abgezogen, um die Verzögerung zu kompensieren, welche durch das Schalten der \acrshort{gpio}s entsteht.
+
+\begin{equation}\label{eq:cable_length}
+    \begin{split}
+        c_{cu} &\approx \frac{2}{3} \cdot c_0 = \frac{2}{3} \cdot 299'792'458~\frac{m}{s} \approx 200'000'000~\frac{m}{s}\\
+        ToF_{n} &= ToF_{n_{abs}} - ToF_{0}\\
+        l_{n}   &= ToF_{n} \cdot c_{cu}
+    \end{split}
+\end{equation}
+\myequations{Zurückrechnen auf Kabellänge}
+
+Die Resultate sind in Tabelle \ref{tab:different_cable_lengths_calc} dargestellt.
+
+\begin{table}[H]
+    \mytable
+        {|l|l|l|}
+        {\textbf{Tatsächliche Länge} & \textbf{ToF\_n} & \textbf{Zurückgerechnete Länge}}
+        {\reallength & \tofn & \calclength}
+        {tables/different_cable_lengths_calc.csv}
+    \caption{Kabellängen zurückgerechnet}\label{tab:different_cable_lengths_calc}
+\end{table}
+
+Es fällt auf, dass die Resultate nicht genau übereinstimmen. Dies hat mehrere Ursachen: Die Ausbreitungsgeschwindigkeit
+ist nicht genau bekannt und die tatsächlichen Kabellängen wurden nicht genau gemessen.
+
+Es ist jedoch eine klare Korrelation zu erkennen.
+
+\subsubsection{Mode 1 vs. Mode 2}
+
+%TODO: Evtl. Beschreibung der TDC-Modi in ein anderes Kapitel verschieben. z.B. Theorie/TDC?
+
+Der \acrshort{tdc}7200 unterstützt zwei Modi mit unterschiedlichen Messbereichen \cite{ti2016tdc7200_datasheet}:
+
+\begin{itemize}
+    \item Mode 1: 12~ns bis 500~ns
+    \item Mode 2: 250~ns bis 8~ms
+\end{itemize}
+
+Im Mode~1 wird nur der interne Ring-Oszillator des \acrshort{tdc} verwendet. Siehe dazu Abbildung~\ref{fig:tdc_mode1}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/tdc_mode1.png}
+    \caption[\acrshort{tdc} Mode 1]{\acrshort{tdc} Mode 1 \cite{ti2016tdc7200_datasheet}}\label{fig:tdc_mode1}
+\end{figure}
+
+Im Mode~2, um längere Zeiten messen zu können, wir zusätzlich der externe Clock des \acrshort{tdc} verwendet. Siehe dazu
+Abbildung~\ref{fig:tdc_mode2}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/tdc_mode2.png}
+    \caption[\acrshort{tdc} Mode 2]{\acrshort{tdc} Mode 2 \cite{ti2016tdc7200_datasheet}}\label{fig:tdc_mode2}
+\end{figure}
+
+Die bisherigen Messungen (Kapitel~\ref{sec:gpio_toggle_with_hal}, \ref{sec:gpio_toggle_without_hal} und
+\ref{sec:different_cable_lengths}) wurden im Mode~2 durchgeführt, da das Schalten der \acrshort{gpio}s mit der
+\acrshort{cpu} mehr als 500~ns brauchte.
+
+In künftigen Messungen soll das Schalten der \acrshort{gpio}s von einem Hardware-Timer der \acrshort{mcu} erledigt
+werden. Damit werden Schaltzeiten von 125~ns bei 8~MHz bzw. 20.8~ns bei 48~MHz möglich sein. Es soll deshalb in diesem
+Kapitel ein Vergleich der Messresultate der beiden Modi gemacht werden.
+
+Dazu wurden drei Messungen gemacht:
+\begin{enumerate}
+    \item \acrshort{gpio} Toggle ohne \acrshort{hal} im Mode~2 mit Kabellänge~=~0~m (wie in Kapitel~\ref{sec:gpio_toggle_without_hal} und \ref{sec:different_cable_lengths})
+    \item \acrshort{gpio} Toggle ohne \acrshort{hal} im Mode~2 mit Kabellänge~=~6~m (wie in Kapitel~\ref{sec:different_cable_lengths})
+    \item Ohne GPIO Toggle Im Mode~1 mit Kabellänge~=~6~m
+\end{enumerate}
+
+Für die Messung im Mode~1 soll auf die Verzögerung durch das Schalten der \acrshort{gpio}s verzichtet werden. Dazu wird
+das Start- und Stop-Signal vom selben \acrshort{gpio}-Pin, \lstinline|START_ELE|, generiert. Dazu wird \lstinline|SW1|
+mit \lstinline|start_ele| verbunden (siehe Abbildung~\ref{fig:tdc_ele_signal}).
+
+In Code~\ref{code:mode1} ist die Firmware-Implementation für eine Messung im Mode~1 gezeigt.
+
+\lstinputlisting[language={C}, label={code:mode1}, caption={Mode 1}]{sourcecode/mode1.c}
+
+Die Unterschiede im Vergleich zu den Messungen in Kapitel~\ref{sec:gpio_toggle_without_hal} und
+\ref{sec:different_cable_lengths} sind:
+
+\begin{itemize}
+    \item Zeile 7: \acrshort{tdc} wird im Mode~1 konfiguriert (anstatt Mode~2)
+    \item Zeile 15 und 23: Es wird nur der \lstinline|START_ELE| Pin getoggelt (anstatt \lstinline|START_ELE| und \lstinline|STOP_ELE| Pin)
+\end{itemize}
+
+Die Erwartung ist, dass die Differenz aus Messung~1 und Messungen~2 ungefähr dem Resultat aus Messung~3 entspricht.
+
+Die Resultate dieser drei Messungen sind in Tabelle \ref{tab:mode1_vs_mode2} aufgeführt. Die restlichen Daten befinden
+sich im elektronischen Anhang.
+
+\begin{table}[H]
+    \mytable
+        {|l|l|l|}
+        {\textbf{Messung} & \textbf{Mittelwert} & \textbf{Standardabweichung}}
+        {\measurement & \mean & \stddev}
+        {tables/mode1_vs_mode2.csv}
+    \caption{Mode 1 vs. Mode 2}\label{tab:mode1_vs_mode2}
+\end{table}
+
+Die Berechnung in Formel~\ref{eq:mode1_vs_mode2} zeigt, dass die Messresultate nahe beieinander liegen.
+
+\begin{equation}\label{eq:mode1_vs_mode2}
+    \begin{split}
+        \Delta Mode~2 &= 1'403'223.8~ps - 1'378'222.5~ps = 25'001.3~ps\\
+        Mode~1        &= 25'145.3~ps
+    \end{split}
+\end{equation}
+\myequations{Mode 1 vs. Mode 2}
+
+Es kann also davon ausgegangen werden, dass Mode~1 und Mode~2 im Firmware-Treiber korrekt implementiert wurden.
+
+Bemerkung: Im Firmware-Treiber (siehe Anhang Kapitel \ref{sec:tdc_driver}) kann für beide Modi dieselbe Funktion
+\lstinline|TDC_read_result()| verwendet werden. Für Mode~1 vereinfacht sich die Berechnung, weil \lstinline|TIME2|~=~0
+und \lstinline|CLOCK_COUNT1|~=~0.
+
+\subsubsection{Timer Output}
+
+%TODO
+
+\pagebreak
+
+\subsection{Optische Messungen}
+
+%TODO
+
 \pagebreak
 
 \section{Fazit}
@@ -371,6 +697,26 @@ In diesem Kapitel werden die \acrshort{pcb}-Layouts dokumentiert.
 \pagebreak
 
 \section{Anhang}
+
+\subsection{TDC Treiber}\label{sec:tdc_driver}
+
+In Code~\ref{code:tdc_driver_header} und \ref{code:tdc_driver_source} ist der selbst entwickelte Firmware-Treiber für
+den \acrshort{tdc} dargestellt.
+
+\lstinputlisting[language={c}, label={code:tdc_driver_header}, caption={TDC Driver (Header)}]{../firmware/Core/TDC/TDC.h}
+\lstinputlisting[language={c}, label={code:tdc_driver_source}, caption={TDC Driver (Source)}]{../firmware/Core/TDC/TDC.c}
+
+\subsection{Python Analyse}\label{sec:python_analyze}
+
+In Code \ref{code:python_analyze} ist das Python-Skript zur Berechnung des arithmetischen Mittelwerts und der
+Standardabweichung sowie zum Plotten des Histogramms und des Boxplots dargestellt.
+
+\lstinputlisting[language={python}, label={code:python_analyze}, caption={Python Analyse}]{../utilities/analyze-tof.py}
+
+In Code \ref{code:python_analyze_multi} ist das Python-Skript zur Berechnung des arithmetischen Mittelwerts und der
+Standardabweichung sowie zum Plotten der Werte für mehrere Messungen dargestellt.
+
+\lstinputlisting[language={python}, label={code:python_analyze_multi}, caption={Python Analyse (Multi)}]{../utilities/analyze-tofs.py}
 
 %%%%%%%%%%%%%%%%%%%%%% CONTENT END %%%%%%%%%%%%%%%%%%%%%%
 
