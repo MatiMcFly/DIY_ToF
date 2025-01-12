@@ -18,6 +18,7 @@
 \newacronym{pcb}{PCB}{Printed Circuit Board}
 \newacronym{tof}{ToF}{Time of Flight}
 \newacronym{diy}{DIY}{Do It Yourself}
+\newacronym{adc}{ADC}{Analog to Digital Converter}
 \newacronym{tdc}{TDC}{Time to Digital Converter}
 \newacronym{tia}{TIA}{Trans-Impedance Amplifier}
 \newacronym{mcu}{MCU}{Microcontroller Unit}
@@ -158,6 +159,22 @@ Formel~\ref{eq:rld65nzx1_njl6401r3_num}.
 \end{equation}
 \myequations{Nummerische Resultate mit RLD65NZX1 and NJL6401R-3}
 
+\subsubsection{Weitere Annäherung der Berechnung mit Empfangs-Linse}
+
+Auf Vorschlag der Dozenten wurden verschiedene Optiken aus einem Baukasten-System von QIOPTIQ ausprobiert.
+Besonders vielversprechend erschien hierbei eine Linse mit einem Durchmesser von 17 mm bei einer Brennweite von
+40 mm. Eine Solche Linse vergrössert die effektive Fläche, auf welcher der Lichtstrom empfangen werden kann, was
+eine höhere Empfangsleistung, sprich einen höheren Lichtstrom zur Folge hat.
+
+Im Idealfall kann diese Optik die Fläche um etwa folgenden Faktor vergrössern:
+
+\begin{equation}\label{eq:njl6401r3_lens}
+    A' = \frac{A_{L}}{A_{PD}} = \frac{(\frac{17~mm}{2})^2 \cdot \pi}{0.49~mm^2} = 463.2
+\end{equation}
+\myequations{Vergrösserung der Empfangsfläche durch Linse}
+
+\textcolor{red}{TODO: Wollen wir hier noch eine bessere Annäherung für den Laser machen?}
+
 \pagebreak
 
 \subsection{Transimpedanzverstärker}
@@ -169,9 +186,34 @@ Bei einem \acrfull{tia} handelt es sich um \dots
 
 \section{Konzept}
 
+Die folgenden Unterkapitel zeigt auf, wie die Entwickelte Schaltung aussehen wird. Hierbei wird vor allem darauf eingegangen,
+wie eine \acrlong{tof} Elektronik aufgebaut sein kann. Zudem werden weitere Herausforderungen eines solchen Systems und die
+Bewältigung ebendieser aufgezeigt.
+
 \subsection{Signalkette}
 
-\textcolor{red}{Signalkette erklären: Puls -> Gate-Treiber-> Laser -> Luft -> PD -> TIA -> Comp.}
+Dieses Unterkapitel soll näherbringen, wie die \acrshort{tof}-Messung realisiert wird. Eine Skizze der Signalkette ist in der
+Abbildung~\ref{fig:konzept_signalpfad} ersichtlich.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{diagrams/konzept_signalpfad.pdf}
+    \caption{Konzeptioneller Signalpfad}\label{fig:konzept_signalpfad}
+\end{figure}
+
+Ein Mikrocontroller kümmert sich um das Starten und Auswerten der Messresultate. Das Generieren eines Startsignals hat
+zur Folge, dass über einen Laser-Treiber eine Laser-Diode mit einem Puls angesteuert wird. Dieser Puls, nach der Laser-Diode
+in Form eines Lichtpulses, wird dann von einem Target reflektiert, welches in einer variablen Distanz zur Elektronik steht.
+
+Der Reflektierte Lichtpuls kann über eine Optik eingefangen werden und wird anschliessend von einer Photo-Diode in einen
+Lichtstrom umgewandelt. Dieser Lichtstrom wird von einem Transimpedanzverstärker in eine Spannung umgewandelt. Bevor der
+Mikrokontroller diese Spannung auswerten kann, muss diese erst digitalisiert werden. Das passiert unter Verwendung eines Komparators.
+Dieser kann als 1 bit \acrshort{adc} verstanden werden, da bloss eine Unterscheidung der beiden Zustände \glqq Licht\grqq und
+\glqq kein Licht\grqq notwendigt ist. Es ergibt sich also ein Empfangspuls.
+
+Wird nun die Zeit gemessen zwischen Start- und Empfangspuls, ist es möglich einen Rückschluss zu ziehen über die variable Strecke
+zwischen Elektronik und Target. Die Zeitmessung unterliegt höchsten Anforderungen. Als Versinnbildlichung: Innert einer Nanosekunde
+kann Licht eine Distanz von 30 cm zurücklegen. Wie eine solche Zeitmessung realisiert werden kann, soll das nächste Kapitel erklären.
 
 \subsection{Zeitmessung}
 
@@ -187,21 +229,41 @@ räumliche Auflösung erreichen:
 \end{equation}
 \myequations{Maximale räumliche Auflösung des TDC7200}
 
-
 Prinzipiell soll die \acrshort{tof}-Funktionalität in zwei Schritten in Betrieb genommen werden.
 In einem ersten Teil soll es rein darum gehen, den \acrshort{tdc}7200 \acrshort{ic} genauer
 kennenzulernen.
 
-
-\textcolor{red}{TODO: Evtl erwähnen, nicht, dass jetzt falsche Erwartungen entstehen:}
-
 Bemerkung: In der Realität wird eine solche Auflösung nicht erreichbar sein. Die Herausforderungen
 bestehen beispielsweise darin, dass in der gesamten Signalkette diverse Verzögerungen vorhanden sind.
 So spielen zum Beispiel das Einschalten der Laser-Diode, die Bandbreite des Verstärkers sowie
-die Schaltzeit des Komparators eine grosse Rolle.
+die Schaltzeit des Komparators eine grosse Rolle. Auch der Jitter des Mikrokontrollers beim Ein- und Ausschalten
+seiner Ausgänge wird bei der minimalen Auflösung ins Gewicht fallen. Im Kapitel \textcolor{red}{TODO Verweis}
+wird mittels verschiedener Messungen dargestellt, wie nah an die vom TDC7200 vorgegebene Grenze rangekommen wird.
 
 \subsection{Vorangehensweise}
-\textcolor{red}{TODO: Erklären, warum wir 2 TDCs einsetzen}
+
+Wie bereits erläutert ist davon auszugehen, dass der gesamte Signalpfad eine Ungenauigkeit in die Messung einbringt,
+welche weit ausserhalb derjenigen des TDC7200 liegt. Es bietet sich also an, dass diese im Vorfeld untersucht wird.
+Dazu wird ein zweiter TDC7200 auf der Elektronik eingesetzt, welcher zur Messung eines rein elektrischen Signals
+zuständig ist.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{diagrams/konzept_tdc_electrical.pdf}
+    \caption{Konzept Betrieb TDC rein elektrisch}\label{fig:konzept_tdc_electrical}
+\end{figure}
+
+In Abbildung~\ref{fig:konzept_tdc_electrical} sei skizziert, wie eine solche Schaltung aussehen könnte. Die gewellte,
+rot markierte Linie versinnbildlicht dabei einen Variablen Messpfad. Über einen Stecker können hier unterschiedlich lange
+Kabel angeschlossen werden. Somit ist es möglich, die Messgenauigkeit des TDC7200 rein elektrisch nachzuweisen.
+
+Folgende Punkte können mit einer solchen Erweiterung überprüft werden:
+
+\begin{itemize}
+    \item Messung Jitter der Ausgänge des verwendeten Mikrocontrollers
+    \item Konfiguration und Inbetriebnahme TDC7200 (z.B. verschiedene Messmodi)
+    \item Auswertung der Resultate des TDC7200
+\end{itemize}
 
 \section{Umsetzung}
 
@@ -212,6 +274,11 @@ Der selbst entwickelte Firmware-Treiber für den \acrshort{tdc} befindet im Anha
 \pagebreak
 
 \subsection{Schaltungen}
+Nachfolgend werden sämtliche Teil-Schaltungen thematisiert, welche für das entwickelten ToF-Evaluationsmodul
+nötig sind. Ein vollständiges Schema kann dem Anhang~\ref{sec:schematic_apdx} entnommen werden. Die kompletten
+Projekt-Dateien sind im elektronischen Anhang dieses Projektes verfügbar.
+
+Designt wurde das Schema mit Hilfe des Open-Source Tools \glqq KiCad EDA 8.0\grqq.
 
 \subsubsection{Selective Input Voltage}
 
@@ -417,22 +484,6 @@ In diesem Kapitel werden die \acrshort{pcb}-Layouts dokumentiert.
     \includegraphics[width=0.6\textwidth]{graphics/3d_bottom.png}
     \caption{3D View Bottom}\label{fig:3d_bottom}
 \end{figure}
-
-\begin{landscape}
-
-\subsection{Komponenten}
-
-\begin{table}[H]
-    \scriptsize
-    \mytable
-        {|l|l|l|l|l|l|}
-        {\textbf{Reference} & \textbf{Value} & \textbf{Datasheet} & \textbf{Footprint} & \textbf{Qty} & \textbf{DNP}}
-        {\Reference & \Value & \Datasheet & \Footprint & \Qty & \DNP}
-        {tables/bom.csv}
-    \caption{Bill of Material}\label{tab:bom}
-\end{table}
-
-\end{landscape}
 
 \pagebreak
 
@@ -770,7 +821,53 @@ In Code \ref{code:python_analyze_multi} ist das Python-Skript zur Berechnung des
 Standardabweichung sowie zum Plotten der Werte für mehrere Messungen dargestellt.
 
 \lstinputlisting[language={python}, label={code:python_analyze_multi}, caption={Python Analyse (Multi)}]{../utilities/analyze-tofs.py}
+\pagebreak
 
+\begin{landscape}
+
+    \subsection{Schema}\label{sec:schematic_apdx}
+    \global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[page=1, width=1.2\textwidth]{attachments/schematic.pdf}
+        \caption{Schema S.1/3}\label{fig:schematics_1}
+    \end{figure}
+    \pagebreak
+
+    \subsection{Schema}
+    \global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[page=2, width=1.2\textwidth]{attachments/schematic.pdf}
+        \caption{Schema S.2/3}\label{fig:schematics_2}
+    \end{figure}
+    \pagebreak
+
+    \subsection{Schema}
+    \global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[page=3, width=1.2\textwidth]{attachments/schematic.pdf}
+        \caption{Schema S.3/3}\label{fig:schematics_3}
+    \end{figure}
+    \pagebreak
+
+
+    \subsection{Stückliste}
+
+    \begin{table}[H]
+        \scriptsize
+        \mytable
+            {|l|l|l|l|l|l|}
+            {\textbf{Reference} & \textbf{Value} & \textbf{Datasheet} & \textbf{Footprint} & \textbf{Qty} & \textbf{DNP}}
+            {\Reference & \Value & \Datasheet & \Footprint & \Qty & \DNP}
+            {tables/bom.csv}
+        \caption{Bill of Material}\label{tab:bom}
+    \end{table}
+
+\end{landscape}
+
+\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 0}
 %%%%%%%%%%%%%%%%%%%%%% CONTENT END %%%%%%%%%%%%%%%%%%%%%%
 
 \input{referencepage.tex}
