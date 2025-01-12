@@ -137,11 +137,12 @@ int main(void)
 	// *((volatile uint32_t*)(GPIOA_BASE + 0x14)) |= (1 << 8);
 	// *((volatile uint32_t*)(GPIOA_BASE + 0x14)) |= (1 << 11);
 
-	// Start the timer
+	// Start the timer to toggle pins from low to high
+	MX_TIM1_Init();
 	status = HAL_TIM_OC_Start(&htim1, TIM_CHANNEL_1);
 	status = HAL_TIM_OC_Start(&htim1, TIM_CHANNEL_4);
 
-	HAL_Delay(20);
+	HAL_Delay(2); // 2 ms
 
 	if (TDC_read_result(&tdc_ele, &tof_fs) != TDC_OK) {
 	  for (;;) {} // TODO: Error handling...
@@ -151,7 +152,12 @@ int main(void)
 	sprintf(string, "ToF = %lu [ps]\n", (uint32_t)(tof_fs / 1000));
 	HAL_UART_Transmit(&huart2, (uint8_t*)string, strlen(string), 10000);
 
-	HAL_Delay(10); // 10 ms
+	// Start timer one more time to toggle pins from high to low
+	MX_TIM1_Init();
+	status = HAL_TIM_OC_Start(&htim1, TIM_CHANNEL_1);
+	status = HAL_TIM_OC_Start(&htim1, TIM_CHANNEL_4);
+
+	HAL_Delay(2); // 2 ms
 
     /* USER CODE END WHILE */
 
@@ -271,6 +277,10 @@ static void MX_TIM1_Init(void)
     Error_Handler();
   }
   if (HAL_TIM_OC_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_OnePulse_Init(&htim1, TIM_OPMODE_SINGLE) != HAL_OK)
   {
     Error_Handler();
   }
