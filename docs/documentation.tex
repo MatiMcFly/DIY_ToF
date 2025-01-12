@@ -162,6 +162,8 @@ Bei einem \acrfull{tia} handelt es sich um \dots
 
 \subsection{Firmware}
 
+Der selbst entwickelte Firmware-Treiber für den \acrshort{tdc} befindet im Anhang Kapitel \ref{sec:tdc_driver}.
+
 \pagebreak
 
 \subsection{Schaltungen}
@@ -384,6 +386,11 @@ In diesem Kapitel werden die \acrshort{pcb}-Layouts dokumentiert.
 
 \section{Messungen}
 
+In diesem Kapitel werden die Messresultate dokumentiert.
+
+Das verwendete Python-Skript zur Berechnung der statistischen Grössen und zum Plotten der Diagramme befindet im Anhang
+Kapitel \ref{sec:python_analyze}.
+
 \pagebreak
 
 \section{Fazit}
@@ -391,6 +398,21 @@ In diesem Kapitel werden die \acrshort{pcb}-Layouts dokumentiert.
 \pagebreak
 
 \section{Anhang}
+
+\subsection{TDC Treiber}\label{sec:tdc_driver}
+
+In Code~\ref{code:tdc_driver_header} und \ref{code:tdc_driver_source} ist der selbst entwickelte Firmware-Treiber für
+den \acrshort{tdc} dargestellt.
+
+\lstinputlisting[language={c}, label={code:tdc_driver_header}, caption={TDC Driver (Header)}]{../firmware/Core/TDC/TDC.h}
+\lstinputlisting[language={c}, label={code:tdc_driver_source}, caption={TDC Driver (Source)}]{../firmware/Core/TDC/TDC.c}
+
+\subsection{Python Analyse}\label{sec:python_analyze}
+
+In Code \ref{code:python_analyze} ist das Python-Skript zur Berechnung des arithmetischen Mittelwerts und der
+Standardabweichung sowie zum Plotten des Histogramms und des Boxplots dargestellt.
+
+\lstinputlisting[language={python}, label={code:python_analyze}, caption={Python Analyse}]{../utilities/analyze-tof.py}
 
 %%%%%%%%%%%%%%%%%%%%%% CONTENT END %%%%%%%%%%%%%%%%%%%%%%
 
