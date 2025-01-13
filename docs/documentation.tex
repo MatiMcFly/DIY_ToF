@@ -30,6 +30,7 @@
 \newacronym{spi}{SPI}{Serial Peripheral Interface}
 \newacronym{ic}{IC}{Integrated Circuit}
 \newacronym{usb}{USB}{Universal Serial Bus}
+\newacronym{hsi}{HSI}{High Speed Internal}
 
 \begin{document}
 
@@ -732,6 +733,8 @@ Die Resultate sind in Tabelle \ref{tab:different_cable_lengths_calc} dargestellt
 Es fällt auf, dass die Resultate nicht genau übereinstimmen. Dies hat mehrere Ursachen: Die Ausbreitungsgeschwindigkeit
 ist nicht genau bekannt und die tatsächlichen Kabellängen wurden nicht genau gemessen.
 
+%TODO Lets challenge this. Maybe 2/3 c is wrong for pure copper and it should be something like 95\% ?
+
 Es ist jedoch eine klare Korrelation zu erkennen.
 
 \subsubsection{Mode 1 vs. Mode 2}
@@ -823,9 +826,49 @@ Bemerkung: Im Firmware-Treiber (siehe Anhang Kapitel \ref{sec:tdc_driver}) kann 
 \lstinline|TDC_read_result()| verwendet werden. Für Mode~1 vereinfacht sich die Berechnung, weil \lstinline|TIME2|~=~0
 und \lstinline|CLOCK_COUNT1|~=~0.
 
-\subsubsection{Timer Output}
+\subsubsection{Timer Output}\label{sec:timer_output}
 
-%TODO
+In Kapitel~\ref{sec:gpio_toggle_with_hal} und \ref{sec:gpio_toggle_without_hal} wurge gezeigt, dass es einige
+\acrshort{cpu}-Cycles dauert, um  mittels Software, also mit \acrshort{cpu}-Instruktionen, \acrshort{gpio}s zu toggeln.
+
+Eine schnellere Methode ist es, das Toggeln der \acrshort{gpio}s von der Hardware-Peripherie der \acrshort{mcu}
+erledigen zu lassen. Dazu eignen sich Hardware-Timer.
+
+In Abbildung \ref{fig:clock_config_default} ist die default Clock-Configuration des Nucleo-Boards gezeigt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{graphics/clock_config_default.png}
+    \caption{Default Clock-Configuration}\label{fig:clock_config_default}
+\end{figure}
+
+Per default wir der \acrfull{hsi} Clock mit 8~MHz verwendet. Damit sollte es mit Hardware-Timer möglich sein, zwei
+\acrshort{gpio}s zu schalten mit einer Verzögerung von 1~/~8~MHz = 125~ns.
+
+Dazu werden Kanal \lstinline|CH1| und \lstinline|CH4| des Hardware-Timers \lstinline|TIM1| im Output Compare Match Modus
+verwendet. Die zugeordneten \acrshort{gpio}-Pins sind \lstinline|start_ele| bzw. \lstinline|stop_ele|.
+
+Erreicht der 16bit-Timer den Wert \lstinline|32'000| wird \lstinline|start_ele| auf High geschalten. Beim Erreichen des
+Werts \lstinline|32'001| wird \lstinline|stop_ele| auf High geschalten.
+
+Der \acrshort{tdc} wird in Mode 1 konfiguriert. Der STOP-Pin des \acrshort{tdc} wird via \lstinline|SW1| mit
+\lstinline|stop_ele| verbunden. Der Kabelanschluss \lstinline|J3| wird kurzgeschlossen. Siehe
+Abbildung~\ref{fig:tdc_ele_signal}.
+
+Der gemessene arithmetische Mittelwert und die Standardabweichung sind in Formel~\ref{eq:timer_output} aufgeführt.  Die
+Liste mit den Datenpunkten befindet sich im elektronischen Anhang.
+
+\begin{equation}\label{eq:timer_output}
+    \begin{split}
+        \overline{ToF} &=129'555~ps\\
+        \sigma         &= 201~ps
+    \end{split}
+\end{equation}
+\myequations{\acrshort{gpio} Toggle mit Timer-Output}
+
+Erwartungsgemäss dauert das Schalten der \acrshort{gpio}s ca. 125~ns. Die Standardabweichung ist aufgrund der kleineren
+Anzahl an Clock-Cycles tiefer als in den bisherigen Kapiteln.
+
 
 \pagebreak
 
