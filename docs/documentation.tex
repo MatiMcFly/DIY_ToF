@@ -31,6 +31,7 @@
 \newacronym{ic}{IC}{Integrated Circuit}
 \newacronym{usb}{USB}{Universal Serial Bus}
 \newacronym{hsi}{HSI}{High Speed Internal}
+\newacronym{pll}{PLL}{Phase-Locked Loop}
 
 \begin{document}
 
@@ -855,13 +856,17 @@ Der \acrshort{tdc} wird in Mode 1 konfiguriert. Der STOP-Pin des \acrshort{tdc} 
 \lstinline|stop_ele| verbunden. Der Kabelanschluss \lstinline|J3| wird kurzgeschlossen. Siehe
 Abbildung~\ref{fig:tdc_ele_signal}.
 
+In Code~\ref{code:timer_output} ist die Firmware-Implementation dazu gezeigt.
+
+\lstinputlisting[language={C}, label={code:timer_output}, caption={\acrshort{gpio} Toggle mit Timer-Output}]{sourcecode/timer_output.c}
+
 Der gemessene arithmetische Mittelwert und die Standardabweichung sind in Formel~\ref{eq:timer_output} aufgeführt.  Die
 Liste mit den Datenpunkten befindet sich im elektronischen Anhang.
 
 \begin{equation}\label{eq:timer_output}
     \begin{split}
-        \overline{ToF} &=129'555~ps\\
-        \sigma         &= 201~ps
+        \overline{ToF} &=128'108~ps\\
+        \sigma         &= 81~ps
     \end{split}
 \end{equation}
 \myequations{\acrshort{gpio} Toggle mit Timer-Output}
@@ -869,6 +874,58 @@ Liste mit den Datenpunkten befindet sich im elektronischen Anhang.
 Erwartungsgemäss dauert das Schalten der \acrshort{gpio}s ca. 125~ns. Die Standardabweichung ist aufgrund der kleineren
 Anzahl an Clock-Cycles tiefer als in den bisherigen Kapiteln.
 
+\subsubsection{Unterschiedliche Clock-Konfigurationen}
+
+In diesem Teilkapitel werden Messungen mit demselben Setup wie in Kapitel~\ref{sec:timer_output} durchgeführt.
+
+Es werden die arithmetischen Mittelwerte und die Standardabweichungen verschiedener Clock-Quellen des Nucleo-Boards
+verglichen. Es werden drei Messungen gemacht:
+
+\begin{enumerate}
+    \item \acrshort{hsi}: 8~MHz (wie in Kapitel~\ref{sec:timer_output})
+    \item \acrshort{hsi} mit \acrshort{pll}: 16~MHz
+    \item \acrshort{hsi}48: 48~MHz
+\end{enumerate}
+
+Die Clock-Konfigurationen für Messung 2 und 3 sind in Abbildung~\ref{fig:clock_config_hsi_pll_16mhz} bzw.
+\ref{fig:clock_config_hsi48_48mhz} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{graphics/clock_config_hsi_pll_16mhz.png}
+    \caption{Clock-Configuration \acrshort{hsi} mit \acrshort{pll} 16~MHz}\label{fig:clock_config_hsi_pll_16mhz}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{graphics/clock_config_hsi48_48mhz.png}
+    \caption{Clock-Configuration \acrshort{hsi}48 48~MHz}\label{fig:clock_config_hsi48_48mhz}
+\end{figure}
+
+Die arithmetischen Mittelwerte und Standardabweichungen sind in Tabelle~\ref{tab:different_clock_sources} dargestellt.
+Die Liste mit den Datenpunkten befindet sich im elektronischen Anhang.
+
+\begin{table}[H]
+    \mytable
+        {|l|l|l|}
+        {\textbf{Messung} & \textbf{Mittelwert} & \textbf{Standardabweichung}}
+        {\measurement & \mean & \stddev}
+        {tables/different_clock_sources.csv}
+    \caption{Unterschiedliche Clock-Quellen}\label{tab:different_clock_sources}
+\end{table}
+
+Die Resultate stimmen ungefähr mit den erwarteten Werten von 1~/~8~MHz = 125~ns, 1~/~16~MHz = 62.5~ns und
+1~/~48~MHz = 20.8~ns überein.
+
+Im Datenblatt konnte eine Angabe zum \acrshort{pll}-Jitter gefunden werden, siehe Abbildung~\ref{fig:pll_jitter}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/pll_jitter.pdf}
+    \caption[\acrshort{pll}-Jitter]{\acrshort{pll}-Jitter \cite{st2017stm32f042k6_datasheet}}\label{fig:pll_jitter}
+\end{figure}
+
+Diese Angabe ist ungefähr in derselben Grössenordnung wie die Messresultate.
 
 \pagebreak
 
