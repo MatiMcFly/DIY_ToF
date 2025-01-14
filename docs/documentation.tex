@@ -29,6 +29,7 @@
 \newacronym{dso}{DSO}{Digital Storage Oscilloscope}
 \newacronym{spi}{SPI}{Serial Peripheral Interface}
 \newacronym{ic}{IC}{Integrated Circuit}
+\newacronym{usb}{USB}{Universal Serial Bus}
 
 \begin{document}
 
@@ -159,11 +160,11 @@ Formel~\ref{eq:rld65nzx1_njl6401r3_num}.
 \end{equation}
 \myequations{Nummerische Resultate mit RLD65NZX1 and NJL6401R-3}
 
-\subsubsection{Weitere Annäherung der Berechnung mit Empfangs-Linse}
+\subsubsection{Berechnung mit Empfangs-Linse}
 
 Auf Vorschlag der Dozenten wurden verschiedene Optiken aus einem Baukasten-System von QIOPTIQ ausprobiert.
-Besonders vielversprechend erschien hierbei eine Linse mit einem Durchmesser von 17 mm bei einer Brennweite von
-40 mm. Eine Solche Linse vergrössert die effektive Fläche, auf welcher der Lichtstrom empfangen werden kann, was
+Besonders vielversprechend erschien hierbei eine Linse mit einem Durchmesser von 17~mm bei einer Brennweite von
+40~mm. Eine Solche Linse vergrössert die effektive Fläche, auf welcher der Lichtstrom empfangen werden kann, was
 eine höhere Empfangsleistung, sprich einen höheren Lichtstrom zur Folge hat.
 
 Im Idealfall kann diese Optik die Fläche um etwa folgenden Faktor vergrössern:
@@ -201,43 +202,43 @@ Abbildung~\ref{fig:konzept_signalpfad} ersichtlich.
     \caption{Konzeptioneller Signalpfad}\label{fig:konzept_signalpfad}
 \end{figure}
 
-Ein Mikrocontroller kümmert sich um das Starten und Auswerten der Messresultate. Das Generieren eines Startsignals hat
+Eine \acrshort{mcu} kümmert sich um das Starten und Auswerten der Messresultate. Das Generieren eines Startsignals hat
 zur Folge, dass über einen Laser-Treiber eine Laser-Diode mit einem Puls angesteuert wird. Dieser Puls, nach der Laser-Diode
 in Form eines Lichtpulses, wird dann von einem Target reflektiert, welches in einer variablen Distanz zur Elektronik steht.
 
 Der Reflektierte Lichtpuls kann über eine Optik eingefangen werden und wird anschliessend von einer Photo-Diode in einen
-Lichtstrom umgewandelt. Dieser Lichtstrom wird von einem Transimpedanzverstärker in eine Spannung umgewandelt. Bevor der
-Mikrokontroller diese Spannung auswerten kann, muss diese erst digitalisiert werden. Das passiert unter Verwendung eines Komparators.
-Dieser kann als 1 bit \acrshort{adc} verstanden werden, da bloss eine Unterscheidung der beiden Zustände \glqq Licht\grqq und
-\glqq kein Licht\grqq notwendigt ist. Es ergibt sich also ein Empfangspuls.
+Lichtstrom umgewandelt. Dieser Lichtstrom wird von einem Transimpedanzverstärker in eine Spannung umgewandelt. Bevor die
+\acrshort{mcu} diese Spannung auswerten kann, muss diese erst digitalisiert werden. Das passiert unter Verwendung eines Komparators.
+Dieser kann als 1~bit \acrshort{adc} verstanden werden, da bloss eine Unterscheidung der beiden Zustände \dq Licht\dq\ und
+\dq kein Licht\dq\ notwendig ist. Es ergibt sich also ein Empfangspuls.
 
 Wird nun die Zeit gemessen zwischen Start- und Empfangspuls, ist es möglich einen Rückschluss zu ziehen über die variable Strecke
 zwischen Elektronik und Target. Die Zeitmessung unterliegt höchsten Anforderungen. Als Versinnbildlichung: Innert einer Nanosekunde
-kann Licht eine Distanz von 30 cm zurücklegen. Wie eine solche Zeitmessung realisiert werden kann, soll das nächste Kapitel erklären.
+kann Licht eine Distanz von 30~cm zurücklegen. Wie eine solche Zeitmessung realisiert werden kann, soll das nächste Kapitel erklären.
 
 \subsection{Zeitmessung}
 
 Damit ein direct \acrshort{tof}-Signal ausgewertet werden kann, benötigt es eine hochaufgelöste
-Zeitmessung. Die Firma Texas Instruments bietet dafür mit dem \acrshort{tdc}7200 eine gute Lösung
-an. Laut Datenblatt \cite{ti2016tdc7200_datasheet} kann dieser bis zu 55 ps auflösen, mit einer
-Standardabweichung von 35 ps. Setzt man nun die Lichtgeschwindigkeit sowie diese minimale
-zeitliche Auflösung in eine Bewegungsgleichung ein, sollte der Baustein theoretisch folgende
-räumliche Auflösung erreichen:
+Zeitmessung. Die Firma Texas Instruments bietet dafür mit dem TDC7200 eine gute Lösung
+an. Laut Datenblatt \cite{ti2016tdc7200_datasheet} kann dieser bis zu 55~ps auflösen, mit einer
+Standardabweichung von 35~ps. Setzt man nun die Lichtgeschwindigkeit sowie diese minimale
+zeitliche Auflösung in eine Bewegungsgleichung ein, sollte der Baustein gemäss der Formel~\ref{eq:tdc_max_resolution}
+folgende räumliche Auflösung erreichen:
 
 \begin{equation}\label{eq:tdc_max_resolution}
-        s_{min} = v \cdot t = 299.8e6 \frac{m}{s} \cdot 55ps = 1.5mm
+        s_{min} = c \cdot t = 299.8 \cdot 10^6 \frac{m}{s} \cdot 55~ps = 16.5~mm
 \end{equation}
 \myequations{Maximale räumliche Auflösung des TDC7200}
 
 Prinzipiell soll die \acrshort{tof}-Funktionalität in zwei Schritten in Betrieb genommen werden.
-In einem ersten Teil soll es rein darum gehen, den \acrshort{tdc}7200 \acrshort{ic} genauer
+In einem ersten Teil soll es rein darum gehen, den TDC7200 \acrshort{ic} genauer
 kennenzulernen.
 
 Bemerkung: In der Realität wird eine solche Auflösung nicht erreichbar sein. Die Herausforderungen
 bestehen beispielsweise darin, dass in der gesamten Signalkette diverse Verzögerungen vorhanden sind.
 So spielen zum Beispiel das Einschalten der Laser-Diode, die Bandbreite des Verstärkers sowie
-die Schaltzeit des Komparators eine grosse Rolle. Auch der Jitter des Mikrokontrollers beim Ein- und Ausschalten
-seiner Ausgänge wird bei der minimalen Auflösung ins Gewicht fallen. Im Kapitel \textcolor{red}{TODO Verweis}
+die Schaltzeit des Komparators eine grosse Rolle. Auch der Jitter der \acrshort{mcu} beim Ein- und Ausschalten
+ihrer Ausgänge wird bei der minimalen Auflösung ins Gewicht fallen. Im Kapitel \textcolor{red}{TODO Verweis}
 wird mittels verschiedener Messungen dargestellt, wie nah an die vom TDC7200 vorgegebene Grenze rangekommen wird.
 
 \subsection{Vorangehensweise}
@@ -250,7 +251,7 @@ zuständig ist.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{diagrams/konzept_tdc_electrical.pdf}
-    \caption{Konzept Betrieb TDC rein elektrisch}\label{fig:konzept_tdc_electrical}
+    \caption{Konzept Betrieb \acrshort{tdc} rein elektrisch}\label{fig:konzept_tdc_electrical}
 \end{figure}
 
 In Abbildung~\ref{fig:konzept_tdc_electrical} sei skizziert, wie eine solche Schaltung aussehen könnte. Die gewellte,
@@ -260,7 +261,7 @@ Kabel angeschlossen werden. Somit ist es möglich, die Messgenauigkeit des TDC72
 Folgende Punkte können mit einer solchen Erweiterung überprüft werden:
 
 \begin{itemize}
-    \item Messung Jitter der Ausgänge des verwendeten Mikrocontrollers
+    \item Messung Jitter der Ausgänge der verwendeten \acrshort{mcu}
     \item Konfiguration und Inbetriebnahme TDC7200 (z.B. verschiedene Messmodi)
     \item Auswertung der Resultate des TDC7200
 \end{itemize}
@@ -274,11 +275,11 @@ Der selbst entwickelte Firmware-Treiber für den \acrshort{tdc} befindet im Anha
 \pagebreak
 
 \subsection{Schaltungen}
-Nachfolgend werden sämtliche Teil-Schaltungen thematisiert, welche für das entwickelten ToF-Evaluationsmodul
+Nachfolgend werden sämtliche Teil-Schaltungen thematisiert, welche für das entwickelten \acrshort{tof}-Evaluationsmodul
 nötig sind. Ein vollständiges Schema kann dem Anhang~\ref{sec:schematic_apdx} entnommen werden. Die kompletten
 Projekt-Dateien sind im elektronischen Anhang dieses Projektes verfügbar.
 
-Designt wurde das Schema mit Hilfe des Open-Source Tools \glqq KiCad EDA 8.0\grqq.
+Designt wurde das Schema mit Hilfe des Open-Source Tools \dq KiCad EDA 8.0\dq.
 
 \subsubsection{Selective Input Voltage}
 
@@ -328,19 +329,19 @@ gezeigt.
     \caption{Nucleo Board}\label{fig:nucleo_board}
 \end{figure}
 
-Das NUCLEO Board ist ein sogenanntes \glqq Development-Kit\grqq, welches einen STM32F042K6 Mikrocontroller
+Das NUCLEO Board ist ein sogenanntes \dq Development-Kit\dq, welches eine STM32F042K6 \acrshort{mcu}
 beinhaltet. Am Rand des Boards werden diverse Pins der \acrfull{mcu} via Pin-Header
 einfach zur Verfügung gestellt. Dies erleichtert die Integration in eine eigene Elektronik
-enorm. Programmiert wird der Mikrokontroller über eine USB-Schnittstelle.
+enorm. Programmiert wird die \acrshort{mcu} über eine \acrshort{usb}-Schnittstelle.
 
 In diesem Design wird das Entwicklerboard dazu benötigt, die TDC7200 ICs zu
 bedienen. Dazu wird einerseits ein \acrfull{spi} benötigt, um die Mess-ICs zu konfigurieren
-und auch auszulesen (siehe SPI-Bus in der Abbildung). Weiter können auf beiden TDCs Messungen
-gestartet werden mit den Signalen \glqq start\_ele\grqq, resp. \glqq start\_opt\grqq. Für den
-TDC welcher sich um die elektrischen Signale kümmert kann zudem mit \glqq stop\_ele\grqq ein
+und auch auszulesen (siehe SPI-Bus in der Abbildung). Weiter können auf beiden \acrshort{tdc}s Messungen
+gestartet werden mit den Signalen \lstinline|start_ele|, resp. \lstinline|start_opt|. Für den
+\acrshort{tdc} welcher sich um die elektrischen Signale kümmert kann zudem mit \lstinline|stop_ele| ein
 Stopp-Puls generiert werden.
 Zuguterletzt ist das NUCLEO dafür zuständig, die Laser-Diode anzusteuern, was mit den Signalen
-\glqq LD\_pulse\grqq sowie  \glqq $\overline{\mbox{LD\_enable}}$\grqq geschieht.
+\lstinline|LD_pulse| sowie $\overline{\mbox{\lstinline|LD_enable|}}$ geschieht.
 
 \subsubsection{TDC Electrical Signal}
 
@@ -350,7 +351,7 @@ Abbildung~\ref{fig:tdc_ele_signal} gezeigt.
 \begin{figure}[H]
     \centering
     \includegraphics[page=2, trim=80 330 750 310, clip, width=0.9\textwidth]{attachments/schematic.pdf}
-    \caption{TDC Electrical Signal}\label{fig:tdc_ele_signal}
+    \caption{\acrshort{tdc} Electrical Signal}\label{fig:tdc_ele_signal}
 \end{figure}
 
 \subsubsection{TDC Optical Signal}
@@ -361,17 +362,17 @@ Abbildung~\ref{fig:tdc_opt_signal} gezeigt.
 \begin{figure}[H]
     \centering
     \includegraphics[page=2, trim=530 330 300 310, clip, width=0.9\textwidth]{attachments/schematic.pdf}
-    \caption{TDC Optical Signal}\label{fig:tdc_opt_signal}
+    \caption{\acrshort{tdc} Optical Signal}\label{fig:tdc_opt_signal}
 \end{figure}
 
-\subsubsection{Oscillator For TDCs}
+\subsubsection{Oscillator For \acrshort{tdc}s}
 
 Die Beschaltung des Oszillators für die beiden \acrshort{tdc} ist in Abbildung~\ref{fig:oscillator_tdc} gezeigt.
 
 \begin{figure}[H]
     \centering
     \includegraphics[page=2, trim=80 90 930 550, clip, width=0.45\textwidth]{attachments/schematic.pdf}
-    \caption{Oscillator for TDCs}\label{fig:oscillator_tdc}
+    \caption{Oscillator for \acrshort{tdc}s}\label{fig:oscillator_tdc}
 \end{figure}
 
 \subsubsection{Power Supply Separation}
@@ -834,7 +835,6 @@ Standardabweichung sowie zum Plotten der Werte für mehrere Messungen dargestell
     \end{figure}
     \pagebreak
 
-    \subsection{Schema}
     \global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
     \begin{figure}[H]
         \centering
@@ -843,7 +843,6 @@ Standardabweichung sowie zum Plotten der Werte für mehrere Messungen dargestell
     \end{figure}
     \pagebreak
 
-    \subsection{Schema}
     \global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
     \begin{figure}[H]
         \centering
