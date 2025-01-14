@@ -241,7 +241,7 @@ die Schaltzeit des Komparators eine grosse Rolle. Auch der Jitter der \acrshort{
 ihrer Ausgänge wird bei der minimalen Auflösung ins Gewicht fallen. Im Kapitel \textcolor{red}{TODO Verweis}
 wird mittels verschiedener Messungen dargestellt, wie nah an die vom TDC7200 vorgegebene Grenze rangekommen wird.
 
-\subsection{Vorangehensweise}
+\subsection{Vorangehensweise}\label{sec:approach}
 
 Wie bereits erläutert ist davon auszugehen, dass der gesamte Signalpfad eine Ungenauigkeit in die Messung einbringt,
 welche weit ausserhalb derjenigen des TDC7200 liegt. Es bietet sich also an, dass diese im Vorfeld untersucht wird.
@@ -354,6 +354,14 @@ Abbildung~\ref{fig:tdc_ele_signal} gezeigt.
     \caption{\acrshort{tdc} Electrical Signal}\label{fig:tdc_ele_signal}
 \end{figure}
 
+Der TDC7200 ist über die die Start- und Stoppleitungen, ein Enable-Signal sowie die \acrshort{spi}-Leitungen mit der
+\acrshort{mcu} verbunden.
+
+Wie bereits im Kapitel~\ref{sec:approach} angesprochen, wird der elektrische \acrshort{tdc} dazu verwendet, den Chip
+erstmalig in Betrieb zu nehmen und sich damit vertraut zu machen. Am Anschluss \lstinline|J3| kann in einem nächsten
+Schritt ein beliebig langes Kabel angeschlossen werden. Dies ermöglicht es, erste Messresultate, natürlich rein elektrisch,
+vom TDC7200 auszulesen. Das \lstinline|STOP|-Signal kann wahlweise via \lstinline|stop_ele| oder \lstinline|start_ele| generiert werden.
+
 \subsubsection{TDC Optical Signal}
 
 Die Beschaltung des TDC7200 \cite{ti2016tdc7200_datasheet} für den optischen Teil ist in
@@ -365,9 +373,17 @@ Abbildung~\ref{fig:tdc_opt_signal} gezeigt.
     \caption{\acrshort{tdc} Optical Signal}\label{fig:tdc_opt_signal}
 \end{figure}
 
-\subsubsection{Oscillator For \acrshort{tdc}s}
+Die Beschaltung des \acrshort{tdc}s für die optische Messung gestaltet sich praktisch gleich wie beim elektrischen
+Gegenstück. Der hauptunterschied ist, hier aber, dass dessen \lstinline|STOP|-Signal nicht von der \acrshort{mcu} selber generiert
+wird, sondern von einem Komparator, welcher am Ende des optischen Messpfades steht. Da der Komparator mit einem 5~V Pegel
+arbeitet, ist der Spannungsteiler \lstinline|R1| / \lstinline|R2| vonnöten, welcher den 5~V Puls auf die geeigneten 3.3~V
+herunterteilt.
 
-Die Beschaltung des Oszillators für die beiden \acrshort{tdc} ist in Abbildung~\ref{fig:oscillator_tdc} gezeigt.
+\subsubsection{Oscillator For TDCs}
+
+Die Beschaltung des Oszillators für die beiden \acrshort{tdc} ist in Abbildung~\ref{fig:oscillator_tdc} gezeigt. Es
+handelt sich hierbei um einen normalen Quartz-Oszillator mit integriertem Schwingkreis. Praktischerweise ist bei diesem
+also keine weitere Beschaltung notwendig.
 
 \begin{figure}[H]
     \centering
@@ -388,12 +404,26 @@ Dazu wurde die Separierung vorgenommen, welche in Abbildung~\ref{fig:power_suppl
     \caption{Power Supply Separation}\label{fig:power_supply_separation}
 \end{figure}
 
+Prinzipiell sollen die Speisungen über eine Ferrit-Perle etwas entstört werden. Massgeblich ist hier natürlich auch der
+physikalische Verlauf des Speisungspfades auf dem Layout. Dazu mehr im entsprechenden Kapitel~\ref{sec:layout}. Wahlweise
+besteht nebst den Ferrit-Perlen die Möglichkeit, mittels Kondensatoren die Speisung weiter zu entkoppeln. Es wird jedoch
+davon ausgegangen, dass dies in einem ersten Schritt nicht notwendig ist.
+
 \subsubsection{Laser Driver}
 
-Die Laser Diode RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet} wird mittels Lasertreiber LMG1025-Q1
-\cite{ti2024lmg1025q1_datasheet} und NexFET \cite{ti2016csd17578q3a_datasheet} angesteuert. Für die Generierung eines
-kurzen Pulses (0.5 \dots 100~ns) wurde mittels Hochpass und AND-Gatter \cite{diodes202074lvc1g08q_datasheet}
-implementiert. Siehe dazu Abbildung~\ref{fig:laser_driver}.
+Die Laser Diode RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet} wird mittels Lasertreiber LMG1025-Q1 \cite{ti2024lmg1025q1_datasheet}
+und NexFET \cite{ti2016csd17578q3a_datasheet} angesteuert. Für die Generierung eines kurzen Pulses (0.5 \dots 100~ns)
+wurde mittels Hochpass und AND-Gatter \cite{diodes202074lvc1g08q_datasheet} implementiert. Siehe dazu Abbildung~\ref{fig:laser_driver}.
+
+Der Widerstand \lstinline|R25| bildet den Vorwiderstand für die Laser-Diode, welcher sich gemäss der Formel~\ref{eq:ld_resistor} berechnet.
+
+\begin{equation}\label{eq:ld_resistor}
+    R_{v} = \frac{V_{cc} - V_{fld}}{I_ld} = \frac{5~V - 2~V}{40~mA} = 75 \Omega
+\end{equation}
+
+Im Schema eingezeichnet ist aktuell ein Platzhalterwert. Während der Inbetriebnahme wird der Widerstand je nach Bedarf
+verändert. Wird dieser beispielsweise verkleinert, so vergrössert sich der Strom durch die Laser-Diode und somit die ausgesandte
+Lichtleistung.
 
 \begin{figure}[H]
     \centering
@@ -403,10 +433,15 @@ implementiert. Siehe dazu Abbildung~\ref{fig:laser_driver}.
 
 \subsubsection{Photo Receiver}\label{sec:schematic_photo_receiver}
 
-Um den Photostrom der Photodiode NJL6401R \cite{jrc2014njl6401r3_datasheet} zu verstärken und in eine Spannung
-umzuwandeln, wurde mit dem Operationsverstärker OPA858 \cite{ti2018opa858_datasheet} ein Transimpedanzverstärker
-aufgebaut. Der Ausgangs des Transimpedanzverstärkers geht auf den Komparator TLV3501 \cite{ti2016tlv3501_datasheet},
-um das STOP-Signal für den \acrshort{tdc} zu generieren. Siehe dazu Abbildung~\ref{fig:photo_receiver}.
+Um den Photostrom der Photodiode NJL6401R \cite{jrc2014njl6401r3_datasheet} zu verstärken und in eine Spannung umzuwandeln,
+wurde mit dem Operationsverstärker OPA858 \cite{ti2018opa858_datasheet} ein Transimpedanzverstärker aufgebaut. Der
+Ausgang des Transimpedanzverstärkers geht auf den Komparator TLV3501 \cite{ti2016tlv3501_datasheet}, um das \lstinline|STOP|-Signal
+für den \acrshort{tdc} zu generieren. Siehe dazu Abbildung~\ref{fig:photo_receiver}.
+
+Der Feedback-Widerstand \lstinline|R26| kann je nach bedarf verändert werden. Wird dieser vergrössert, so steigt auch der
+negative Puls am Ausgang des \acrshort{tia}s. Mit \lstinline|C20| kann zudem bei Bedarf eine kleine Kapazität hinzugefügt
+werden. Diese hat zum Ziel, ein Schwingen des Verstärkers zu unterdrücken, falls dieser eine Neigung zum Schwingen haben
+sollte.
 
 \begin{figure}[H]
     \centering
@@ -416,7 +451,10 @@ um das STOP-Signal für den \acrshort{tdc} zu generieren. Siehe dazu Abbildung~\
 
 \subsubsection{Decoupling Capacitors}
 
-Die Beschaltung der Entkopplungs-Kondensatoren ist in Abbildung~\ref{fig:decoupling_capacitors} dargestellt.
+Die Beschaltung der Entkopplungs-Kondensatoren ist in Abbildung~\ref{fig:decoupling_capacitors} dargestellt. Die
+Kondensatoren für den Operationsverstärker OPA858 und für den Komparator TLV3501 wurden dem Vorschlag im Datenblatt
+entnommen. Zusätzlich wird auch der Gate-Treiber beim Laser-Treiber mit einer zusätzlichen, grösseren Kapazität gestützt,
+was sich positiv auf die Stabilität der Speisung auswirken sollte.
 
 \begin{figure}[H]
     \centering
@@ -426,7 +464,7 @@ Die Beschaltung der Entkopplungs-Kondensatoren ist in Abbildung~\ref{fig:decoupl
 
 \pagebreak
 
-\subsection{Layout}
+\subsection{Layout}\label{sec:layout}
 
 In diesem Kapitel werden die \acrshort{pcb}-Layouts dokumentiert.
 
