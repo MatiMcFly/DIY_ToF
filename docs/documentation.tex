@@ -843,13 +843,18 @@ In Abbildung \ref{fig:clock_config_default} ist die default Clock-Configuration 
     \caption{Default Clock-Configuration}\label{fig:clock_config_default}
 \end{figure}
 
-Per default wir der \acrfull{hsi} Clock mit 8~MHz verwendet. Damit sollte es mit Hardware-Timer möglich sein, zwei
-\acrshort{gpio}s zu schalten mit einer Verzögerung von 1~/~8~MHz = 125~ns.
+Per default wird der \acrfull{hsi} Clock mit 8~MHz verwendet. Damit sollte es mit Hardware-Timer möglich sein, zwei
+\acrshort{gpio}s zu schalten mit einer Verzögerung gemäss Formel~\ref{eq:gpio_schalten_zeit}.
+
+\begin{equation}\label{eq:gpio_schalten_zeit}
+    t = \frac{1}{8~MHz} = 125~ns
+\end{equation}
+\myequations{\acrshort{gpio}-Schalten Verzögerungszeit}
 
 Dazu werden Kanal \lstinline|CH1| und \lstinline|CH4| des Hardware-Timers \lstinline|TIM1| im Output Compare Match Modus
 verwendet. Die zugeordneten \acrshort{gpio}-Pins sind \lstinline|start_ele| bzw. \lstinline|stop_ele|.
 
-Erreicht der 16bit-Timer den Wert \lstinline|32'000| wird \lstinline|start_ele| auf High geschalten. Beim Erreichen des
+Erreicht der 16~bit Timer den Wert \lstinline|32'000| wird \lstinline|start_ele| auf High geschalten. Beim Erreichen des
 Werts \lstinline|32'001| wird \lstinline|stop_ele| auf High geschalten.
 
 Der \acrshort{tdc} wird in Mode 1 konfiguriert. Der STOP-Pin des \acrshort{tdc} wird via \lstinline|SW1| mit
@@ -914,8 +919,16 @@ Die Liste mit den Datenpunkten befindet sich im elektronischen Anhang.
     \caption{Unterschiedliche Clock-Quellen}\label{tab:different_clock_sources}
 \end{table}
 
-Die Resultate stimmen ungefähr mit den erwarteten Werten von 1~/~8~MHz = 125~ns, 1~/~16~MHz = 62.5~ns und
-1~/~48~MHz = 20.8~ns überein.
+Die Resultate stimmen ungefähr mit den erwarteten Werten aus Formel~\ref{eq:gpio_schalten_zeiten} überein.
+
+\begin{equation}\label{eq:gpio_schalten_zeiten}
+    \begin{split}
+        t_1 &= \frac{1}{8~MHz} = 125~ns\\
+        t_2 &= \frac{1}{16~MHz} = 62.5~ns\\
+        t_3 &= \frac{1}{48~MHz} = 20.8~ns
+    \end{split}
+\end{equation}
+\myequations{\acrshort{gpio}-Schalten Verzögerungszeiten}
 
 Im Datenblatt konnte eine Angabe zum \acrshort{pll}-Jitter gefunden werden, siehe Abbildung~\ref{fig:pll_jitter}.
 
