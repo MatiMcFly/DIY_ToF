@@ -362,7 +362,12 @@ Der TDC7200 ist über die die Start- und Stopp-Leitungen, ein Enable-Signal sowi
 Wie bereits im Kapitel~\ref{sec:approach} angesprochen, wird der elektrische \acrshort{tdc} dazu verwendet, den Chip
 erstmalig in Betrieb zu nehmen und sich damit vertraut zu machen. Am Anschluss \lstinline|J3| kann in einem nächsten
 Schritt ein beliebig langes Kabel angeschlossen werden. Dies ermöglicht es, erste Messresultate, natürlich rein elektrisch,
-vom TDC7200 auszulesen. Das \lstinline|STOP|-Signal kann wahlweise via \lstinline|stop_ele| oder \lstinline|start_ele| generiert werden.
+vom TDC7200 auszulesen.
+
+Mittels Schalter \lstinline|SW1| kann das \lstinline|STOP|-Signal wahlweise via \lstinline|stop_ele| oder
+\lstinline|start_ele| generiert werden. Dies bietet zum einen die Möglichkeit, die Zeit zwischen dem Schalten von zwei
+\acrshort{gpio}s zu messen. Zum anderen, kann derselbe \acrshort{gpio}-Pin zum Generieren des Start- und Stop-Signal
+verwendet werden, wodurch von der Verzögerungszeit direkt auf die Kabellänge an \lstinline|J3| geschlossen werden kann.
 
 \subsubsection{TDC Optical Signal}
 
@@ -426,6 +431,8 @@ Der Widerstand \lstinline|R25| bildet den Vorwiderstand für die Laser-Diode, we
 Im Schema eingezeichnet ist aktuell ein Platzhalterwert. Während der Inbetriebnahme wird der Widerstand je nach Bedarf
 verändert. Wird dieser beispielsweise verkleinert, so vergrössert sich der Strom durch die Laser-Diode und somit die ausgesandte
 Lichtleistung.
+
+%TODO Erwähnen was für ein Widerstand schlussendlich verwendet wurde. z.B. 10x Überansteuerung weil kleiner Duty-Cycle.
 
 \begin{figure}[H]
     \centering
