@@ -30,6 +30,8 @@
 \newacronym{spi}{SPI}{Serial Peripheral Interface}
 \newacronym{ic}{IC}{Integrated Circuit}
 \newacronym{usb}{USB}{Universal Serial Bus}
+\newacronym{hsi}{HSI}{High Speed Internal}
+\newacronym{pll}{PLL}{Phase-Locked Loop}
 
 \begin{document}
 
@@ -572,8 +574,8 @@ Arithmetischer Mittelwert und Standardabweichung sind in Formel \ref{eq:gpio_tog
 
 \begin{equation}\label{eq:gpio_toggle_with_hal}
     \begin{split}
-        \overline{ToF} &= 6'375'887.9~ps\\
-        \sigma         &= 1'059.2~ps
+        \overline{ToF} &= 6'375'888~ps\\
+        \sigma         &= 1'059~ps
     \end{split}
 \end{equation}
 \myequations{\acrshort{gpio} Toggle mit \acrshort{hal}}
@@ -634,8 +636,8 @@ Arithmetischer Mittelwert und Standardabweichung sind in Formel \ref{eq:gpio_tog
 
 \begin{equation}\label{eq:gpio_toggle_without_hal}
     \begin{split}
-        \overline{ToF} &= 1'377'772.6~ps\\
-        \sigma         &= 401.6~ps
+        \overline{ToF} &= 1'377'773~ps\\
+        \sigma         &= 402~ps
     \end{split}
 \end{equation}
 \myequations{\acrshort{gpio} Toggle ohne \acrshort{hal}}
@@ -732,6 +734,8 @@ Die Resultate sind in Tabelle \ref{tab:different_cable_lengths_calc} dargestellt
 Es fällt auf, dass die Resultate nicht genau übereinstimmen. Dies hat mehrere Ursachen: Die Ausbreitungsgeschwindigkeit
 ist nicht genau bekannt und die tatsächlichen Kabellängen wurden nicht genau gemessen.
 
+%TODO Lets challenge this. Maybe 2/3 c is wrong for pure copper and it should be something like 95\% ?
+
 Es ist jedoch eine klare Korrelation zu erkennen.
 
 \subsubsection{Mode 1 vs. Mode 2}
@@ -811,8 +815,8 @@ Die Berechnung in Formel~\ref{eq:mode1_vs_mode2} zeigt, dass die Messresultate n
 
 \begin{equation}\label{eq:mode1_vs_mode2}
     \begin{split}
-        \Delta Mode~2 &= 1'403'223.8~ps - 1'378'222.5~ps = 25'001.3~ps\\
-        Mode~1        &= 25'145.3~ps
+        \Delta Mode~2 &= 1'403'224~ps - 1'378'222~ps = 25'001~ps\\
+        Mode~1        &= 25'145~ps
     \end{split}
 \end{equation}
 \myequations{Mode 1 vs. Mode 2}
@@ -823,9 +827,118 @@ Bemerkung: Im Firmware-Treiber (siehe Anhang Kapitel \ref{sec:tdc_driver}) kann 
 \lstinline|TDC_read_result()| verwendet werden. Für Mode~1 vereinfacht sich die Berechnung, weil \lstinline|TIME2|~=~0
 und \lstinline|CLOCK_COUNT1|~=~0.
 
-\subsubsection{Timer Output}
+\subsubsection{Timer Output}\label{sec:timer_output}
 
-%TODO
+In Kapitel~\ref{sec:gpio_toggle_with_hal} und \ref{sec:gpio_toggle_without_hal} wurge gezeigt, dass es einige
+\acrshort{cpu}-Cycles dauert, um  mittels Software, also mit \acrshort{cpu}-Instruktionen, \acrshort{gpio}s zu toggeln.
+
+Eine schnellere Methode ist es, das Toggeln der \acrshort{gpio}s von der Hardware-Peripherie der \acrshort{mcu}
+erledigen zu lassen. Dazu eignen sich Hardware-Timer.
+
+In Abbildung \ref{fig:clock_config_default} ist die default Clock-Configuration des Nucleo-Boards gezeigt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{graphics/clock_config_default.png}
+    \caption{Default Clock-Configuration}\label{fig:clock_config_default}
+\end{figure}
+
+Per default wird der \acrfull{hsi} Clock mit 8~MHz verwendet. Damit sollte es mit Hardware-Timer möglich sein, zwei
+\acrshort{gpio}s zu schalten mit einer Verzögerung gemäss Formel~\ref{eq:gpio_schalten_zeit}.
+
+\begin{equation}\label{eq:gpio_schalten_zeit}
+    t = \frac{1}{8~MHz} = 125~ns
+\end{equation}
+\myequations{\acrshort{gpio}-Schalten Verzögerungszeit}
+
+Dazu werden Kanal \lstinline|CH1| und \lstinline|CH4| des Hardware-Timers \lstinline|TIM1| im Output Compare Match Modus
+verwendet. Die zugeordneten \acrshort{gpio}-Pins sind \lstinline|start_ele| bzw. \lstinline|stop_ele|.
+
+Erreicht der 16~bit Timer den Wert \lstinline|32'000| wird \lstinline|start_ele| auf High geschalten. Beim Erreichen des
+Werts \lstinline|32'001| wird \lstinline|stop_ele| auf High geschalten.
+
+Der \acrshort{tdc} wird in Mode 1 konfiguriert. Der STOP-Pin des \acrshort{tdc} wird via \lstinline|SW1| mit
+\lstinline|stop_ele| verbunden. Der Kabelanschluss \lstinline|J3| wird kurzgeschlossen. Siehe
+Abbildung~\ref{fig:tdc_ele_signal}.
+
+In Code~\ref{code:timer_output} ist die Firmware-Implementation dazu gezeigt.
+
+\lstinputlisting[language={C}, label={code:timer_output}, caption={\acrshort{gpio} Toggle mit Timer-Output}]{sourcecode/timer_output.c}
+
+Der gemessene arithmetische Mittelwert und die Standardabweichung sind in Formel~\ref{eq:timer_output} aufgeführt.  Die
+Liste mit den Datenpunkten befindet sich im elektronischen Anhang.
+
+\begin{equation}\label{eq:timer_output}
+    \begin{split}
+        \overline{ToF} &=128'108~ps\\
+        \sigma         &= 81~ps
+    \end{split}
+\end{equation}
+\myequations{\acrshort{gpio} Toggle mit Timer-Output}
+
+Erwartungsgemäss dauert das Schalten der \acrshort{gpio}s ca. 125~ns. Die Standardabweichung ist aufgrund der kleineren
+Anzahl an Clock-Cycles tiefer als in den bisherigen Kapiteln.
+
+\subsubsection{Unterschiedliche Clock-Konfigurationen}
+
+In diesem Teilkapitel werden Messungen mit demselben Setup wie in Kapitel~\ref{sec:timer_output} durchgeführt.
+
+Es werden die arithmetischen Mittelwerte und die Standardabweichungen verschiedener Clock-Quellen des Nucleo-Boards
+verglichen. Es werden drei Messungen gemacht:
+
+\begin{enumerate}
+    \item \acrshort{hsi}: 8~MHz (wie in Kapitel~\ref{sec:timer_output})
+    \item \acrshort{hsi} mit \acrshort{pll}: 16~MHz
+    \item \acrshort{hsi}48: 48~MHz
+\end{enumerate}
+
+Die Clock-Konfigurationen für Messung 2 und 3 sind in Abbildung~\ref{fig:clock_config_hsi_pll_16mhz} bzw.
+\ref{fig:clock_config_hsi48_48mhz} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{graphics/clock_config_hsi_pll_16mhz.png}
+    \caption{Clock-Configuration \acrshort{hsi} mit \acrshort{pll} 16~MHz}\label{fig:clock_config_hsi_pll_16mhz}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{graphics/clock_config_hsi48_48mhz.png}
+    \caption{Clock-Configuration \acrshort{hsi}48 48~MHz}\label{fig:clock_config_hsi48_48mhz}
+\end{figure}
+
+Die arithmetischen Mittelwerte und Standardabweichungen sind in Tabelle~\ref{tab:different_clock_sources} dargestellt.
+Die Liste mit den Datenpunkten befindet sich im elektronischen Anhang.
+
+\begin{table}[H]
+    \mytable
+        {|l|l|l|}
+        {\textbf{Messung} & \textbf{Mittelwert} & \textbf{Standardabweichung}}
+        {\measurement & \mean & \stddev}
+        {tables/different_clock_sources.csv}
+    \caption{Unterschiedliche Clock-Quellen}\label{tab:different_clock_sources}
+\end{table}
+
+Die Resultate stimmen ungefähr mit den erwarteten Werten aus Formel~\ref{eq:gpio_schalten_zeiten} überein.
+
+\begin{equation}\label{eq:gpio_schalten_zeiten}
+    \begin{split}
+        t_1 &= \frac{1}{8~MHz} = 125~ns\\
+        t_2 &= \frac{1}{16~MHz} = 62.5~ns\\
+        t_3 &= \frac{1}{48~MHz} = 20.8~ns
+    \end{split}
+\end{equation}
+\myequations{\acrshort{gpio}-Schalten Verzögerungszeiten}
+
+Im Datenblatt konnte eine Angabe zum \acrshort{pll}-Jitter gefunden werden, siehe Abbildung~\ref{fig:pll_jitter}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/pll_jitter.pdf}
+    \caption[\acrshort{pll}-Jitter]{\acrshort{pll}-Jitter \cite{st2017stm32f042k6_datasheet}}\label{fig:pll_jitter}
+\end{figure}
+
+Diese Angabe ist ungefähr in derselben Grössenordnung wie die Messresultate.
 
 \pagebreak
 
