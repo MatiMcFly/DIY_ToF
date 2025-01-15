@@ -297,8 +297,8 @@ Für die Speisung des Nucleo-Boards bestehen die folgenden Möglichkeiten:
 
 \begin{itemize}
     \item 5V von USB-Buchse
-    \item 5V von externem Power-Supply (JP1 + JP2)
-    \item 12V von externem Power-Supply (JP3)
+    \item 5V von externem Power-Supply (\lstinline|JP1| + \lstinline|JP2|)
+    \item 12V von externem Power-Supply (\lstinline|JP3|)
 \end{itemize}
 
 Siehe dazu auch Kapitel~\ref{sec:schematic_nucleo}.
@@ -306,16 +306,16 @@ Siehe dazu auch Kapitel~\ref{sec:schematic_nucleo}.
 Für die Speisung der 5V-Elektronik bestehen die folgenden Möglichkeiten:
 
 \begin{itemize}
-    \item 5V von Nucleo-Board (JP1)
-    \item 5V von externem Power-Supply (JP2)
-    \item 12V von externem Power-Supply via Nucleo-Board (JP1 + JP3)
+    \item 5V von Nucleo-Board (\lstinline|JP1|)
+    \item 5V von externem Power-Supply (\lstinline|JP2|)
+    \item 12V von externem Power-Supply via Nucleo-Board (\lstinline|JP1| + \lstinline|JP3|)
 \end{itemize}
 
 Für die Speisung der Photodiode bestehen die folgenden Möglichkeiten:
 
 \begin{itemize}
-    \item 5V von 5V-Elektronik (SW2 Position 3)
-    \item 12V von externem Power-Supply (SW2 Position 1)
+    \item 5V von 5V-Elektronik (\lstinline|SW2| Position 3)
+    \item 12V von externem Power-Supply (\lstinline|SW2| Position 1)
 \end{itemize}
 
 Siehe dazu auch Kapitel~\ref{sec:schematic_photo_receiver}.
@@ -782,7 +782,7 @@ Dazu wurden drei Messungen gemacht:
 \end{enumerate}
 
 Für die Messung im Mode~1 soll auf die Verzögerung durch das Schalten der \acrshort{gpio}s verzichtet werden. Dazu wird
-das Start- und Stop-Signal vom selben \acrshort{gpio}-Pin, \lstinline|START_ELE|, generiert. Dazu wird \lstinline|SW1|
+das Start- und Stop-Signal vom selben \acrshort{gpio}-Pin, \lstinline|start_ele|, generiert. Dazu wird \lstinline|SW1|
 mit \lstinline|start_ele| verbunden (siehe Abbildung~\ref{fig:tdc_ele_signal}).
 
 In Code~\ref{code:mode1} ist die Firmware-Implementation für eine Messung im Mode~1 gezeigt.
@@ -794,7 +794,7 @@ Die Unterschiede im Vergleich zu den Messungen in Kapitel~\ref{sec:gpio_toggle_w
 
 \begin{itemize}
     \item Zeile 7: \acrshort{tdc} wird im Mode~1 konfiguriert (anstatt Mode~2)
-    \item Zeile 15 und 23: Es wird nur der \lstinline|START_ELE| Pin getoggelt (anstatt \lstinline|START_ELE| und \lstinline|STOP_ELE| Pin)
+    \item Zeile 15 und 23: Es wird nur der \lstinline|start_ele| Pin getoggelt (anstatt \lstinline|start_ele| und \lstinline|stop_ele| Pin)
 \end{itemize}
 
 Die Erwartung ist, dass die Differenz aus Messung~1 und Messungen~2 ungefähr dem Resultat aus Messung~3 entspricht.
