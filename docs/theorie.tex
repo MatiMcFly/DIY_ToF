@@ -1,6 +1,21 @@
-\subsection{Time of Flight}
+Beim Messverfahren, welches als \dq \acrlong{tof}\dq\ bekannt ist, handelt es sich um eine optische Distanzmessung.
+Hierbei wird prinzipiell mit einem Sender Licht ausgesandt, welches von einem Empfänger detektiert wird. Zwischen dem
+Senden und Empfangen des Signals kann eine Zeitmessung gemacht werden.
 
-Bei \acrshort{tof} handelt es sich um \dots
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{diagrams/dToF_vs_iToF.pdf}
+    \caption{Visualisierung von a: direct \acrshort{tof} und b: indirect \acrshort{tof}}\label{fig:dtof_vs_itof}
+\end{figure}
+
+Man unterscheidet zwei Arten von \acrshort{tof}: Direct \acrshort{tof} (dToF) und Indirect \acrshort{tof} (iToF). Bei dToF
+wird einzig und alleine die Laufzeit zwischen Sende- und Empfangspuls ermittelt. Bei iToF wird (teilweise zusätzlich) zur
+Laufzeitmessung auch die Phasenverschiebung eines modulierten Lichtsignales gemessen. Letztere Methode erlaubt es, höhere
+Auflösungen zu erreichen, ist jedoch in der Auswertung und Signalaufbereitung ungleich komplexer.
+
+Diese Arbeit beschränkt sich auf das direct \acrshort{tof} Verfahren.
+
+Nachfolgend werden die theoretischen Grundlagen, vor allem in Hinblick auf das Auslegen einer geeigneten Optik, diskuttiert.
 
 \pagebreak
 
