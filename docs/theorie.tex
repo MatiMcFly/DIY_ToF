@@ -199,4 +199,23 @@ vor der Reflexion berücksichtigt werden muss. Deswegen wird die Diszanz zum Tar
 
 \subsection{Transimpedanzverstärker}
 
-Bei einem \acrfull{tia} handelt es sich um \dots
+Wie die Berechnungen in den vorgängigen Kapiteln aufzeigen, haben die Photoströme, welche zu detektieren sind, sehr kleine
+Stromstärken. Weiter sind die Lichtimpulse typischerweise oft nur von sehr kurzer Dauer, nämlich im Bereich einiger Nanosekunden.
+
+Das hat zur Folge, dass ein Verstärker mit sehr hohem Gain bei gleichzeitig sehr hoher Bandbreite eingesetzt werden muss.
+Die Verstärkerschaltung, welche eingesetzt wird, ist ein Strom-Spannungswandler. Die Beschaltung des Operationsverstärkers,
+welche in Abbildung~\ref{fig:theory_tia} ersichtlich ist, wird auch Transimpedanzverstärker (\acrshort{tia}) genannt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{graphics/theory_tia.png}
+    \caption{Beschaltung Operationsverstärker als \acrshort{tia}}\label{fig:theory_tia}
+\end{figure}
+
+Wie der Name der Schaltung vermuten lässt, wandelt der Transimpedanzwandler den Photostrom \lstinline|Id| in eine Spannung
+\lstinline|Vout| um. Dabei gibt der Feedback-Widerstand \lstinline|Rf| die Verstärkung vor, wie die Formel~\ref{eq:tia_simple}
+zeigt:
+
+\begin{equation}\label{eq:tia_simple}
+    V_{out} = -R_{f} \cdot I_{d}
+\end{equation}
