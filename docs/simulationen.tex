@@ -1,3 +1,38 @@
+In diesem Kapitel werden die durchgeführten Simulationen dokumentiert.
+
+Zur Simulation wird das Tool \dq Xpedition AMS\dq\ von Siemens verwendet. Wie der Name sagt, unterstützt dieses Tool
+\acrfull{ams} Analyse. \cite{siemens2025xpeditionams}
+
 \subsection{Laser Treiber}
+
+In Abbildung~\ref{fig:simulation_laser_driver_schematic} ist das Schema für die Simulation des Laser-Treibers
+dargestellt. Dies entspricht der Schaltung aus Kapitel~\ref{sec:schematic_laser_driver}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[trim=70 380 180 310, clip, width=0.9\textwidth]{attachments/simulation_laser_driver_schematic.pdf}
+    \caption{Simulation Laser-Treiber - Schema}\label{fig:simulation_laser_driver_schematic}
+\end{figure}
+
+Das SPICE-Modell des Gate-Treibers LMG1025-Q1 ist dasselbe wie für LMG1020 und wurde von der Website von TI
+heruntergeladen \cite{ti2024lmg1025q1}.
+
+Das SPICE-Modell des NexFET CSD17578Q3A wurde ebenfalls von der Website von TI heruntergeladen
+\cite{ti2024csd17578q3a}.
+
+Für die Laser-Diode RLD65NZX1 konnte kein SPICE-Modell gefunden werden, es wurde deshalb eine Ersatzschaltung aus Diode
+und paralleler, parasitärer Kapazität eingefügt.
+
+Das Resultat der Simulation ist in Abbildung~\ref{fig:simulation_laser_driver_plot} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/simulation_laser_driver_plot.png}
+    \caption{Simulation Laser-Treiber - Plot}\label{fig:simulation_laser_driver_plot}
+\end{figure}
+
+Es ist zu erkennen, dass der Laser sehr schnell einschalten kann (2 \dots 3~ns). Das Ausschalten dauert etwas länger
+(ca. 100~ns). Da die \acrshort{tof} bis zur ersten Flanke gemessen wird, ist eine längere Ausschaltzeit für diese
+Anwendung kein Problem.
 
 \subsection{Transimpedanzverstärker}
