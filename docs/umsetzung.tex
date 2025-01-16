@@ -94,8 +94,9 @@ vom TDC7200 auszulesen.
 
 Mittels Schalter \lstinline|SW1| kann das \lstinline|STOP|-Signal wahlweise via \lstinline|stop_ele| oder
 \lstinline|start_ele| generiert werden. Dies bietet zum einen die Möglichkeit, die Zeit zwischen dem Schalten von zwei
-\acrshort{gpio}s zu messen. Zum anderen, kann derselbe \acrshort{gpio}-Pin zum Generieren des Start- und Stop-Signal
-verwendet werden, wodurch von der Verzögerungszeit direkt auf die Kabellänge an \lstinline|J3| geschlossen werden kann.
+\acrshort{gpio}s zu messen. Zum anderen, kann derselbe \acrshort{gpio}-Pin zum Generieren des \lstinline|START|- und
+\lstinline|STOP|-Signals verwendet werden, wodurch von der Verzögerungszeit direkt auf die Kabellänge an \lstinline|J3|
+geschlossen werden kann.
 
 \subsubsection{TDC Optical Signal}
 
@@ -109,10 +110,10 @@ Abbildung~\ref{fig:tdc_opt_signal} gezeigt.
 \end{figure}
 
 Die Beschaltung des \acrshort{tdc}s für die optische Messung gestaltet sich praktisch gleich wie beim elektrischen
-Gegenstück. Der hauptunterschied ist, hier aber, dass dessen \lstinline|STOP|-Signal nicht von der \acrshort{mcu} selber generiert
+Gegenstück. Der Hauptunterschied ist, hier aber, dass dessen \lstinline|STOP|-Signal nicht von der \acrshort{mcu} selber generiert
 wird, sondern von einem Komparator, welcher am Ende des optischen Messpfades steht. Da der Komparator mit einem 5~V Pegel
 arbeitet, ist der Spannungsteiler \lstinline|R1| / \lstinline|R2| vonnöten, welcher den 5~V Puls auf die geeigneten 3.3~V
-herunter teilt.
+herunterteilt.
 
 \subsubsection{Oscillator For TDCs}
 
