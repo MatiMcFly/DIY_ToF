@@ -1,6 +1,15 @@
-Beim Messverfahren, welches als \dq \acrlong{tof}\dq\ bekannt ist, handelt es sich um eine optische Distanzmessung.
-Hierbei wird prinzipiell mit einem Sender Licht ausgesandt, welches von einem Empfänger detektiert wird. Zwischen dem
-Senden und Empfangen des Signals kann eine Zeitmessung gemacht werden.
+In den nachfolgenden Unterkapitel werden die theoretischen Grundlagen erarbeitet, welche für das Verständnis sowie das
+Design eines Demonstrators für das \acrshort{tof}-Verfahren notwendig sind.
+
+\subsection{Time of Flight}
+
+Beim Messverfahren, welches als \dq \acrlong{tof}\dq\ bekannt ist geht es darum, die Laufzeit eines Signales zu messen.
+Das Signal kann hierbei optischer oder akustischer Natur sein. Eine Anwendung davon ist beispielsweise die Distanzmessung.
+
+Beim hier behandelten optischen Prinzip wird mit einem Sender Licht ausgesandt, welches von einem Empfänger detektiert wird.
+Zwischen dem Senden und Empfangen des Signals kann eine Zeitmessung gemacht werden. Weil sich Licht mit einer definierten
+Geschwindigkeit ausbreitet, kann über diese Laufzeitmessung ein Rückschluss darüber gewonnen werden, welche Distanz
+das Signal innerhalb der gemessenen Zeit zurückgelegt hat.
 
 \begin{figure}[H]
     \centering
@@ -9,13 +18,16 @@ Senden und Empfangen des Signals kann eine Zeitmessung gemacht werden.
 \end{figure}
 
 Man unterscheidet zwei Arten von \acrshort{tof}: Direct \acrshort{tof} (dToF) und Indirect \acrshort{tof} (iToF). Bei dToF
-wird einzig und alleine die Laufzeit zwischen Sende- und Empfangspuls ermittelt. Bei iToF wird (teilweise zusätzlich) zur
-Laufzeitmessung auch die Phasenverschiebung eines modulierten Lichtsignales gemessen. Letztere Methode erlaubt es, höhere
-Auflösungen zu erreichen, ist jedoch in der Auswertung und Signalaufbereitung ungleich komplexer.
+wird einzig und alleine die Laufzeit zwischen Sende- und Empfangspuls ermittelt. In der Abbildung~\ref{fig:dtof_vs_itof}
+sind bei a) beispielhaft solche Pulse dargestellt.
+
+Bei iToF wird (teilweise zusätzlich) zur Laufzeitmessung auch die Phasenverschiebung eines modulierten Lichtsignales gemessen.
+Dies sei bei Abbildung~\ref{fig:dtof_vs_itof} im Teil b) dargestellt. Diese Methode erlaubt es, höhere Auflösungen zu
+erreichen, ist jedoch in der Auswertung und Signalaufbereitung ungleich komplexer.
 
 Diese Arbeit beschränkt sich auf das direct \acrshort{tof} Verfahren.
 
-Nachfolgend werden die theoretischen Grundlagen, vor allem in Hinblick auf das Auslegen einer geeigneten Optik, diskuttiert.
+Nachfolgend werden die theoretischen Grundlagen, vor allem in Hinblick auf das Auslegen einer geeigneten Optik, diskutiert.
 
 \pagebreak
 
@@ -27,8 +39,8 @@ Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform 
 Realität wird der Laser nicht mit $0\degree$ zur Wand gehen und die Streuung wird sich nicht uniform verteilen, sondern
 in der Mitte stärker konzentriert sein.
 
-Die Berechnung der empfangenen Strahlungsleistung, der Strahlungsintensität, dem Raumwinkel und dem Photostrom sind in
-Formel~\ref{eq:pin}, \ref{eq:ie}, \ref{eq:omega} bzw. \ref{eq:iph} gezeigt.
+Die Berechnung der empfangenen Strahlungsleistung, der Strahlungsintensität, dem Raumwinkel einer Halbkugel und dem
+Photostrom sind in Formel~\ref{eq:pin}, \ref{eq:ie}, \ref{eq:omega} bzw. \ref{eq:iph} gezeigt.
 
 \begin{equation}\label{eq:pin}
     P_{in} = E_e \cdot A = \frac{I_e}{r^2} \cdot A
@@ -41,7 +53,7 @@ Formel~\ref{eq:pin}, \ref{eq:ie}, \ref{eq:omega} bzw. \ref{eq:iph} gezeigt.
 \myequations{Strahlungsintensität}
 
 \begin{equation}\label{eq:omega}
-    \Omega = \frac{4\cdot \pi \cdot 0.5}{d}
+    \Omega = 4\cdot \pi \cdot 0.5
 \end{equation}
 \myequations{Raumwinkel}
 
@@ -111,7 +123,7 @@ Formel~\ref{eq:rld65nzx1_njl6401r3_num}.
 
 \begin{equation}\label{eq:rld65nzx1_njl6401r3_num}
     \begin{split}
-        I_e    &= \frac{P_{out}}{\Omega} = \frac{10~mW}{\frac{4\cdot \pi \cdot 0.5}{d}} = 1.59~\frac{mW}{sr}\\
+        I_e    &= \frac{P_{out}}{\Omega} = \frac{10~mW}{4\cdot \pi \cdot 0.5~sr} = 1.59~\frac{mW}{sr}\\
         P_{in} &= \frac{I_e}{r^2} \cdot A = \frac{1.59~\frac{mW}{sr}}{(10~m)^2} \cdot 0.49~mm^2 = 7.8~pW\\
         I_{ph} &= S \cdot P_{in} = 0.42~\frac{A}{W} \cdot 7.8~pW = 3.28~pA
     \end{split}
@@ -147,30 +159,30 @@ in einem geraden Strahl ausbreitet, um danach halbkugelförmig und diffus am Tar
 
 Im zweiten Szenario wird versucht, die Abstrahlcharakteristik der Laser-Diode zu modellieren. Laut Datenblatt hat die
 Diode in der Abstrahlebene zwei unterschiedliche Öffnungswinkel, was mit dem Raumwinkel einer rechteckigen Pyramide
-annäherungsweise berechnet werden kann. Die Idee dahinter ist, dass einerseits die Abstrahlungscharakteristik
-besser berücksichtigt wird, andererseits wird somit die eher in der Mitte konzentrierte Reflexion allenfalls besser abgebildet.
+annäherungsweise berechnet werden kann. Die Streuung wird verhindert, da an einem Spiegel reflektiert wird.
 
 Bei beiden Szenarien soll sei die abgestrahlte Leistung der Laser-Diode höher als in der ersten Rechnung. Im gepulsten
-Betrieb kann diese problemlos um Faktor 60 erhöht werden. Thermisch stellt dies kein Problem dar für die Diode, da
+Betrieb kann diese problemlos über das maximale Rating erhöht werden. Thermisch stellt dies kein Problem dar für die Diode, da
 der Duty-Cycle sehr klein ist. Die Formel~\ref{eq:rld65nzx1_higher_output} zeigt die neu zu erwartete Abstrahl-Leistung
-eines solchen Pulses. Die zur Umrechnung benötigte Effizient der Laser-Diode wird dem Datenblatt des RLD65NZX1 entnommen.
-\cite{rohm2019rld65nzx1_datasheet}
+eines solchen Pulses. Die zur Umrechnung benötigte Effizient der Laser-Diode wird aus einem Diagramm dem Datenblatt des
+ RLD65NZX1 entnommen \cite{rohm2019rld65nzx1_datasheet}.
 
 \begin{equation}\label{eq:rld65nzx1_higher_output}
-    P_{out}' = \eta \cdot I_{ld} = 0.85~\frac{W}{A} \cdot 0.6~A = 510~mW
+    \eta = \frac{P_{25~mA}}{I_{ld}} = \frac{7~mW}{25~mA} = 0.28~\frac{W}{A}
+    P_{out}' = \eta \cdot I_{ld}' = 0.28~\frac{W}{A} \cdot 0.6~A = 168~mW
 \end{equation}
 \myequations{Erhöhte Sendeleistung bei der Laser-Diode}
 
-Bei einem Target, welches sich in 2~m Diszanz befindet, kann laut Formel~\ref{eq:photocurrent_scenario1} folgender
+Bei einem Target, welches sich in 2~m Distanz befindet, kann laut Formel~\ref{eq:photocurrent_scenario1} folgender
 Lichtstrom erwartet werden:
 
 \begin{equation}\label{eq:photocurrent_scenario1}
     \begin{split}
-        P_{in} &= \frac{P_{out}}{\Omega \cdot r^2} \cdot A_{L} = \frac{510~mW}{4\pi \cdot 0.5~sr \cdot (2~m)^2} \cdot 227~mm^2 = 4.61~\mu W\\
-        I_{ph} &= S \cdot P_{in} = 0.42~\frac{A}{W} \cdot 4.61~\mu W = 1.93~\mu A
+        P_{in} &= \frac{P_{out}}{\Omega \cdot r^2} \cdot A_{L} = \frac{168~mW}{4\pi \cdot 0.5~sr \cdot (2~m)^2} \cdot 227~mm^2 = 1.52~\mu W\\
+        I_{ph} &= S \cdot P_{in} = 0.42~\frac{A}{W} \cdot 4.61~\mu W = 637~nA
     \end{split}
 \end{equation}
-\myequations{}
+\myequations{Photostrom Szenario 1}
 
 Ohne Optik kann die Laserdiode nicht gebündelt abstrahlen. Diese nicht ganz so ideale Abstrahlcharakteristik kann im
 zweiten Szenario über den Raumwinkel einer Pyramide, wie er in Formel~\ref{eq:solid_angle_pyramid} definiert ist,
@@ -179,21 +191,21 @@ entnommen werden. Hierbei ist zu beachten, dass im Datenblatt der Vollwinkel ang
 deswegen halbiert.
 
 \begin{equation}\label{eq:solid_angle_pyramid}
-    \Omega_{P} = 4 \cdot arcsin(sin(\theta_x) \cdot sin(\theta_y)) =  4 \cdot arcsin(sin(\frac{9~\degree}{2} ) \cdot sin(\frac{29~\degree}{2})) = 4.2~sr
+    \Omega_{P} = 4 \cdot arcsin(sin(\theta_x) \cdot sin(\theta_y)) =  4 \cdot arcsin \parenth*{sin \parenth*{\frac{9\degree}{2}} \cdot sin \parenth*{\frac{29\degree}{2}}} = 4.2~sr
 \end{equation}
 \myequations{Modell Abstrahlung Laserdiode}
 
 Mit der Formel~\ref{eq:photocurrent_scenario2} wird erneut die zu erwartende Empfangsleistung sowie der dazugehörige
 Photostrom errechnet. Der Unterschied zur vorherigen Berechnung liegt nun aber darin, dass der Raumwinkel auch bereits
-vor der Reflexion berücksichtigt werden muss. Deswegen wird die Diszanz zum Target mit zwei multipliziert.
+vor der Reflexion berücksichtigt werden muss. Deswegen wird die Distanz zum Target mit zwei multipliziert.
 
 \begin{equation}\label{eq:photocurrent_scenario2}
     \begin{split}
-        P_{in} &= \frac{P_{out}}{\Omega \cdot (2 \cdot r)^2} \cdot A_{L} = \frac{510~mW}{4.2~sr \cdot (2 \cdot 2~m)^2} \cdot 227~mm^2 = 1.72~\mu W\\
-        I_{ph} &= S \cdot P_{in} = 0.42~\frac{A}{W} \cdot 1.72~\mu W = 724~nA
+        P_{in} &= \frac{P_{out}}{\Omega \cdot (2 \cdot r)^2} \cdot A_{L} = \frac{168~mW}{4.2~sr \cdot (2 \cdot 2~m)^2} \cdot 227~mm^2 = 568~nW\\
+        I_{ph} &= S \cdot P_{in} = 0.42~\frac{A}{W} \cdot 1.72~\mu W = 238~nA
     \end{split}
 \end{equation}
-\myequations{}
+\myequations{Photostrom Szenario 2}
 
 \pagebreak
 
@@ -201,14 +213,15 @@ vor der Reflexion berücksichtigt werden muss. Deswegen wird die Diszanz zum Tar
 
 Wie die Berechnungen in den vorgängigen Kapiteln aufzeigen, haben die Photoströme, welche zu detektieren sind, sehr kleine
 Stromstärken. Weiter sind die Lichtimpulse typischerweise oft nur von sehr kurzer Dauer, nämlich im Bereich einiger Nanosekunden.
+Dies hat zur Folge, dass die Signale dementsprechend kurze Anstiegszeiten haben, welche detektiert werden müssen.
 
-Das hat zur Folge, dass ein Verstärker mit sehr hohem Gain bei gleichzeitig sehr hoher Bandbreite eingesetzt werden muss.
+Die Anforderungen zeigen auf, dass ein Verstärker mit sehr hohem Gain bei gleichzeitig sehr hoher Bandbreite eingesetzt werden muss.
 Die Verstärkerschaltung, welche eingesetzt wird, ist ein Strom-Spannungswandler. Die Beschaltung des Operationsverstärkers,
 welche in Abbildung~\ref{fig:theory_tia} ersichtlich ist, wird auch Transimpedanzverstärker (\acrshort{tia}) genannt.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{graphics/theory_tia.png}
+    \includegraphics[width=0.5\textwidth]{diagrams/tia.pdf}
     \caption{Beschaltung Operationsverstärker als \acrshort{tia}}\label{fig:theory_tia}
 \end{figure}
 
@@ -219,3 +232,4 @@ zeigt:
 \begin{equation}\label{eq:tia_simple}
     V_{out} = -R_{f} \cdot I_{d}
 \end{equation}
+\myequations{Übertragungsfunktion \acrshort{tia}}
