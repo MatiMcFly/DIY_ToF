@@ -49,11 +49,21 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+/**
+  Wrapper function for the MX_TIM1_Init function
+*/
+void WRP_MX_TIM1_Init(void);
 
+/**
+  Wrapper function for the MX_TIM3_Init function
+*/
+void WRP_MX_TIM3_Init(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
