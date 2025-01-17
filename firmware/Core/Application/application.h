@@ -19,4 +19,14 @@ void SetupMsmtEle(void);
  */
 void DoMsmtEle(void);
 
+/**
+  Setup optical measurement
+ */
+void SetupMsmtOpt(void);
+
+/**
+  Run optical measurement
+ */
+void DoMsmtOpt(void);
+
 #endif /* APPLICATION_APPLICATION_H_ */

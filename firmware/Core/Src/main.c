@@ -105,7 +105,8 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
-  SetupMsmtEle();
+//  SetupMsmtEle();
+  SetupMsmtOpt();
 
   /* USER CODE END 2 */
 
@@ -113,7 +114,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  DoMsmtEle();
+//	  DoMsmtEle();
+	  DoMsmtOpt();
 
     /* USER CODE END WHILE */
 
@@ -433,6 +435,11 @@ static void MX_GPIO_Init(void)
 void WRP_MX_TIM1_Init(void)
 {
 	MX_TIM1_Init();
+}
+
+void WRP_MX_TIM3_Init(void)
+{
+	MX_TIM3_Init();
 }
 /* USER CODE END 4 */
 
