@@ -55,7 +55,10 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-
+/**
+  Wrapper function for the MX_TIM1_Init function
+*/
+void WRP_MX_TIM1_Init(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
