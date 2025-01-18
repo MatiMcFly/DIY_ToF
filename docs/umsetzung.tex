@@ -295,10 +295,20 @@ erst über die Verwendung einfacher \acrshort{gpio}s, bis hin zu optimalem zeitl
 Hardware-Timer für das Generieren der Trigger-Pulse für die \acrshort{tdc}s. Im Kapitel~\ref{sec:electrical_measurements}
 sind die einzelnen Erweiterungsschritte detailliert erklärt.
 
-Der \acrshort{tdc}-Treiber beinhaltet die komplete Registerdefinition des TDC7200. Der Treiber stellt zudem einfache Lese- und
-Schreib-Routinen zur verfügung, mit Hilfe derer das Mess-\acrshort{ic} mit Leichtigkeit umkonfiguriert, aufgesetzt und
-ausgelesen werden kann. Weiter kann der Treiber die Messresultate direkt umrechnen, anhand der im Datenblatt vorgegebenen
-Formeln. Im Listing~\ref{code:start_measurement_tdc} ist der Beispiel-Code für eine einzelne Messung ersichtlich.
+Der \acrshort{tdc}-Treiber stellt Funktionen zur Initialisierung und zum Aktivieren des \acrshort{tdc} zur Verfügung.
+Siehe dazu Code~\ref{code:init_enable_tdc}.
+
+\lstinputlisting[language={C}, label={code:init_enable_tdc}, caption={\acrshort{tdc} Init und Enable mit Treiber}]{sourcecode/init_enable_tdc.c}
+
+Der \acrshort{tdc}-Treiber beinhaltet die komplette Registerdefinition des TDC7200. Der Treiber stellt zudem einfache
+Lese- und Schreib-Routinen für die Kommunikation via \acrshort{spi} zur Verfügung. Damit kann das Mess- \acrshort{ic}
+mit Leichtigkeit umkonfiguriert, aufgesetzt und ausgelesen werden kann. Ein Beispiel ist in
+Code~\ref{code:read_write_tdc} dargestellt.
+
+\lstinputlisting[language={C}, label={code:read_write_tdc}, caption={\acrshort{tdc} Read/Write mit Treiber}]{sourcecode/read_write_tdc.c}
+
+Weiter kann der Treiber die Messresultate direkt umrechnen, anhand der im Datenblatt vorgegebenen
+Formeln. Im Code~\ref{code:start_measurement_tdc} ist der Beispiel-Code für eine einzelne Messung ersichtlich.
 
 \lstinputlisting[language={C}, label={code:start_measurement_tdc}, caption={\acrshort{tdc} Messung mit Treiber}]{sourcecode/example_tdc_read.c}
 
@@ -309,12 +319,12 @@ Mit Hilfe der Entwicklungsumgebung STM32CubeIDE / CubeMX \cite{st2025stm32cubeid
 sämtliche Peripherien automatisiert erzeugt werden. Somit kann während der Entwicklung der Fokus auf den TDC-Treiber
 sowie die eigentliche Applikation gelegt werden.
 
-Die Pinkonfiguration ist in der Abbildung~\ref{fig:pinconfiguration_mcu} ersichtlich.
+Die Pin-Konfiguration ist in der Abbildung~\ref{fig:pinconfiguration_mcu} ersichtlich.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{graphics/pinconfiguration_mcu.png}
-    \caption{Pinkonfiguration des STM32F042K6}\label{fig:pinconfiguration_mcu}
+    \caption{Pin-Konfiguration des STM32F042K6}\label{fig:pinconfiguration_mcu}
 \end{figure}
 
 \pagebreak
