@@ -463,13 +463,145 @@ Der gemessene Strom während dem Senden beträgt ca. 174~mA.
 Dies ist um einiges weniger als der erwartete Strom von 440~mA aus Formel~\ref{eq:rld65nzx1_higher_output}. Dies hat mit
 der erhöhten Dioden-Spannung zu tun. Während dem Senden erhöht sich die Spannung über der Laser-Diode auf ca. 4~V, die
 Spannung über Drain-Source des FET ist vernachlässigbar klein. Damit ergibt sich der Strom durch die Diode gemäss
-Formel~\ref{eq:strom_ld_tatsaechlich}
+Formel~\ref{eq:strom_ld_tatsaechlich}.
 
 \begin{equation}\label{eq:strom_ld_tatsaechlich}
     I_{LD} = \frac{5~V - V_{LD} - V_{DS}}{R_V} \approx \frac{5~V - 4~V}{5~\Omega} \approx 200~mA
 \end{equation}
 \myequations{Berechnung Strom durch Laser-Diode (tatsächlich)}
 
-\subsubsection{Spiegel-Messungen}\label{sec:messungen_spiegel}
+\subsubsection{ToF-Messungen via Spiegel}\label{sec:messungen_spiegel}
+
+Damit die Photo-Diode ein möglichst starkes Signal erhält, wurde anstelle einer Wand für diese Messungen ein Spiegel
+verwendet. Das Setup ist in Abbildung~\ref{fig:spiegel_setup} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/spiegel_setup.jpg}
+    \caption{Mess-Setup mit Spiegel}\label{fig:spiegel_setup}
+\end{figure}
+
+Gemäss Datenblatt hat die Laser-Diode eine nicht ideal punktförmige Abstrahl-Charakteristik, siehe
+Abbildung~\ref{fig:laser_abstrahl_charakteristik}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/laser_abstrahl_charakteristik.pdf}
+    \caption[Laser Abstrahl-Charakteristik]{Laser Abstrahl-Charakteristik \cite{rohm2019rld65nzx1_datasheet}}\label{fig:laser_abstrahl_charakteristik}
+\end{figure}
+
+Es ist aufgefallen, dass mit dem gewählten \acrshort{pcb}-Layout die Orientierung der Laser-Diode für eine Spiegel-
+Messung nicht ganz ideal ist. Der breitere Abstrahlwinkel ist senkrecht zur Linie zwischen Laser- und Photodiode. Siehe
+dazu Abbildung~\ref{fig:laser_ausrichtung}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/laser_ausrichtung.jpg}
+    \caption{Laser-Ausrichtung}\label{fig:laser_ausrichtung}
+\end{figure}
+
+Die Laser-Diode wurde deshalb manuell um $90\degree$ gedreht, wie in Abbildung~\ref{fig:laser_ausrichtung_angepasst}
+dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/laser_ausrichtung_angepasst.jpg}
+    \caption{Laser-Ausrichtung angepasst}\label{fig:laser_ausrichtung_angepasst}
+\end{figure}
+
+Das \acrshort{dso}-Diagramm einer initialen Spiegel-Messung mit ca. 20~cm Distanz zum Spiegel ist
+Abbildung~\ref{fig:spiegel_initial} dargestellt. Es zeigt den Ausgang des Transimpedanzverstärkers. Zusätzlich, um die
+Verzögerungszeit zu sehen wurden auch die \acrshort{mcu}-Signale \lstinline|start_op| und \lstinline|LD_pulse| sowie das
+Potential am Gate des FET aufgezeichnet.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/spiegel_initial.png}
+    \caption{Initiale Spiegelmessung mit \acrshort{dso}}\label{fig:spiegel_initial}
+\end{figure}
+
+Mit dem Demonstrator wurden Messwerte für drei verschiedene Distanzen aufgezeichnet: 19~cm, 24~cm und 28.5~cm.
+
+Die mit dem optischen \acrshort{tdc} erfassten Datenpunkte sind in
+Abbildung~\ref{fig:spiegel_unterschiedliche_distanzen} dargestellt. Es wurden je ca. 300 Messwerte erfasst, die Liste
+mit den Datenpunkten befindet sich im elektronischen Anhang.
+
+\begin{figure}[H]
+    \centering
+    \includesvg[width=0.9\textwidth]{graphics/spiegel_unterschiedliche_distanzen.svg}
+    \caption{Unterschiedliche Distanzen zum Spiegel - Plot}\label{fig:spiegel_unterschiedliche_distanzen}
+\end{figure}
+
+Die arithmetischen Mittelwerte und die Standardabweichungen sind in Tabelle~\ref{tab:spiegel_unterschiedliche_distanzen}
+aufgelistet.
+
+\begin{table}[H]
+    \mytable
+        {|l|l|l|}
+        {\textbf{Distanz zum Spiegel} & \textbf{Mittelwert} & \textbf{Standardabweichung}}
+        {\distance & \mean & \stddev}
+        {tables/spiegel_unterschiedliche_distanzen.csv}
+    \caption{Unterschiedliche Distanzen zum Spiegel - Statistische Grössen}\label{tab:spiegel_unterschiedliche_distanzen}
+\end{table}
+
+Eine Spiegeldistanz-Änderung von 5~cm entspricht einer Längen-Änderung von 10~cm.
+
+Die Messungen zeigen für diese Längen-Änderung von 10~cm eine Änderung der Laufzeit von durchschnittlich ca. 0.6~ns.
+
+In Formel~\ref{eq:spiegel_unterschiedliche_distanzen} wird der theoretisch zu erwartende Laufzeit-Unterschied berechnet.
+
+\begin{equation}\label{eq:spiegel_unterschiedliche_distanzen}
+    \Delta ToF = \frac{\Delta L}{c} = \frac{10~cm}{3 \cdot 10^8~m/s} = 0.33~ns
+\end{equation}
+\myequations{Theoretisch erwartete Laufzeit-Änderung}
+
+%TODO Mögliche Gründe für diesen Unterschied: Weniger steile Flanke, wenn weiter weg? Time-Drift?
+
+Dieser Unterschied (ca. Faktor 2) könnte mehrere Gründe haben:
+
+1.) Eine mögliche Erklärung ist es, dass die Flanke bei
+grössere Distanz weniger steil wird und dadurch fälschlicherweise eine etwas längere Laufzeit gemessen wird.
+
+2.) Etwas anderes, das in Abbildung~\ref{fig:spiegel_unterschiedliche_distanzen} auffällt, ist eine Time-Drift während
+dem Aufzeichnen der Messdaten bei 24~cm und 29~cm. Abbildung \ref{fig:spiegel_unterschiedliche_distanzen_linear} soll
+dies verdeutlichen.
+
+\begin{figure}[H]
+    \centering
+    \includesvg[width=0.9\textwidth]{graphics/spiegel_unterschiedliche_distanzen_linear.svg}
+    \caption{Unterschiedliche Distanzen zum Spiegel - Plot mit linearer Interpolation}\label{fig:spiegel_unterschiedliche_distanzen_linear}
+\end{figure}
+
+Diese Time-Drift kann aber den gemessenen Unterschied nicht schlüssig erklären.
+
+Bemerkung: Der Spiegel musste sehr genau ausgerichtet werden und dann sehr stabil gehalten werden, um Resultate mit
+relativ kleiner Standardabweichung (ca. 1~ns) aufzeichnen zu können.
+
+Bei Distanzen von mehr als 30~cm wird das \acrshort{tdc}-Signal unbrauchbar.
+
+Dies hat damit zutun, dass ab dann die Fotodiode nur noch einen kleinen Lichtstrom generiert. Dies führt zu eineren
+kleineren Aussteuerung am Ausgang des Transimpedanzverstärkers. Somit wird die Schaltschwelle des Komparators nicht mehr
+oder nur noch ganz knapp erreicht.
+
+Abbildungen~\ref{fig:spiegel_12cm_dso_ok} und \ref{fig:spiegel_30cm_dso_nok} sollen dies verdeutlichen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/spiegel_12cm_dso_ok.png}
+    \caption{\acrshort{tia}-Ausgang und Komparator-Schaltschwelle bei 12~cm}\label{fig:spiegel_12cm_dso_ok}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/spiegel_30cm_dso_nok.png}
+    \caption{\acrshort{tia}-Ausgang und Komparator-Schaltschwelle bei 30~cm}\label{fig:spiegel_30cm_dso_nok}
+\end{figure}
+
+Die Abbildungen zeigen, neben den \acrshort{mcu}-Signale \lstinline|start_op| und \lstinline|LD_pulse|, den Ausgang
+des Transimpedanzverstärkers und die Komparator-Schaltschwelle.
+
+Mögliche Verbesserungen dazu sind im Kapitel~\ref{sec:ausblick} aufgeführt. %TODO Fazit/Ausblick oder so?
 
 \subsubsection{Wand-Messungen}\label{sec:messungen_wand}
+
+%TODO Erwähnen, dass kein brauchbares Signal gemessen werden konnte
