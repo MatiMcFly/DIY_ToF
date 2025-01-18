@@ -168,8 +168,11 @@ eines solchen Pulses. Die zur Umrechnung benötigte Effizient der Laser-Diode wi
  RLD65NZX1 entnommen \cite{rohm2019rld65nzx1_datasheet}.
 
 \begin{equation}\label{eq:rld65nzx1_higher_output}
-    \eta = \frac{P_{25~mA}}{I_{ld}} = \frac{7~mW}{25~mA} = 0.28~\frac{W}{A}
-    P_{out}' = \eta \cdot I_{ld}' = 0.28~\frac{W}{A} \cdot 0.6~A = 168~mW
+    \begin{split}
+        \eta     &= \frac{P_{25~mA}}{I_{ld}} = \frac{7~mW}{25~mA} = 0.28~\frac{W}{A}\\
+        I_{ld}'  &= \frac{5~V - V_{LD}}{R_{v}} = \frac{5~V - 2.8~V}{5~\Omega} = 440~mA\\
+        P_{out}' &= \eta \cdot I_{ld}' = 0.28~\frac{W}{A} \cdot 440~mA = 123~mW
+    \end{split}
 \end{equation}
 \myequations{Erhöhte Sendeleistung bei der Laser-Diode}
 
@@ -178,8 +181,8 @@ Lichtstrom erwartet werden:
 
 \begin{equation}\label{eq:photocurrent_scenario1}
     \begin{split}
-        P_{in} &= \frac{P_{out}}{\Omega \cdot r^2} \cdot A_{L} = \frac{168~mW}{4\pi \cdot 0.5~sr \cdot (2~m)^2} \cdot 227~mm^2 = 1.52~\mu W\\
-        I_{ph} &= S \cdot P_{in} = 0.42~\frac{A}{W} \cdot 4.61~\mu W = 637~nA
+        P_{in} &= \frac{P_{out}}{\Omega \cdot r^2} \cdot A_{L} = \frac{123~mW}{4\pi \cdot 0.5~sr \cdot (2~m)^2} \cdot 227~mm^2 = 1.11~\mu W\\
+        I_{ph} &= S \cdot P_{in} = 0.42~\frac{A}{W} \cdot 1.11~\mu W = 467~nA
     \end{split}
 \end{equation}
 \myequations{Photostrom Szenario 1}
@@ -201,8 +204,8 @@ vor der Reflexion berücksichtigt werden muss. Deswegen wird die Distanz zum Tar
 
 \begin{equation}\label{eq:photocurrent_scenario2}
     \begin{split}
-        P_{in} &= \frac{P_{out}}{\Omega \cdot (2 \cdot r)^2} \cdot A_{L} = \frac{168~mW}{4.2~sr \cdot (2 \cdot 2~m)^2} \cdot 227~mm^2 = 568~nW\\
-        I_{ph} &= S \cdot P_{in} = 0.42~\frac{A}{W} \cdot 1.72~\mu W = 238~nA
+        P_{in} &= \frac{P_{out}}{\Omega \cdot (2 \cdot r)^2} \cdot A_{L} = \frac{123~mW}{4.2~sr \cdot (2 \cdot 2~m)^2} \cdot 227~mm^2 = 416~nW\\
+        I_{ph} &= S \cdot P_{in} = 0.42~\frac{A}{W} \cdot 416~nW = 175~nA
     \end{split}
 \end{equation}
 \myequations{Photostrom Szenario 2}
