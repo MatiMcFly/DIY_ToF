@@ -257,8 +257,21 @@ verfügbar sind, wird die Platzierung auf der Unterseite vorgenommen.
 
 
 \subsection{Fabrikation}
+KiCad 8.0 ermöglicht es, aus dem Layout-Design diverse Fabrikations-Dateien für die verschiedenen Layer zu erzeugen.
+Diese sogenannten Gerber und NC-Drill Dateien können von einem Leiterplattenhersteller zur Produktion einer Leiterplatte
+verwendet werden. Wahlweise kann eine Leiterplatte direkt auch bestückt werden, was jedoch zusätzliche Zeit in der Produktion
+beansprucht.
 
-\textcolor{red}{TODO: Text einfügen}
+Da sich die meisten Komponente auf dem \acrshort{pcb} relativ gut bestücken lassen, wurde auf eine automatisierte Bestückung
+verzichtet und die Komponenten wurden von Hand bestückt.
+
+Die Komponenten werden bei Mouser Electronics bestellt, während die Leiterplatten vom chinesischen Hersteller jlcpcb
+bezogen werden. Mouser erfüllt die erwartete Lieferzeit von einigen Tagen. Die Bestellung von jlcpcb kam mit genau sieben
+Tagen ebenfalls pünktlich an. Die Ingenieure von jlcpcb mussten keine Rückfragen zum Design stellen, was sich wohl positiv
+auf die Lieferzeit ausgewirkt hat.
+
+Die fertig bestückte Leiterplatte ist in der Abbildung~\ref{fig:photo_demonstrator_front_wo_lens} ersichtlich. Weitere
+Fotografien des \acrshort{tof}-Demonstrators können dem Anhang~\ref{sec:apdx_photos_demonstrator} entnommen werden.
 
 \begin{figure}[H]
     \centering
@@ -268,6 +281,43 @@ verfügbar sind, wird die Platzierung auf der Unterseite vorgenommen.
 
 \subsection{Firmware}
 
+Bei der Firmware wird ein Augenmerk darauf gelegt, dass es eine saubere Trennung zwischen Applikation, Treiber und
+Peripherie gibt. Dies sorgt für ein möglichst modulares Design. Die \acrshort{fw}-Hierarchie ist in der
+Abbildung~\ref{fig:hierarchy_firmware} nachvollziehbar.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{diagrams/Aufbau_FW.pdf}
+    \caption{Aufbau Firmware-Projekt}\label{fig:hierarchy_firmware}
+\end{figure}
+
+Die Applikation ist für das Timing der Messungen verantwortlich. Der Code für das auslösen wurde schrittweise ausgebaut,
+erst über die Verwendung einfacher \acrshort{gpio}s, bis hin zu optimalem zeitlichen Verhalten unter Einsatz verschiedener
+Hardware-Timer für das Generieren der Trigger-Pulse für die \acrshort{tdc}s. Im Kapitel~\ref{sec:electrical_measurements}
+sind die einzelnen Erweiterungsschritte detailliert erklärt.
+
+Der \acrshort{tdc}-Treiber beinhaltet die komplete Registerdefinition des TDC7200. Der Treiber stellt zudem einfache Lese- und
+Schreib-Routinen zur verfügung, mit Hilfe derer das Mess-\acrshort{ic} mit Leichtigkeit umkonfiguriert, aufgesetzt und
+ausgelesen werden kann. Weiter kann der Treiber die Messresultate direkt umrechnen, anhand der im Datenblatt. Vorgegebenen
+Formeln. Im Listing~\ref{code:start_measurement_tdc} ist der Beispiel-Code für eine einzelne Messung ersichtlich.
+
+\lstinputlisting[language={C}, label={code:start_measurement_tdc}, caption={\acrshort{tdc} Messung mit Treiber}]{sourcecode/example_tdc_read.c}
+
 Der selbst entwickelte Firmware-Treiber für den \acrshort{tdc} befindet im Anhang~\ref{sec:tdc_driver}.
+
+Mit Hilfe der Entwicklungsumgebung STM32CubeIDE / CubeMX ist es möglich, das Pinout der \acrshort{mcu} grafisch zu
+konfigurieren. Mit Hilfe eines Code-Generators können die Initialisierungs-Routinen für sämtliche Peripherien automatisiert
+erzeugt werden. Somit kann während der Entwicklung der Fokus auf den TDC-Treiber sowie die eigentliche Applikation gelegt
+werden.
+
+Eine Beispielhafte Pinkonfiguration ist in der Abbildung~\ref{fig:pinconfiguration_mcu} ersichtlich.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/pinconfiguration_mcu.png}
+    \caption{Pinkonfiguration des STM32F042K6}\label{fig:pinconfiguration_mcu}
+\end{figure}
+
+
 
 \pagebreak
