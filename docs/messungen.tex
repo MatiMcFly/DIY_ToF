@@ -3,12 +3,12 @@ In diesem Kapitel werden die Messresultate dokumentiert.
 Die verwendeten Python-Skripte zur Berechnung der statistischen Grössen und zum Plotten der Diagramme befinden sich im
 Anhang~\ref{sec:python_analyze}.
 
-Das verwendete \acrfull{dso} ist ein Rohde \& Schwarz RTB2004 1.25 GSa/s.
-
 \subsection{Elektrische Messungen}\label{sec:electrical_measurements}
 
 In diesem Teilkapitel werden die Messresultate dokumentiert, welche rein elektrisch (also ohne optischen Teil) erfasst
 wurde.
+
+Das verwendete \acrfull{dso} ist ein Rohde \& Schwarz RTB2004 1.25 GSa/s.
 
 Die Zeitmessungen werden von \lstinline|IC1| (siehe Abbildung~\ref{fig:tdc_ele_signal}) durchgeführt und von der
 Firmware, welche auf dem Nucleo Board \lstinline|U1| (siehe Abbildung~\ref{fig:nucleo_board}) getriggert und ausgelesen.
@@ -405,4 +405,71 @@ Diese Angabe ist ungefähr in derselben Grössenordnung wie die Messresultate.
 
 \subsection{Optische Messungen}
 
-%TODO
+In diesem Teilkapitel werden die Messresultate dokumentiert, welche sich auf den optischen Pfad des Demonstrators
+beziehen.
+
+Das verwendete \acrshort{dso} ist ein Rohde \& Schwarz RTB2004 2.5 GSa/s.
+
+Für die Messungen in diesem Kapitel werden die folgenden Firmware-Konfigurationen verwendet:
+
+\begin{itemize}
+    \item \acrshort{tdc}: Modus 1
+    \item Clock: 48~MHz
+    \item Schalten der \acrshort{gpio}s: Timer Output
+\end{itemize}
+
+\subsubsection{Signalpfad Sender}\label{sec:messungen_signalpfad_sender}
+
+In diesem Unterkapitel wird der Signalpfad des optischen Sendeteils ausgemessen.
+
+Die Verzögerungszeiten zwischen den \acrshort{mcu}-Signalen \lstinline|start_op| und \lstinline|LD_pulse| sowie dem
+Potential am Gate des NexFET (\lstinline|V1| Pin \lstinline|4| in Abbildung~\ref{fig:laser_driver}) sind in
+Abbildung~\ref{fig:signalpfad_sender_startopt_ldpulse_fetgate} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/signalpfad_sender_startopt_ldpulse_fetgate.png}
+    \caption{Messung Signalpfad Sender: \lstinline|start_op|, \lstinline|LD_pulse|, FET-Gate}\label{fig:signalpfad_sender_startopt_ldpulse_fetgate}
+\end{figure}
+
+Die gemessene Verzögerungszeit von 20.4~ns (20.8~ns entsprechen einem Clock-Cycle bei 48~MHz) zwischen
+\lstinline|start_op| und \lstinline|LD_pulse| wurde bewusst eingefügt, um sicherzustellen, dass die minimale Messdauer
+von 12~ns \cite{ti2016tdc7200_datasheet} im Mode~1 garantiert immer eingehalten wird.
+
+Die gemessene Verzögerungszeit von 8.4~ns zwischen \lstinline|LD_pulse| und dem FET-Gate (dies entspricht dem Ausgang
+des Gate-Treibers \lstinline|IC22|) ist klein und zeigt eine steile Flanke.
+
+In Abbildung~\ref{fig:signalpfad_sender_ld_strom} ist der Strom durch die Laser-Diode (\lstinline|LD1| in
+Abbildung~\ref{fig:laser_driver}) aufgezeigt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/signalpfad_sender_ld_strom}
+    \caption{Messung Signalpfad Sender: Strom durch Laser-Diode}\label{fig:signalpfad_sender_ld_strom}
+\end{figure}
+
+Der Strom wurde gemäss Formel~\ref{eq:messung_strom_ld} berechnet.
+
+\begin{equation}\label{eq:messung_strom_ld}
+    I_{LD} = \frac{V(\text{\lstinline|TP8|}) - V(\text{\lstinline|TP9|})}{R_V} = \frac{V(\text{\lstinline|TP8|}) - V(\text{\lstinline|TP9|})}{5~\Omega}
+\end{equation}
+\myequations{Berechnung Strom durch Laser-Diode}
+
+Damit die Verzögerungszeit ersichtlich ist, wurde zusätzlich, wie in Abbildung~\ref{fig:signalpfad_sender_startopt_ldpulse_fetgate},
+das Signal \lstinline|LD_pulse| und das Potential am FET-Gate aufgezeichnet.
+
+Der gemessene Strom während dem Senden beträgt ca. 174~mA.
+
+Dies ist um einiges weniger als der erwartete Strom von 440~mA aus Formel~\ref{eq:rld65nzx1_higher_output}. Dies hat mit
+der erhöhten Dioden-Spannung zu tun. Während dem Senden erhöht sich die Spannung über der Laser-Diode auf ca. 4~V, die
+Spannung über Drain-Source des FET ist vernachlässigbar klein. Damit ergibt sich der Strom durch die Diode gemäss
+Formel~\ref{eq:strom_ld_tatsaechlich}
+
+\begin{equation}\label{eq:strom_ld_tatsaechlich}
+    I_{LD} = \frac{5~V - V_{LD} - V_{DS}}{R_V} \approx \frac{5~V - 4~V}{5~\Omega} \approx 200~mA
+\end{equation}
+\myequations{Berechnung Strom durch Laser-Diode (tatsächlich)}
+
+\subsubsection{Spiegel-Messungen}\label{sec:messungen_spiegel}
+
+\subsubsection{Wand-Messungen}\label{sec:messungen_wand}
