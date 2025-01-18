@@ -265,9 +265,9 @@ Da sich die meisten Komponente auf dem \acrshort{pcb} relativ gut bestücken las
 verzichtet und die Komponenten wurden von Hand bestückt.
 
 Die Komponenten werden bei Mouser Electronics bestellt, während die Leiterplatten vom chinesischen Hersteller JLCPCB
-bezogen werden. Mouser erfüllt die erwartete Lieferzeit von einigen Tagen. Die Bestellung von JLCPCB kam mit genau sieben
-Tagen ebenfalls pünktlich an. Die Ingenieure von JLCPCB mussten keine Rückfragen zum Design stellen, was sich wohl positiv
-auf die Lieferzeit ausgewirkt hat.
+\cite{jlc2025jlcpcb} bezogen werden. Mouser erfüllt die erwartete Lieferzeit von einigen Tagen. Die Bestellung von
+JLCPCB kam mit genau sieben Tagen ebenfalls pünktlich an. Die Ingenieure von JLCPCB mussten keine Rückfragen zum Design
+stellen, was sich wohl positiv auf die Lieferzeit ausgewirkt hat.
 
 Die fertig bestückte Leiterplatte ist in der Abbildung~\ref{fig:photo_demonstrator_front_wo_lens} ersichtlich. Weitere
 Fotografien des \acrshort{tof}-Demonstrators können dem Anhang~\ref{sec:apdx_photos_demonstrator} entnommen werden.
@@ -295,26 +295,36 @@ erst über die Verwendung einfacher \acrshort{gpio}s, bis hin zu optimalem zeitl
 Hardware-Timer für das Generieren der Trigger-Pulse für die \acrshort{tdc}s. Im Kapitel~\ref{sec:electrical_measurements}
 sind die einzelnen Erweiterungsschritte detailliert erklärt.
 
-Der \acrshort{tdc}-Treiber beinhaltet die komplete Registerdefinition des TDC7200. Der Treiber stellt zudem einfache Lese- und
-Schreib-Routinen zur verfügung, mit Hilfe derer das Mess-\acrshort{ic} mit Leichtigkeit umkonfiguriert, aufgesetzt und
-ausgelesen werden kann. Weiter kann der Treiber die Messresultate direkt umrechnen, anhand der im Datenblatt vorgegebenen
-Formeln. Im Listing~\ref{code:start_measurement_tdc} ist der Beispiel-Code für eine einzelne Messung ersichtlich.
+Der \acrshort{tdc}-Treiber stellt Funktionen zur Initialisierung und zum Aktivieren des \acrshort{tdc} zur Verfügung.
+Siehe dazu Code~\ref{code:init_enable_tdc}.
+
+\lstinputlisting[language={C}, label={code:init_enable_tdc}, caption={\acrshort{tdc} Init und Enable mit Treiber}]{sourcecode/init_enable_tdc.c}
+
+Der \acrshort{tdc}-Treiber beinhaltet die komplette Registerdefinition des TDC7200. Der Treiber stellt zudem einfache
+Lese- und Schreib-Routinen für die Kommunikation via \acrshort{spi} zur Verfügung. Damit kann das Mess- \acrshort{ic}
+mit Leichtigkeit umkonfiguriert, aufgesetzt und ausgelesen werden kann. Ein Beispiel ist in
+Code~\ref{code:read_write_tdc} dargestellt.
+
+\lstinputlisting[language={C}, label={code:read_write_tdc}, caption={\acrshort{tdc} Read/Write mit Treiber}]{sourcecode/read_write_tdc.c}
+
+Weiter kann der Treiber die Messresultate direkt umrechnen, anhand der im Datenblatt vorgegebenen
+Formeln. Im Code~\ref{code:start_measurement_tdc} ist der Beispiel-Code für eine einzelne Messung ersichtlich.
 
 \lstinputlisting[language={C}, label={code:start_measurement_tdc}, caption={\acrshort{tdc} Messung mit Treiber}]{sourcecode/example_tdc_read.c}
 
 Der selbst entwickelte Firmware-Treiber für den \acrshort{tdc} befindet im Anhang~\ref{sec:tdc_driver}.
 
-Mit Hilfe der Entwicklungsumgebung STM32CubeIDE / CubeMX ist es möglich, das Pinout der \acrshort{mcu} grafisch zu
-konfigurieren. Mit Hilfe eines Code-Generators können die Initialisierungs-Routinen für sämtliche Peripherien automatisiert
-erzeugt werden. Somit kann während der Entwicklung der Fokus auf den TDC-Treiber sowie die eigentliche Applikation gelegt
-werden.
+Mit Hilfe der Entwicklungsumgebung STM32CubeIDE / CubeMX \cite{st2025stm32cubeide} ist es möglich, das Pinout der
+\acrshort{mcu} grafisch zu konfigurieren. Mit Hilfe eines Code-Generators können die Initialisierungs-Routinen für
+sämtliche Peripherien automatisiert erzeugt werden. Somit kann während der Entwicklung der Fokus auf den TDC-Treiber
+sowie die eigentliche Applikation gelegt werden.
 
-Die Pinkonfiguration ist in der Abbildung~\ref{fig:pinconfiguration_mcu} ersichtlich.
+Die Pin-Konfiguration ist in der Abbildung~\ref{fig:pinconfiguration_mcu} ersichtlich.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{graphics/pinconfiguration_mcu.png}
-    \caption{Pinkonfiguration des STM32F042K6}\label{fig:pinconfiguration_mcu}
+    \caption{Pin-Konfiguration des STM32F042K6}\label{fig:pinconfiguration_mcu}
 \end{figure}
 
 \pagebreak
