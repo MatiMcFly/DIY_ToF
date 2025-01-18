@@ -1,7 +1,7 @@
 In diesem Kapitel wird die Umsetzung der Hardware sowie Firmware des \acrshort{tof}-Demonstrators dokumentiert.
 
 Im Anhang~\ref{sec:schematic_apdx} bis und mit~\ref{sec:apdx_photos_demonstrator} sind sämtliche technischen Dokumente
-sowie einige Fotos des fabrizieren Demonstrators abgelegt.
+sowie einige Fotos des fabrizierten Demonstrators abgelegt.
 
 \subsection{Schaltungen}
 Nachfolgend werden sämtliche Teil-Schaltungen thematisiert, welche für das entwickelten \acrshort{tof}-Evaluationsmodul
@@ -180,7 +180,7 @@ negative Puls am Ausgang des \acrshort{tia}s. Mit \lstinline|C20| kann zudem bei
 werden. Diese hat zum Ziel, ein Schwingen des Verstärkers zu unterdrücken, falls dieser eine Neigung zum Schwingen haben
 sollte.
 
-Der Offset des OPA858 und die Schaltschwelle des NJL6401R werden mit Hilfe der beiden Trimmer \lstinline|RV22| und
+Der Offset des OPA858 und die Schaltschwelle des TLV3501 werden mit Hilfe der beiden Trimmer \lstinline|RV22| und
 \lstinline|RV23| einstellbar gemacht. Dies hilft bei der Inbetriebnahme, da im Voraus noch nicht ganz klar ist,
 wo der Ausgang des Operationsverstärkers aufgrund des gewandelten Dunkelstroms der Photodiode zu liegen kommt.
 
@@ -236,9 +236,9 @@ Das komplette Layout kann dem Anhang~\ref{sec:apdx_layout} entnommen werden.
 \pagebreak
 
 \subsection{3D View}
-Die \acrshort{3d}-Ansicht wirkte beim Design des Layouts und vor allem bei der Komponentenplatzierung insofern unterstützend, da hier
+Die 3D-Ansicht wirkte beim Design des Layouts und vor allem bei der Komponentenplatzierung insofern unterstützend, da hier
 ersichtlich ist, wo sich mechanische und elektronische Komponenten in den Weg kommen könnten. Die Abbildung~\ref{fig:3d_top}
-zeigt eine \acrshort{3d}-Wiedergabe der Aufsicht auf den \acrshort{tof}-Demonstrators.
+zeigt eine 3D-Wiedergabe der Aufsicht auf den \acrshort{tof}-Demonstrator.
 
 \begin{figure}[H]
     \centering
@@ -264,9 +264,9 @@ beansprucht.
 Da sich die meisten Komponente auf dem \acrshort{pcb} relativ gut bestücken lassen, wurde auf eine automatisierte Bestückung
 verzichtet und die Komponenten wurden von Hand bestückt.
 
-Die Komponenten werden bei Mouser Electronics bestellt, während die Leiterplatten vom chinesischen Hersteller jlcpcb
-bezogen werden. Mouser erfüllt die erwartete Lieferzeit von einigen Tagen. Die Bestellung von jlcpcb kam mit genau sieben
-Tagen ebenfalls pünktlich an. Die Ingenieure von jlcpcb mussten keine Rückfragen zum Design stellen, was sich wohl positiv
+Die Komponenten werden bei Mouser Electronics bestellt, während die Leiterplatten vom chinesischen Hersteller JLCPCB
+bezogen werden. Mouser erfüllt die erwartete Lieferzeit von einigen Tagen. Die Bestellung von JLCPCB kam mit genau sieben
+Tagen ebenfalls pünktlich an. Die Ingenieure von JLCPCB mussten keine Rückfragen zum Design stellen, was sich wohl positiv
 auf die Lieferzeit ausgewirkt hat.
 
 Die fertig bestückte Leiterplatte ist in der Abbildung~\ref{fig:photo_demonstrator_front_wo_lens} ersichtlich. Weitere
@@ -297,7 +297,7 @@ sind die einzelnen Erweiterungsschritte detailliert erklärt.
 
 Der \acrshort{tdc}-Treiber beinhaltet die komplete Registerdefinition des TDC7200. Der Treiber stellt zudem einfache Lese- und
 Schreib-Routinen zur verfügung, mit Hilfe derer das Mess-\acrshort{ic} mit Leichtigkeit umkonfiguriert, aufgesetzt und
-ausgelesen werden kann. Weiter kann der Treiber die Messresultate direkt umrechnen, anhand der im Datenblatt. Vorgegebenen
+ausgelesen werden kann. Weiter kann der Treiber die Messresultate direkt umrechnen, anhand der im Datenblatt vorgegebenen
 Formeln. Im Listing~\ref{code:start_measurement_tdc} ist der Beispiel-Code für eine einzelne Messung ersichtlich.
 
 \lstinputlisting[language={C}, label={code:start_measurement_tdc}, caption={\acrshort{tdc} Messung mit Treiber}]{sourcecode/example_tdc_read.c}
@@ -309,14 +309,12 @@ konfigurieren. Mit Hilfe eines Code-Generators können die Initialisierungs-Rout
 erzeugt werden. Somit kann während der Entwicklung der Fokus auf den TDC-Treiber sowie die eigentliche Applikation gelegt
 werden.
 
-Eine Beispielhafte Pinkonfiguration ist in der Abbildung~\ref{fig:pinconfiguration_mcu} ersichtlich.
+Die Pinkonfiguration ist in der Abbildung~\ref{fig:pinconfiguration_mcu} ersichtlich.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{graphics/pinconfiguration_mcu.png}
     \caption{Pinkonfiguration des STM32F042K6}\label{fig:pinconfiguration_mcu}
 \end{figure}
-
-
 
 \pagebreak
