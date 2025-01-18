@@ -1,14 +1,7 @@
-In diesem Kapitel wird die Umsetzung des Demonstrators dokumentiert.
+In diesem Kapitel wird die Umsetzung der Hardware sowie Firmware des \acrshort{tof}-Demonstrators dokumentiert.
 
-Im Anhang~\ref{sec:photos} sind Fotos des Demonstrators abgelegt.
-
-\pagebreak
-
-\subsection{Firmware}
-
-Der selbst entwickelte Firmware-Treiber für den \acrshort{tdc} befindet im Anhang~\ref{sec:tdc_driver}.
-
-\pagebreak
+Im Anhang~\ref{sec:schematic_apdx} bis und mit~\ref{sec:apdx_photos_demonstrator} sind sämtliche technischen Dokumente
+sowie einige Fotos des fabrizierten Demonstrators abgelegt.
 
 \subsection{Schaltungen}
 Nachfolgend werden sämtliche Teil-Schaltungen thematisiert, welche für das entwickelten \acrshort{tof}-Evaluationsmodul
@@ -187,6 +180,10 @@ negative Puls am Ausgang des \acrshort{tia}s. Mit \lstinline|C20| kann zudem bei
 werden. Diese hat zum Ziel, ein Schwingen des Verstärkers zu unterdrücken, falls dieser eine Neigung zum Schwingen haben
 sollte.
 
+Der Offset des OPA858 und die Schaltschwelle des TLV3501 werden mit Hilfe der beiden Trimmer \lstinline|RV22| und
+\lstinline|RV23| einstellbar gemacht. Dies hilft bei der Inbetriebnahme, da im Voraus noch nicht ganz klar ist,
+wo der Ausgang des Operationsverstärkers aufgrund des gewandelten Dunkelstroms der Photodiode zu liegen kommt.
+
 \begin{figure}[H]
     \centering
     \includegraphics[page=3, trim=100 240 600 340, clip, width=0.9\textwidth]{attachments/schematic.pdf}
@@ -210,60 +207,114 @@ was sich positiv auf die Stabilität der Speisung auswirken sollte.
 
 \subsection{Layout}\label{sec:layout}
 
-In diesem Kapitel werden die \acrshort{pcb}-Layouts dokumentiert.
+Beim Layout wurde ein Augenmerk darauf gelegt, dass die verschiedenen Schaltungen sich auf dem \acrshort{pcb} nicht
+gegenseitig stören. Dafür wurde ein sauberes Speisungskonzept entworfen, welches die Ground- und Power-Planes nach Layer
+definiert. Prinzipiell sind die vier Lagen der Leiterplatte wie folgt aufgetrennt:
 
-\subsubsection{Kupfer-Layer}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[trim=130 220 450 80, clip, width=0.6\textwidth]{attachments/pcb_F_Cu.pdf}
-    \caption{PCB Layout Top}\label{fig:pcb_f_cu}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[trim=130 220 450 80, clip, width=0.6\textwidth]{attachments/pcb_B_Cu.pdf}
-    \caption{PCB Layout Bottom}\label{fig:pcb_b_cu}
-\end{figure}
+\begin{itemize}
+    \item Top-Layer: Signal und Ground
+    \item Innerer Layer 1: Stromversorgungsebene
+    \item Innerer Layer 2: Signal und Ground
+    \item Bottom-Layer: Signal und Ground
+\end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[trim=130 220 450 80, clip, width=0.6\textwidth]{attachments/pcb_In1_Cu.pdf}
-    \caption{PCB Layout Innen 1}\label{fig:pcb_in1_cu}
+    \includegraphics[width=0.9\textwidth]{graphics/layout_annotated.png}
+    \caption{Innerer Layer 1 mit Vermerken zum Speisungskonzept}\label{fig:layout_annotated}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[trim=130 220 450 80, clip, width=0.6\textwidth]{attachments/pcb_In2_Cu.pdf}
-    \caption{PCB Layout Innen 2}\label{fig:pcb_in2_cu}
-\end{figure}
+In Abbildung~\ref{fig:layout_annotated} ist die Umsetzung des Speisungskonzeptes ersichtlich. In der unteren, rechten Ecke
+befindet sich die Analog-Domäne, welche die Photodiode, den \acrshort{tia} und den Komparator beinhaltet. Dieser Abschnitt
+des \acrshort{pcb}s besitzt eigene Ground-Planes sowie entstörte Speisungen. Mit Hilfe von einigen Vias an der Aussengrenze
+dieses Abschnittes sollte die Analog-Domäne zudem weniger Anfällig auf extern induzierte Störfelder sein.
 
-\subsubsection{Komponenten-Platzierung}
+Solche sogenannten \dq Stitching-Vias\dq\ sind zudem rund um das ganze \acrshort{pcb} zur Abschirmung platziert.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[page=1, trim=120 220 450 80, clip, width=0.6\textwidth]{attachments/pcb_placement.pdf}
-    \caption{PCB Komponenten-Platzierung Top}\label{fig:pcb_placement_1}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[page=2, trim=450 220 120 80, clip, width=0.6\textwidth]{attachments/pcb_placement.pdf}
-    \caption{PCB Komponenten-Platzierung Bottom}\label{fig:pcb_placement_2}
-\end{figure}
+Das komplette Layout kann dem Anhang~\ref{sec:apdx_layout} entnommen werden.
 
 \pagebreak
 
 \subsection{3D View}
+Die 3D-Ansicht wirkte beim Design des Layouts und vor allem bei der Komponentenplatzierung insofern unterstützend, da hier
+ersichtlich ist, wo sich mechanische und elektronische Komponenten in den Weg kommen könnten. Die Abbildung~\ref{fig:3d_top}
+zeigt eine 3D-Wiedergabe der Aufsicht auf den \acrshort{tof}-Demonstrator.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{graphics/3d_top.png}
+    \includegraphics[width=0.5\textwidth]{graphics/3d_top.png}
     \caption{3D View Top}\label{fig:3d_top}
 \end{figure}
 
+Die Linsenhalterungen wurden mit Hilfe von einer Step-Datei, die von QIOPTIQ zur Verfügung gestellt wird in die Ansicht
+integriert \cite{qioptiq2024g061041000_shoppage}. In der Abbildung~\ref{fig:3d_top} sind diese als schwarze Quader mit
+zylinderförmigen Ausschnitten dargestellt. Direkt unter diesen Halterungen dürfen sich keine Komponenten befinden, da
+sich die Halterungen ansonsten nicht montieren lassen.
+
+Bei der Komponentenplatzierung wird zusätzlich auch darauf geachtet, dass sämtliche Testpunkte sowie die Trimmer und
+Schalter zur Konfiguration gut zugänglich sind. Wenn sich diese Komponenten nahe an den optoelektronischen Komponenten
+befinden, wurden sie auf der Unterseite platziert. Somit sind sie auch mit montierter Optik verfügbar.
+
+\subsection{Fabrikation}
+KiCad 8.0 ermöglicht es, aus dem Layout-Design diverse Fabrikations-Dateien für die verschiedenen Layer zu erzeugen.
+Diese sogenannten Gerber und NC-Drill Dateien können von einem Leiterplattenhersteller zur Produktion einer Leiterplatte
+verwendet werden. Wahlweise kann eine Leiterplatte direkt auch bestückt werden, was jedoch zusätzliche Zeit in der Produktion
+beansprucht.
+
+Da sich die meisten Komponente auf dem \acrshort{pcb} relativ gut bestücken lassen, wurde auf eine automatisierte Bestückung
+verzichtet und die Komponenten wurden von Hand bestückt.
+
+Die Komponenten werden bei Mouser Electronics bestellt, während die Leiterplatten vom chinesischen Hersteller JLCPCB
+bezogen werden. Mouser erfüllt die erwartete Lieferzeit von einigen Tagen. Die Bestellung von JLCPCB kam mit genau sieben
+Tagen ebenfalls pünktlich an. Die Ingenieure von JLCPCB mussten keine Rückfragen zum Design stellen, was sich wohl positiv
+auf die Lieferzeit ausgewirkt hat.
+
+Die fertig bestückte Leiterplatte ist in der Abbildung~\ref{fig:photo_demonstrator_front_wo_lens} ersichtlich. Weitere
+Fotografien des \acrshort{tof}-Demonstrators können dem Anhang~\ref{sec:apdx_photos_demonstrator} entnommen werden.
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{graphics/3d_bottom.png}
-    \caption{3D View Bottom}\label{fig:3d_bottom}
+    \includegraphics[width=0.6\textwidth]{graphics/photo_demonstrator_front_wo_lens.jpg}
+    \caption{Demonstrator von vorne ohne Linse}\label{fig:photo_demonstrator_front_wo_lens}
 \end{figure}
+
+\subsection{Firmware}
+
+Bei der Firmware wird ein Augenmerk darauf gelegt, dass es eine saubere Trennung zwischen Applikation, Treiber und
+Peripherie gibt. Dies sorgt für ein möglichst modulares Design. Die \acrshort{fw}-Hierarchie ist in der
+Abbildung~\ref{fig:hierarchy_firmware} nachvollziehbar.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{diagrams/Aufbau_FW.pdf}
+    \caption{Aufbau Firmware-Projekt}\label{fig:hierarchy_firmware}
+\end{figure}
+
+Die Applikation ist für das Timing der Messungen verantwortlich. Der Code für das auslösen wurde schrittweise ausgebaut,
+erst über die Verwendung einfacher \acrshort{gpio}s, bis hin zu optimalem zeitlichen Verhalten unter Einsatz verschiedener
+Hardware-Timer für das Generieren der Trigger-Pulse für die \acrshort{tdc}s. Im Kapitel~\ref{sec:electrical_measurements}
+sind die einzelnen Erweiterungsschritte detailliert erklärt.
+
+Der \acrshort{tdc}-Treiber beinhaltet die komplete Registerdefinition des TDC7200. Der Treiber stellt zudem einfache Lese- und
+Schreib-Routinen zur verfügung, mit Hilfe derer das Mess-\acrshort{ic} mit Leichtigkeit umkonfiguriert, aufgesetzt und
+ausgelesen werden kann. Weiter kann der Treiber die Messresultate direkt umrechnen, anhand der im Datenblatt vorgegebenen
+Formeln. Im Listing~\ref{code:start_measurement_tdc} ist der Beispiel-Code für eine einzelne Messung ersichtlich.
+
+\lstinputlisting[language={C}, label={code:start_measurement_tdc}, caption={\acrshort{tdc} Messung mit Treiber}]{sourcecode/example_tdc_read.c}
+
+Der selbst entwickelte Firmware-Treiber für den \acrshort{tdc} befindet im Anhang~\ref{sec:tdc_driver}.
+
+Mit Hilfe der Entwicklungsumgebung STM32CubeIDE / CubeMX ist es möglich, das Pinout der \acrshort{mcu} grafisch zu
+konfigurieren. Mit Hilfe eines Code-Generators können die Initialisierungs-Routinen für sämtliche Peripherien automatisiert
+erzeugt werden. Somit kann während der Entwicklung der Fokus auf den TDC-Treiber sowie die eigentliche Applikation gelegt
+werden.
+
+Die Pinkonfiguration ist in der Abbildung~\ref{fig:pinconfiguration_mcu} ersichtlich.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/pinconfiguration_mcu.png}
+    \caption{Pinkonfiguration des STM32F042K6}\label{fig:pinconfiguration_mcu}
+\end{figure}
+
+\pagebreak
