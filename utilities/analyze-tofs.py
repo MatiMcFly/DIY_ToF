@@ -1,13 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
 
-# Load data from logs.txt
+# Load data from logs.txt, handling empty values
 filename = 'logs.txt'
-data = np.loadtxt(filename, delimiter=';', dtype=float)
+data = np.genfromtxt(filename, delimiter=';', dtype=float, filling_values=np.nan)
 
-# Calculate arithmetic mean and standard deviation for each column
-means = np.mean(data, axis=0)
-std_devs = np.std(data, axis=0)
+# Calculate arithmetic mean and standard deviation for each column, ignoring NaNs
+means = np.nanmean(data, axis=0)
+std_devs = np.nanstd(data, axis=0)
 
 # Print results
 for i, (mean, std_dev) in enumerate(zip(means, std_devs), start=1):
@@ -22,6 +23,7 @@ for i in range(data.shape[1]):
 plt.title('ToF for different cable lengths')
 plt.xlabel('Index')
 plt.ylabel('ToF [ps]')
+plt.gca().yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:,.0f}".replace(",", "'")))
 plt.legend()
 plt.grid()
 plt.tight_layout()
