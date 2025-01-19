@@ -1,0 +1,36 @@
+In diesem Kapitel werden abschliessende Gedanken gesammelt. Es soll dazu dienen, einige Punkte aufzuzählen, die gut gelaufen
+sind, aber auch jene bei denen Verbesserungspotential identifiziert wurde.
+
+\subsection{Ausblick}
+Grundsätzlich kann bestätigt werden, dass sich ein \acrshort{tof}-System, so wie es sich die Studierenden vorstellen,
+entwickeln und betreiben lässt. Ein nächster Schritt könnte beispielsweise sein, dass die Optik besser aufeinander
+abgestimmt ist. Dies würde es zum einen erlauben, über weitere Distanzen hinweg Messungen machen zu können. Des weiteren
+sollte es ebenfalls möglich sein, auch Targets mit nicht oder schwach reflektierenden Oberflächenbeschaffenheiten zu detektieren.
+
+Auch allgemein bei der Ansteuerung der \acrshort{tdc}s konnte gibt es Verbesserungspotential. So könnte beispielsweise
+mit einer schneller getakteten \acrshort{mcu} der Jitter bei \lstinline|START|- und \lstinline|STOP|-Signal minimiert
+werden, was zu Messresultaten mit noch weniger Streuung führen wird.
+
+Abschliessend kann gesagt werden, dass es durchaus möglich ist, mit einem TDC7200 eine \acrshort{tof}-Messung zu machen,
+bei welcher die zeitliche Auflösung des Mess-ICs selber die limitierende Grösse ist.
+
+\subsection{Lessons Learned}
+Wie die Messresultate und auch der Ausblick bereits vermuten lassen, hätte primär beim Auslegen der Optoelektronik etwas
+mehr Zeit investiert werden können. Die initialen, überschlagsmässigen Schätzungen und Rechnungen bezüglich der gewünschten
+Limitierungen des Systems hätten kritischer hinterfragt werden sollen. Initial war es das Ziel der Studenten, Messungen
+auf Distanzen von bis zu 10~m mit einer Auflösung von etwa 10~cm zu machen. Herausgestellt hat sich am Ende jedoch, dass
+nicht die zeitliche Auflösung, sondern vielmehr die Distanz, resp. die Stärke des Messsignals problematisch ist.
+
+Mit der Fabrikation des \acrshort{tof}-Demonstrators ist das Studenten-Team relativ zufrieden. Beim erneuten Einsatz so
+kleiner SMD-Komponenten, wie beispielsweise beim \acrshort{tia} lohnt es sich jedoch darüber zu sinnieren, ob nicht eine
+maschinelle Bestückung der händischen Bestückung vorzuziehen ist. Durch die manuelle Bestückung wurde wohl keine Zeit
+eingespart, da diese auch einige Studen über mehrere Abende verteilt in Anspruch nahm.
+
+\subsection{Danksagung}
+Wir möchten uns an dieser Stelle herzlich bei den beiden Dozenten Prof. Guido Keel und Michael Lehmann bedanken. Während
+der Laufzeit des Projekts sind sie uns jederzeit mit Rat und Tat zur Seite gestanden und haben das Projekt mit grossem
+Interesse verfolgt. Auch für das optische Leihmaterial bedanken wir uns. Dieses hat es wohl ermöglicht, dass wir bei der
+optischen Messung einen Teilerfolg erzielen durften.
+
+Weiter bedanken wir uns bei Robin Burkard, welcher unser Schema reviewt hat. Dank seinen wertvollen Tipps konnte das
+\acrshort{pcb} so störfrei wie möglich in Betrieb genommen werden.
