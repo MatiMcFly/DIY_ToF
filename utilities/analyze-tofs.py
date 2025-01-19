@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
 
 # Load data from logs.txt, handling empty values
 filename = 'logs.txt'
@@ -22,6 +23,7 @@ for i in range(data.shape[1]):
 plt.title('ToF for different cable lengths')
 plt.xlabel('Index')
 plt.ylabel('ToF [ps]')
+plt.gca().yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:,.0f}".replace(",", "'")))
 plt.legend()
 plt.grid()
 plt.tight_layout()

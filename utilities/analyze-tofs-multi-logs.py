@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
 import numpy as np
 
 # Function to read ToF values from a log file
@@ -52,6 +53,7 @@ for i, (indices, data) in enumerate(zip(data_indices, datasets)):
 plt.title('ToF unterschiedliche Distanzen zum Spiegel')
 plt.xlabel('Index')
 plt.ylabel('ToF [ps]')
+plt.gca().yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{x:,.0f}".replace(",", "'")))
 plt.legend()
 plt.grid(True)
 
