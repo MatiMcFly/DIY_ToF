@@ -144,6 +144,8 @@ Für diese Messung wird dasselbe Setup wie in Kapitel \ref{sec:gpio_toggle_witho
 Anstelle eines Kurzschlusses von \lstinline|J3| (siehe Abbildung \ref{fig:tdc_ele_signal}) werden nun verschiedene
 Kabellängen angeschlossen.
 
+Als Kabel wird ein einzelner, isolierter Kupferdraht ($\diameter_{cu} = X~mm$, $\diameter_{ges} = X~mm$) verwendet.
+
 Es hat sich herausgestellt, dass eine kreisförmige Anordnung des Kabels wichtig ist. Denn bei einer Überlappung der
 beiden Kabelenden werden kürze Zeiten gemessen. Dies hat mit der kapazitiven Kopplung zwischen den Leitern zu tun.
 
@@ -167,7 +169,7 @@ Die arithmetischen Mittelwerte und Standardabweichungen sind in Tabelle \ref{tab
     \caption{Unterschiedliche Kabellängen}\label{tab:different_cable_lengths}
 \end{table}
 
-Die Signal-Ausbreitungsgeschwindigkeit in Kupfer beträgt ca. 2/3 der Lichtgeschwindigkeit
+Die Signal-Ausbreitungs-Geschwindigkeit in Kupfer beträgt ca. $\sfrac{2}{3}$ der Lichtgeschwindigkeit
 \cite{firewallcx2025propagationdelay}. Um die Resultate in Tabelle \ref{tab:different_cable_lengths} zu validieren,
 rechnen wir wie in Formel \ref{eq:cable_length} gezeigt, auf die Kabellänge zurück. Die Laufzeit bei 0~m wird dabei
 abgezogen, um die Verzögerung zu kompensieren, welche durch das Schalten der \acrshort{gpio}s entsteht.
@@ -186,18 +188,17 @@ Die Resultate sind in Tabelle \ref{tab:different_cable_lengths_calc} dargestellt
 \begin{table}[H]
     \mytable
         {|l|l|l|}
-        {\textbf{Tatsächliche Länge} & \textbf{ToF\_n} & \textbf{Zurückgerechnete Länge}}
+        {\textbf{Tatsächliche Länge} & \textbf{ToF}$\mathbf{_n}$ & \textbf{Zurückgerechnete Länge}}
         {\reallength & \tofn & \calclength}
         {tables/different_cable_lengths_calc.csv}
     \caption{Kabellängen zurückgerechnet}\label{tab:different_cable_lengths_calc}
 \end{table}
 
-Es fällt auf, dass die Resultate nicht genau übereinstimmen. Dies hat mehrere Ursachen: Die Ausbreitungsgeschwindigkeit
-ist nicht genau bekannt und die tatsächlichen Kabellängen wurden nicht genau gemessen.
+Es fällt auf, dass die Resultate nicht genau übereinstimmen. Es ist jedoch eine klare Korrelation zu erkennen.
 
-%TODO Lets challenge this. Maybe 2/3 c is wrong for pure copper and it should be something like 95\% ?
-
-Es ist jedoch eine klare Korrelation zu erkennen.
+Der Unterschied könnte verschiedene Ursachen haben. Eine mögliche Erklärung wäre, dass die Ausbreitungs-Geschwindigkeit
+beim verwendeten Kabel näher an der Lichtgeschwindigkeit ist als angenommen. Weitere Messresultate und Auswertungen
+dazu in Kapitel~\ref{sec:different_cable_lengths_with_dso}.
 
 \subsubsection{Mode 1 vs. Mode 2}
 
