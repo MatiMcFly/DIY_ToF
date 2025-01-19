@@ -402,6 +402,123 @@ Im Datenblatt konnte eine Angabe zum \acrshort{pll}-Jitter gefunden werden, sieh
 
 Diese Angabe ist ungefähr in derselben Grössenordnung wie die Messresultate.
 
+\subsubsection{Unterschiedliche Kabellängen mit DSO}\label{sec:different_cable_lengths_with_dso}
+
+In diesem Unterkapitel werden nochmals dieselben Kabellängen wie in Kapitel~\ref{sec:different_cable_lengths}
+ausgemessen.
+
+Es wird die folgende Firmware-Konfiguration verwendet, um den Jitter zu reduzieren:
+
+\begin{itemize}
+    \item \acrshort{tdc}: Modus 1
+    \item Clock: 48~MHz
+    \item Schalten der \acrshort{gpio}s: Timer Output
+\end{itemize}
+
+Zusätzlich werden die verschiedenen Kabellängen gleichzeit auch via \acrshort{dso} (Rohde \& Schwarz RTB2004 2.5 GSa/s.)
+ausgemessen, um die Resultate des \acrshort{tdc} damit zu vergleichen.
+
+In Tabelle~\ref{tab:different_cable_lengths_with_dso_tdc} sind die Mittelwerte und die Standardabweichungen der
+erfassten Messresultate des \acrshort{tdc} aufgelistet, während dem der \acrshort{dso} gleichzeitig an den Pins
+angeschlossen war. Die Datensets befinden sich im elektronischen Anhang.
+
+\begin{table}[H]
+    \mytable
+        {|l|l|l|l|}
+        {\textbf{Länge} & \textbf{Mittelwert} & \textbf{Standardabweichung} & \textbf{$\Delta$ zu 0~m}}
+        {\length & \mean & \stddev & \diff}
+        {tables/different_cable_lengths_with_dso_tdc.csv}
+    \caption{Unterschiedliche Kabellängen - Resultate \acrshort{tdc}}\label{tab:different_cable_lengths_with_dso_tdc}
+\end{table}
+
+In Tabelle~\ref{tab:different_cable_lengths_with_dso_dso} sind die erfassten Messresultate des \acrshort{dso}
+aufgelistet. Die letzte Spalte zeigt den Unterschied zu den Messresultaten des \acrshort{tdc}. Es ist zu erkennen, dass
+der Unterschied sehr klein ist.
+
+\begin{table}[H]
+    \mytable
+        {|l|l|l|l|}
+        {\textbf{Länge} & \textbf{Wert} & \textbf{$\Delta$ zu 0~m} & \textbf{$\Delta$ zu TDC}}
+        {\length & \measurement & \diff & \difftdc}
+        {tables/different_cable_lengths_with_dso_dso.csv}
+    \caption{Unterschiedliche Kabellängen - Resultate \acrshort{dso}}\label{tab:different_cable_lengths_with_dso_dso}
+\end{table}
+
+Tabelle~\ref{tab:different_cable_lengths_with_dso_theorie} zeigt die theoretisch zu erwartenden Laufzeiten bei den
+unterschiedlichen Annahmen für die Signalausbreitungs-Geschwindigkeit von $\sfrac{2}{3}~c$ und $c$.
+
+\begin{table}[H]
+    \mytable
+        {|l|l|l|}
+        {\textbf{Länge} & \textbf{Theorie} $\mathbf{\sfrac{2}{3}~c}$ & \textbf{Theorie c}}
+        {\length & \theoriekc & \theoriec}
+        {tables/different_cable_lengths_with_dso_theorie.csv}
+    \caption{Unterschiedliche Kabellängen - Theoretische Erwartung}\label{tab:different_cable_lengths_with_dso_theorie}
+\end{table}
+
+Der Unterschied der \acrshort{tdc}-Resultate zu den theoretischen Erwartungen sind in
+Tabelle~\ref{tab:different_cable_lengths_with_dso_theorie_vs_tdc_ns} und
+Tabelle~\ref{tab:different_cable_lengths_with_dso_theorie_vs_tdc_m} dargestellt. Zuerst im Bezug auf den
+Laufzeit-Unterschied, dann die zurückgerechnete Kabellänge.
+
+\begin{table}[H]
+    \mytable
+        {|l|l|l|}
+        {\textbf{Länge} & \textbf{$\Delta$ TDC zu Theorie} $\mathbf{\sfrac{2}{3}~c}$ & \textbf{$\Delta$ TDC Theorie zu c}}
+        {\length & \tdczutheoriekc & \tdczutheoriec}
+        {tables/different_cable_lengths_with_dso_theorie_vs_tdc_ns.csv}
+    \caption{Unterschiedliche Kabellängen - Unterschied \acrshort{tdc} [ns] zu Theorie}\label{tab:different_cable_lengths_with_dso_theorie_vs_tdc_ns}
+\end{table}
+
+\begin{table}[H]
+    \mytable
+        {|l|l|l|}
+        {\textbf{Länge} & \textbf{TDC gem. Theorie} $\mathbf{\sfrac{2}{3}~c}$ & \textbf{TDC gem. Theorie c}}
+        {\length & \tdcgemtheoriekc & \tdcgemtheoriec}
+        {tables/different_cable_lengths_with_dso_theorie_vs_tdc_m.csv}
+    \caption{Unterschiedliche Kabellängen - \acrshort{tdc} [m] gem. Theorie}\label{tab:different_cable_lengths_with_dso_theorie_vs_tdc_m}
+\end{table}
+
+In Tabelle~\ref{tab:different_cable_lengths_with_dso_theorie_vs_tdc_m} ist zu erkennen, dass keine der beiden
+theoretischen Werte für $c$ zu einem perfekten \acrshort{tdc}-Resultat für die zurückgerechnete Distanz [m] führt.
+
+In Tabelle~\ref{tab:different_cable_lengths_with_dso_theorie_vs_tdc_ns} ist zu erkennen, dass die Differenz der
+\acrshort{tdc}-Resultate zur theoretisch zu erwartenden Laufzeit bei $c$ etwas kleiner ist als bei $\sfrac{2}{3}~c$. Es
+scheint, dass $c$ eine etwas bessere Näherung darstellt.
+
+Falls sich der gemessene Unterschied tatsächliche durch eine falsche Annahme der Ausbreitungs-Geschwindigkeit erklären
+lässt, dann müsst die Ausbreitungs-Geschwindigkeit im gewählten Kabel bei ca. $0.9~c$ liegen. Die zurückrechneten
+Resultate dazu sind in Tabelle~\ref{tab:different_cable_lengths_with_dso_theorie09_vs_tdc_m} aufgelistet.
+
+\begin{table}[H]
+    \mytable
+        {|l|l|}
+        {\textbf{Länge} & \textbf{TDC gem. Theorie 0.9 c}}
+        {\length & \tdcgemtheoriemc}
+        {tables/different_cable_lengths_with_dso_theorie09_vs_tdc_m.csv}
+    \caption{Unterschiedliche Kabellängen - \acrshort{tdc} [m] gem. Theorie 0.9 c}\label{tab:different_cable_lengths_with_dso_theorie09_vs_tdc_m}
+\end{table}
+
+In den Abbildungen~\ref{fig:different_cable_lengths_with_dso_1m} und \ref{fig:different_cable_lengths_with_dso_6m} sind
+die \acrshort{dso}-Aufzeichnungen bei den Kabellängen 1~m bzw. 6~m gezeigt. Die restlichen \acrshort{dso}-Aufzeichnungen
+befinden sich im elektronischen Anhang.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/different_cable_lengths_with_dso_1m.png}
+    \caption{\acrshort{dso}-Aufzeichnung bei Kabellänge 1~m}\label{fig:different_cable_lengths_with_dso_1m}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/different_cable_lengths_with_dso_6m.png}
+    \caption{\acrshort{dso}-Aufzeichnung bei Kabellänge 6~m}\label{fig:different_cable_lengths_with_dso_6m}
+\end{figure}
+
+Es ist zu erkennen, dass die Flanke des \lstinline|STOP|-Signals bei grösserer Kabellänge etwas abflacht. Dies hat einen
+Einfluss auf die Laufzeit-Messung. Steilere Flanken würden helfen diesen Einfluss zu minimieren. Mehr dazu in
+Kapitel~\ref{sec:ausblick}. %TODO Fazit/Ausblick oder so?
+
 \pagebreak
 
 \subsection{Optische Messungen}
