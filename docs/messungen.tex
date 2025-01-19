@@ -144,7 +144,7 @@ Für diese Messung wird dasselbe Setup wie in Kapitel \ref{sec:gpio_toggle_witho
 Anstelle eines Kurzschlusses von \lstinline|J3| (siehe Abbildung \ref{fig:tdc_ele_signal}) werden nun verschiedene
 Kabellängen angeschlossen.
 
-Als Kabel wird ein einzelner, isolierter Kupferdraht ($\diameter_{cu} = X~mm$, $\diameter_{ges} = X~mm$) verwendet.
+Als Kabel wird ein einzelner, isolierter Kupferdraht ($\diameter_{cu} = 0.8~mm$, $\diameter_{ges} = 1.6~mm$) verwendet.
 
 Es hat sich herausgestellt, dass eine kreisförmige Anordnung des Kabels wichtig ist. Denn bei einer Überlappung der
 beiden Kabelenden werden kürze Zeiten gemessen. Dies hat mit der kapazitiven Kopplung zwischen den Leitern zu tun.
@@ -201,8 +201,6 @@ beim verwendeten Kabel näher an der Lichtgeschwindigkeit ist als angenommen. We
 dazu in Kapitel~\ref{sec:different_cable_lengths_with_dso}.
 
 \subsubsection{Mode 1 vs. Mode 2}
-
-%TODO: Evtl. Beschreibung der TDC-Modi in ein anderes Kapitel verschieben. z.B. Theorie/TDC?
 
 Der TDC7200 unterstützt zwei Modi mit unterschiedlichen Messbereichen \cite{ti2016tdc7200_datasheet}:
 
@@ -526,7 +524,7 @@ befinden sich im elektronischen Anhang.
 
 Es ist zu erkennen, dass die Flanke des \lstinline|STOP|-Signals bei grösserer Kabellänge etwas abflacht. Dies hat einen
 Einfluss auf die Laufzeit-Messung. Steilere Flanken würden helfen diesen Einfluss zu minimieren. Mehr dazu in
-Kapitel~\ref{sec:ausblick}. %TODO Fazit/Ausblick oder so?
+Kapitel~\ref{sec:ausblick}.
 
 \pagebreak
 
@@ -671,6 +669,14 @@ aufgelistet.
     \caption{Unterschiedliche Distanzen zum Spiegel - Statistische Grössen}\label{tab:spiegel_unterschiedliche_distanzen}
 \end{table}
 
+Es fällt auf, dass die Standardabweichungen relativ gross sind, dies hat insbesondere mit den beiden Clustern zu tun,
+welche in Abbildung~\ref{fig:spiegel_unterschiedliche_distanzen} zu sehen sind. Die Ursache dieser Cluster ist unklar.
+Eine Hypothese ist, dass diese mit dem \acrshort{dso} zusammenhängen. Es wurde festgestellt, dass das Anschliessen des
+\acrshort{dso} einen signifikaten Einfluss auf den Offset der \acrshort{tdc}-Laufzeitwerte hat (ca. 10~ns). Eventuell
+hat das \acrshort{dso} durch Sample und Hold einen zeitlich-abhängigen Einfluss auf die Messresultate -- je nach dem ob
+der Lichtpuls gerade in einer Sample- oder Hold-Phase auf die Photodiode trifft. Die Ursache dieser Cluster sollten in
+einer allfälligen weiterführenden Arbeit genauer analysiert werden.
+
 Eine Spiegeldistanz-Änderung von 5~cm entspricht einer Längen-Änderung von 10~cm.
 
 Die Messungen zeigen für diese Längen-Änderung von 10~cm eine Änderung der Laufzeit von durchschnittlich ca. 0.6~ns.
@@ -681,8 +687,6 @@ In Formel~\ref{eq:spiegel_unterschiedliche_distanzen} wird der theoretisch zu er
     \Delta ToF = \frac{\Delta L}{c} = \frac{10~cm}{3 \cdot 10^8~m/s} = 0.33~ns
 \end{equation}
 \myequations{Theoretisch erwartete Laufzeit-Änderung}
-
-%TODO Mögliche Gründe für diesen Unterschied: Weniger steile Flanke, wenn weiter weg? Time-Drift?
 
 Dieser Unterschied (ca. Faktor 2) könnte mehrere Gründe haben:
 
@@ -727,7 +731,7 @@ Abbildungen~\ref{fig:spiegel_12cm_dso_ok} und \ref{fig:spiegel_30cm_dso_nok} sol
 Die Abbildungen zeigen, neben den \acrshort{mcu}-Signale \lstinline|start_op| und \lstinline|LD_pulse|, den Ausgang
 des Transimpedanzverstärkers und die Komparator-Schaltschwelle.
 
-Mögliche Verbesserungen dazu sind im Kapitel~\ref{sec:ausblick} aufgeführt. %TODO Fazit/Ausblick oder so?
+Mögliche Verbesserungen dazu sind im Kapitel~\ref{sec:ausblick} aufgeführt.
 
 \subsubsection{ToF-Messungen via Wand}\label{sec:messungen_wand}
 
@@ -736,4 +740,4 @@ einer weissen Wand als Target aufgezeichnet. Es wurden Distanzen von ca. 10 bis 
 
 Es konnten mit diesem Setup in der kurzen zur Verfügung stehenden Zeit keine brauchbaren Messresultate erfasst werden.
 
-Mögliche Verbesserungen dazu sind im Kapitel~\ref{sec:ausblick} aufgeführt. %TODO Fazit/Ausblick oder so?
+Mögliche Verbesserungen dazu sind im Kapitel~\ref{sec:ausblick} aufgeführt.
