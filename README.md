@@ -1,6 +1,6 @@
 # DIY ToF
 
-(C) 2024-2025 Matthias Schär, Timon Burkard
+Copyright (c) 2024-2025 Matthias Schär, Timon Burkard
 
 This project is about creating a DIY (Do-It-Yourself) optical ToF (Time of Flight) distance measurement system.
 
