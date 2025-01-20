@@ -359,6 +359,20 @@ leftmargin\romannumeral\@ld\endcsname
 \newcommand*{\miniframesoff}{\let\beamer@writeslidentry=\beamer@writeslidentry@miniframesoff}
 \makeatother
 
+\newcommand{\mytable}[4]
+{
+    \centering
+    \begin{tabular}{#1}\hline%
+        #2 \\ \hline
+        \csvreader[
+            separator=semicolon,
+            head to column names,
+            late after line=\\,
+        ]{#4}{}{#3}
+        \hline
+    \end{tabular}
+}
+
 % usable in math mode
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}     % make scalable absolute stripes
 \DeclarePairedDelimiter\parenth{(}{)}           % make scalable parentheses
