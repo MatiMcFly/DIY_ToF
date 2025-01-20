@@ -12,7 +12,24 @@
 \newcommand{\vSemester}{HS24}
 \newcommand{\vProfessor}{Prof. Guido Keel, Michael Lehmann}
 \newcommand{\vCity}{Rapperswil}
-\newcommand{\vAbstract}{Die vorliegende Projektarbeit befasst sich mit der Entwicklung eines\dots}
+\newcommand{\vAbstract}{
+    Diese Projektarbeit behandelt die Entwicklung eines \acrfull{diy} Systems zur optischen \acrfull{tof} Distanzmessung.
+
+    Ein \acrfull{tdc} wird eingesetzt, um die Signallaufzeit präzise zu messen. Zu Testzwecken wird
+    ein zweiter \acrshort{tdc} eingesetzt, der rein elektrisch betrieben wird, um die Länge unterschiedlicher
+    Kupferkabel zu bestimmen.
+
+    Die Arbeit umfasst die Entwicklung der Hardware, einschließlich Lasertreiber, Photodetektor und
+    Transimpedanzverstärker, sowie die Implementierung der Firmware zur Signalauswertung. Simulationen und Messungen
+    wurden durchgeführt, um die Genauigkeit zu optimieren und Störfaktoren zu minimieren.
+
+    Die elektrischen Messungen zeigen, dass der \acrshort{tdc} eine zeitliche Auflösung im Bereich einiger Dutzend
+    Pikosekunden erreicht. Damit lassen sich Kabellängen auf wenige cm genau bestimmen.
+
+    Die optischen Messungen zeigen, dass eine grobe Distanzmessung bis ca. 30~cm möglich ist, wenn ein Spiegel als
+    Target eingesetzt wird. Um die Distanz zu einer Wand messen zu können, sind weiterführende Verbesserungen des
+    Demonstrators notwendig.
+}
 
 % Acronyms
 \newacronym{pcb}{PCB}{Printed Circuit Board}
