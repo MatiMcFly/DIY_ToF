@@ -1,9 +1,0 @@
-﻿datentyp;groesse;beschreibung
-\lstinline|char|;1 Byte;ASCII-Zeichen
-\lstinline|short int|;2 Byte;Ganzzahl (klein)
-\lstinline|int|;2 or 4 Byte;Ganzzahl (Abhängig von Compiler)
-\lstinline|long int|;4 Byte;Ganzzahl (gross)
-\lstinline|long long int|;4 Byte;Ganzzahl (sehr gross)
-\lstinline|float|;4 Byte;Fliesskommazahl (klein)
-\lstinline|double|;8 Byte;Fliesskommazahl (gross)
-\lstinline|long double|;10 - 16 Byte;Fliesskommazahl (sehr gross)
