@@ -1,0 +1,367 @@
+\usetheme{Frankfurt}
+\usecolortheme{default}
+
+\usepackage[ngerman]{babel}
+\usepackage[square,numbers,super]{natbib}
+\usepackage{listings}
+\usepackage{textpos}
+\usepackage{tabto}
+\usepackage{caption}
+\usepackage{fbox}                     % to add border to figures, if needed
+\usepackage{tikz}                     % to place red rounded boxes to highlight spots
+\usepackage{xcolor}
+\usepackage{xpatch}                   % to add grey background to \lstinline
+\usepackage{realboxes}                % to add grey background to \lstinline
+\usepackage{calc}                     % used for \rightHeaderWidth
+\usepackage{varwidth}                 % used for \rightHeaderWidth
+\usepackage{lmodern}                  % used for \setlistspacing
+\usepackage[export]{adjustbox}        % used to left/right align graphics in a figure
+\usepackage[normalem]{ulem}           % used to strike through text: \sout{}
+\usepackage[inkscapelatex=false]{svg} % used to include svg with the help of inkscape which converts svg to pdf (inkscapelatex=false: prevent latex from changing the font within the svg graphic)
+\usepackage[loop,autoplay]{animate}   % used to insert GIF animations with the help op ImageMagick which converts gif to multiple png
+\usepackage{mathtools}                % used for DeclarePairedDelimiter
+\usepackage{amsmath}                  % needed for amssymb
+\usepackage{amssymb}                  % used for \circledast
+\usepackage{trfsigns}                 % transformation signs for fourier and laplace
+\usepackage{csvsimple}                % for using csv-files for tables
+
+\makeatletter
+\newcommand{\setlistspacing}[2]{\def\@ld{#1}\expandafter\def\csname
+@list\romannumeral\@ld\endcsname{\leftmargin\csname
+leftmargin\romannumeral\@ld\endcsname
+              \topsep#2
+              \parsep0\p@ \@plus\p@
+              \itemsep#2}}
+\makeatother
+\setlistspacing{1}{4ex}
+
+\captionsetup{labelformat=empty,labelsep=none,font=scriptsize} % don't show caption label only caption text
+
+\renewcommand{\bibsection}{} % don't create a section for bibliography
+
+\urlstyle{same} % use text font for URLs
+\renewcommand\UrlFont{\color{blue}} % make URLs blue
+
+\definecolor{darkblue}{rgb}{0.05, 0.13, 0.28}
+\definecolor{grey}{rgb}{0.4, 0.5, 0.6}
+\definecolor{black}{rgb}{0, 0, 0}
+
+\setbeamercolor{palette primary}{bg=darkblue,fg=white}
+\setbeamercolor{palette secondary}{bg=darkblue,fg=white}
+\setbeamercolor{palette tertiary}{bg=darkblue,fg=white}
+\setbeamercolor{palette quaternary}{bg=black,fg=white}
+\setbeamercolor{structure}{fg=darkblue} % itemize, enumerate, etc
+\setbeamercolor{section in toc}{fg=darkblue}
+\setbeamercolor{caption name}{fg=black}
+
+\setbeamercolor{subsection}{bg=grey,fg=white}
+\setbeamercolor{subsection in head/foot}{bg=grey,fg=white}
+
+\setbeamertemplate{navigation symbols}{} % hides navigation buttons at bottom
+
+\makeatletter
+\setbeamertemplate{footline}
+{
+    \leavevmode%
+    \hbox{%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{author in head/foot}%
+        \usebeamerfont{author in head/foot}\insertauthor\hspace*{2ex}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,left]{subsection in head/foot}%
+        \hspace*{2ex}\usebeamerfont{title in head/foot}\inserttitle{}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,right]{subsection in head/foot}%
+        \usebeamerfont{title in head/foot}\insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+    \end{beamercolorbox}}%
+    \vskip0pt%
+}
+\makeatother
+
+\setbeamerfont{date}{size=\scriptsize}
+\setbeamerfont{institute}{size=\normalfont}
+\setbeamerfont{subsection}{size=\large}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=.,
+    anchorcolor=.,
+    citecolor=.,
+    filecolor=.
+}
+
+\defbeamertemplate*{title page}{customized}[1][]
+{
+    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+        \usebeamerfont{title}\inserttitle\par%
+    \end{beamercolorbox}
+
+    \centering
+
+    \vspace{30pt}
+
+    \usebeamerfont{institute}\insertinstitute\par
+
+    \vspace{10pt}
+
+    \footnotesize{\vModule}
+
+    \vspace{30pt}
+
+    \usebeamerfont{author}\insertauthor\par
+
+    \vspace{40pt}
+
+    \usebeamerfont{date}\insertdate\par
+}
+
+\newcommand{\rightHeaderWidth}[0]
+{
+    \widthof{
+        \fbox{
+            \begin{varwidth}{\textwidth}
+                \tiny{\insertshortinstitute{}}
+                \tiny{\vModule}
+            \end{varwidth}
+        }
+    }
+}
+
+\addtobeamertemplate{frametitle}{}{%
+    \begin{textblock*}{100mm} (153mm-\rightHeaderWidth{},-7.2mm)
+        \tiny{\insertshortinstitute{}}
+        \vspace{2pt}
+        \tiny{\vModule}
+    \end{textblock*}}
+
+\AtBeginSection[]{
+    \begin{frame}
+    \vfill
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+        \usebeamerfont{title}\insertsectionhead\par%
+    \end{beamercolorbox}
+    \vfill
+    \end{frame}
+}
+
+\AtBeginSubsection[]{
+    \begin{frame}
+    \vfill
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+        \usebeamerfont{title}\insertsectionhead\par%
+    \end{beamercolorbox}
+    \vspace{0.5cm}
+    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{subsection}
+        \usebeamerfont{subsection}\insertsubsectionhead\par%
+    \end{beamercolorbox}
+    \vfill
+    \end{frame}
+}
+
+\setbeamertemplate{frametitle continuation}{} % deactivate roman numbering for frame with [allowframebreaks]
+
+\setbeamercolor{block title}{bg=darkblue,fg=white}
+
+\newcommand{\question}[1]
+{
+    \begin{block}{Frage}
+        #1
+    \end{block}
+}
+
+\newcommand{\attention}[1]
+{
+    \begin{alertblock}{Wichtig}
+        #1
+    \end{alertblock}
+}
+
+\newcommand{\exercise}[2][n]
+{
+    \begin{exampleblock}{Übung}
+        #2
+    \end{exampleblock}
+
+    \ifx #1n
+    \else
+        \begin{itemize}
+            \item<2->[$\Rightarrow$] Lösungen werden via GitLab zur Verfügung gestellt:
+            \url{#1}
+        \end{itemize}
+    \fi
+}
+
+\renewcommand{\quote}[3]
+{
+    \begin{frame}{#1}
+        \begin{block}{}
+            {\emph{\dq #2\dq}}
+            \vskip5mm
+            \hspace*\fill{\small-- #3}
+        \end{block}
+    \end{frame}
+}
+
+\newcommand{\goals}[1]
+{
+    {
+        \setlistspacing{1}{1ex}
+
+        \begin{frame}{Ziele}
+            Die Studierenden
+
+            \begin{itemize}
+                #1
+            \end{itemize}
+
+            \vspace{10pt}
+
+            \begin{figure}
+                \includegraphics[width=0.25\textwidth]{includes/goal.pdf}
+            \end{figure}
+        \end{frame}
+    }
+}
+
+\newcommand{\questions}[0]
+{
+    \begin{frame}{Fragen?}
+        \begin{figure}
+            \includegraphics[width=0.4\textwidth]{includes/questions.jpg}
+        \end{figure}
+    \end{frame}
+}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{codeorange}{rgb}{1,0.5,0.15}
+\definecolor{backcolour}{rgb}{0.9,0.9,0.9}
+
+\colorlet{codegreen_transparent}{codegreen!30}
+\colorlet{codegray_transparent}{codegray!30}
+\colorlet{codepurple_transparent}{codepurple!30}
+\colorlet{codeorange_transparent}{codeorange!30}
+\colorlet{backcolour_transparent}{backcolour!30}
+\colorlet{magenta_transparent}{magenta!30}
+\colorlet{red_transparent}{red!30}
+\colorlet{black_transparent}{black!30}
+
+\lstdefinestyle{mystyle}{
+    language=C,
+    backgroundcolor=\color{backcolour},
+    commentstyle=\lst@ifdisplaystyle\color{codegreen}\fi, % don't apply for \lstinline
+    keywordstyle=\lst@ifdisplaystyle\color{magenta}\fi,   % don't apply for \lstinline
+    stringstyle=\lst@ifdisplaystyle\color{codepurple}\fi, % don't apply for \lstinline
+    numberstyle=\tiny\color{codegray},
+    basicstyle=\ttfamily\scriptsize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    morekeywords={int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, bool, true, false},
+    moredelim=[is][\color{red}]{§}{§}
+}
+\lstset{style=mystyle}
+
+\lstset{
+    literate={~} {$\sim$}{1},
+    breaklines=true,
+    breakatwhitespace=true,
+    upquote=true, % straight single quotes
+}
+
+\lstdefinestyle{transparent}{
+    language=C,
+    backgroundcolor=\color{backcolour_transparent},
+    commentstyle=\lst@ifdisplaystyle\color{codegreen_transparent}\fi, % don't apply for \lstinline
+    keywordstyle=\lst@ifdisplaystyle\color{magenta_transparent}\fi,   % don't apply for \lstinline
+    stringstyle=\lst@ifdisplaystyle\color{codepurple_transparent}\fi, % don't apply for \lstinline
+    numberstyle=\tiny\color{codegray_transparent},
+    basicstyle=\ttfamily\scriptsize\color{black_transparent}
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    morekeywords={int8_t, uint8_t, int16_t, uint16_t, int32_t, uint32_t, bool, true, false},
+    moredelim=[is][\color{red_transparent}]{§}{§}
+}
+
+\newcommand{\sidecaption}[1]
+{
+    \begin{minipage}{0.05\textwidth}%
+        \caption{#1}
+    \end{minipage}
+}
+
+% \highlight[color]{x1,y1}{x2,y2}
+% Places a rounded rectangle at an absolute position on the page.
+% Arguments:
+%   #1 (optional) - Color of the rectangle (defaults to red)
+%   #2            - Coordinates (x,y) of first rectangle corner
+%   #3            - Coordinates (x,y) of second rectangle corner
+\newcommand{\highlight}[3][red]
+{
+    \begin{tikzpicture}[overlay]
+        \draw[#1, rounded corners, thick] (#2) rectangle (#3) {};
+    \end{tikzpicture}
+}
+
+% \textbox[color]{x,y}{text}
+% Places a text box at an absolute position on the page.
+% Arguments:
+%   #1 (optional) - Color of the text (defaults to red)
+%   #2            - Coordinates (x,y) where the text box should be placed
+%   #3            - The text content to display
+\newcommand{\textbox}[3][red]
+{
+    \begin{picture}(0,0)
+        \put(#2){\makebox(0,0)[lt]{\textcolor{#1}{#3}}}
+    \end{picture}
+}
+
+\newcommand{\codehighlight}[5][\ttfamily\scriptsize]
+{
+    \ifnum#3>1
+        \lstinputlisting[firstnumber=1, firstline=1, lastline=\number\numexpr#3-1\relax, language=#2, style=transparent, basicstyle=#1\color{black_transparent}, showlines=true]{#5}
+        \vspace{-12pt}
+    \fi
+    \lstinputlisting[firstnumber=#3, firstline=#3, lastline=#4, language=#2, basicstyle=#1, showlines=true]{#5}
+    \vspace{-12pt}
+    \lstinputlisting[firstnumber=\number\numexpr#4+1\relax, firstline=\number\numexpr#4+1\relax, lastline=100, language=#2, style=transparent, basicstyle=#1\color{black_transparent}, showlines=true]{#5}
+}
+
+% to be able to remove the final frames (questions, references) from the final section
+\makeatletter
+\let\beamer@writeslidentry@miniframeson=\beamer@writeslidentry%
+\def\beamer@writeslidentry@miniframesoff{%
+  \expandafter\beamer@ifempty\expandafter{\beamer@framestartpage}{}% does not happen normally
+  {%else
+    % removed \addtocontents commands
+    \clearpage\beamer@notesactions%
+  }
+}
+\newcommand*{\miniframeson}{\let\beamer@writeslidentry=\beamer@writeslidentry@miniframeson}
+\newcommand*{\miniframesoff}{\let\beamer@writeslidentry=\beamer@writeslidentry@miniframesoff}
+\makeatother
+
+% usable in math mode
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}     % make scalable absolute stripes
+\DeclarePairedDelimiter\parenth{(}{)}           % make scalable parentheses
+\DeclarePairedDelimiter\brackets{[}{]}          % make scalable brackets
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor} % make scalable floor
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}    % make scalable ceil
