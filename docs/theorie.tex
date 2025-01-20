@@ -33,11 +33,11 @@ Nachfolgend werden die theoretischen Grundlagen, vor allem in Hinblick auf das A
 
 \subsection{Photostrom}
 
-Zur Berechnung des theoretisch zu erwartenden Photostrom wird von einer Distanz zur Wand von $10~m$ ausgegangen.
+Zur Berechnung des theoretisch zu erwartenden Photostroms wird von einer Distanz zur Wand von $10~m$ ausgegangen.
 
-Der Laserstrahl gehe idealisiert mit $0\degree$ zur Wand und werde dort uniform Halbkugel-förmig gestreut. In der
-Realität wird der Laser nicht mit $0\degree$ zur Wand gehen und die Streuung wird sich nicht uniform verteilen, sondern
-in der Mitte stärker konzentriert sein.
+In einer vereinfachten Betrachtung treffe ein gebündelter Laserstrahl rechtwinklig auf eine Wand und werde dort uniform
+Halbkugel-förmig gestreut. In der Realität wird der Laser nicht mit $0\degree$ zur Wand gehen und die Streuung wird sich
+nicht uniform verteilen, sondern in der Mitte stärker konzentriert sein.
 
 Die Berechnung der empfangenen Strahlungsleistung, der Strahlungsintensität, dem Raumwinkel einer Halbkugel und dem
 Photostrom sind in Formel~\ref{eq:pin}, \ref{eq:ie}, \ref{eq:omega} bzw. \ref{eq:iph} gezeigt.
@@ -64,7 +64,7 @@ Photostrom sind in Formel~\ref{eq:pin}, \ref{eq:ie}, \ref{eq:omega} bzw. \ref{eq
 
 \subsubsection{Berechnung mit RLD94PZJ5 und BPV23NF}
 
-Ersten Berechnungen wurden mit der Laserdiode RLD94PZJ5 \cite{rohm2020rld94pzj5_datasheet} und der Photodiode BPV23NF
+Erste Berechnungen werden mit der Laserdiode RLD94PZJ5 \cite{rohm2020rld94pzj5_datasheet} und der Photodiode BPV23NF
 \cite{vishay2024bpv23nf_datasheet} durchgeführt.
 
 Die relevanten Werte aus den Datenblättern sind in Formel~\ref{eq:rld94pzj5_num} und \ref{eq:rbpv23nf_num} aufgelistet.
@@ -96,11 +96,12 @@ Formel~\ref{eq:rld94pzj5_rbpv23nf_num}.
 
 \subsubsection{Berechnung mit RLD65NZX1 and NJL6401R-3}
 
-Die Laserdiode RLD94PZJ5 hat im Bezug auf diese Projektarbeit zwei Nachteile: Sehr hohe Leistung, welche für das
-menschliche Auge gefährlich werden kann und ein Wellenlängenbereich, der für das menschliche Auge nicht sichtbar ist.
+Die Laserdiode RLD94PZJ5 hat im Bezug auf diese Projektarbeit zwei Nachteile: Einerseits besitzt sie eine so hohe Leistung,
+dass sie für das menschliche Auge schädigend wirken kann. Andererseits strahlt sie in einem Wellenlängenbereich ab, der
+für das menschliche Auge nicht sichtbar ist.
 
-Aus diesen Gründen wurde eine zweite Laserdiode evaluiert: RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet}. Gepaart wird
-sie mit der Photodiode NJL6401R-3 \cite{jrc2014njl6401r3_datasheet}. Die folgenden Berechnungen wurden basierend auf
+Aus diesen Gründen wird eine zweite Laserdiode evaluiert: RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet}. Gepaart wird
+sie mit der Photodiode NJL6401R-3 \cite{jrc2014njl6401r3_datasheet}. Die folgenden Berechnungen werden basierend auf
 diesen beiden Komponenten durchgeführt.
 
 Die relevanten Werte aus den Datenblättern sind in Formel~\ref{eq:rld65nzx1_num} und \ref{eq:njl6401r3_num} aufgelistet.
@@ -118,7 +119,7 @@ Die relevanten Werte aus den Datenblättern sind in Formel~\ref{eq:rld65nzx1_num
 \end{equation}
 \myequations{Werte des NJL6401R-3}
 
-Diese Werte eingesetzt in Formel~\ref{eq:ie}, \ref{eq:pin} und \ref{eq:iph} ergibt die Resultate in
+Eingesetzt in die Formeln~\ref{eq:ie}, \ref{eq:pin} und \ref{eq:iph} ergeben sich die neuen Resultate in
 Formel~\ref{eq:rld65nzx1_njl6401r3_num}.
 
 \begin{equation}\label{eq:rld65nzx1_njl6401r3_num}
@@ -132,8 +133,8 @@ Formel~\ref{eq:rld65nzx1_njl6401r3_num}.
 
 \subsubsection{Berechnung mit Empfangs-Linse}
 
-Auf Vorschlag der Dozenten wurden verschiedene Optiken aus einem Baukasten-System von QIOPTIQ ausprobiert.
-Besonders vielversprechend erschien hierbei eine Linse mit einem Durchmesser von 17~mm bei einer Brennweite von
+Auf Vorschlag der Dozenten werden verschiedene Optiken aus einem Baukasten-System von QIOPTIQ ausprobiert.
+Besonders vielversprechend erscheint hierbei eine Linse mit einem Durchmesser von 17~mm bei einer Brennweite von
 40~mm. Die Linse ist in Abbildung~\ref{fig:lens} dargestellt.
 
 \begin{figure}[H]
@@ -142,11 +143,10 @@ Besonders vielversprechend erschien hierbei eine Linse mit einem Durchmesser von
     \caption{Linse von QIOPTIQ}\label{fig:lens}
 \end{figure}
 
-Eine Solche Linse vergrössert die effektive Fläche, auf welcher der Lichtstrom empfangen werden kann, was
-eine höhere Empfangsleistung, sprich einen höheren Lichtstrom zur Folge hat.
+Eine Solche Linse vergrössert die effektive Fläche, auf welcher der Lichtstrom empfangen werden kann. Dies hat
+eine höhere Empfangsleistung, sprich einen höheren Lichtstrom, zur Folge.
 
-Die Formel~\ref{eq:njl6401r3_lens} zeigt auf, um welchen Faktor die Fläche in etwa ansteigen wird, beim Einsatz einer
-solchen Optik.
+Die Formel~\ref{eq:njl6401r3_lens} zeigt die beim Einsatz einer solchen Optik zu erwartende Flächenvergrösserung.
 
 \begin{equation}\label{eq:njl6401r3_lens}
     A' = \frac{A_{L}}{A_{PD}} = \frac{(\frac{17~mm}{2})^2 \cdot \pi}{0.49~mm^2} = 463.2
@@ -155,17 +155,16 @@ solchen Optik.
 
 \subsubsection{Erwarteter Lichtstrom}
 Nachfolgend werden zwei Szenarien betrachtet: Einmal wird wie bis anhin davon ausgegangen, dass sich das Licht ab dem Laser
-in einem geraden Strahl ausbreitet, um danach halbkugelförmig und diffus am Target zu reflektieren.
+in einem gebündelten Strahl ausbreitet, um danach halbkugelförmig und diffus am Target zu reflektieren.
 
 Im zweiten Szenario wird versucht, die Abstrahlcharakteristik der Laser-Diode zu modellieren. Laut Datenblatt hat die
 Diode in der Abstrahlebene zwei unterschiedliche Öffnungswinkel, was mit dem Raumwinkel einer rechteckigen Pyramide
 annäherungsweise berechnet werden kann. Die Streuung wird verhindert, da an einem Spiegel reflektiert wird.
 
-Bei beiden Szenarien soll sei die abgestrahlte Leistung der Laser-Diode höher als in der ersten Rechnung. Im gepulsten
+Bei beiden Szenarien sei die abgestrahlte Leistung der Laser-Diode höher als in der ersten Rechnung. Im gepulsten
 Betrieb kann diese problemlos über das maximale Rating erhöht werden. Thermisch stellt dies kein Problem dar für die Diode, da
 der Duty-Cycle sehr klein ist. Die Formel~\ref{eq:rld65nzx1_higher_output} zeigt die neu zu erwartete Abstrahl-Leistung
-eines solchen Pulses. Die zur Umrechnung benötigte Effizient der Laser-Diode wird aus einem Diagramm dem Datenblatt des
- RLD65NZX1 entnommen \cite{rohm2019rld65nzx1_datasheet}.
+eines solchen Pulses. Die Effizienz der Laser-Diode wird dem Datenblatt des RLD65NZX1 entnommen \cite{rohm2019rld65nzx1_datasheet}.
 
 \begin{equation}\label{eq:rld65nzx1_higher_output}
     \begin{split}
@@ -176,7 +175,7 @@ eines solchen Pulses. Die zur Umrechnung benötigte Effizient der Laser-Diode wi
 \end{equation}
 \myequations{Erhöhte Sendeleistung bei der Laser-Diode}
 
-Bei einem Target, welches sich in 2~m Distanz befindet, kann laut Formel~\ref{eq:photocurrent_scenario1} folgender
+Bei einem Target, welches sich in 2~m Distanz befindet, kann nach Formel~\ref{eq:photocurrent_scenario1} folgender
 Lichtstrom erwartet werden:
 
 \begin{equation}\label{eq:photocurrent_scenario1}
@@ -187,11 +186,10 @@ Lichtstrom erwartet werden:
 \end{equation}
 \myequations{Photostrom Szenario 1}
 
-Ohne Optik kann die Laserdiode nicht gebündelt abstrahlen. Diese nicht ganz so ideale Abstrahlcharakteristik kann im
-zweiten Szenario über den Raumwinkel einer Pyramide, wie er in Formel~\ref{eq:solid_angle_pyramid} definiert ist,
-modelliert werden. Die typischen Abstrahlwinkel $\theta$ werden ebenfalls dem Datenblatt der Laser-Diode
-entnommen werden. Hierbei ist zu beachten, dass im Datenblatt der Vollwinkel angegeben wird. In der Formel wird dieser
-deswegen halbiert.
+Ohne Optik strahlt die Laserdiode keinen gebündelten Strahl. Diese Abstrahlcharakteristik sei im zweiten Szenario über
+den Raumwinkel einer Pyramide, wie er in Formel~\ref{eq:solid_angle_pyramid} definiert ist, modelliert. Die typischen
+Abstrahlwinkel $\theta$ werden ebenfalls dem Datenblatt der Laser-Diode entnommen. Hierbei ist zu beachten, dass im
+Datenblatt der Vollwinkel angegeben wird. Der Wert in der Formel wird deswegen halbiert.
 
 \begin{equation}\label{eq:solid_angle_pyramid}
     \Omega_{P} = 4 \cdot arcsin(sin(\theta_x) \cdot sin(\theta_y)) =  4 \cdot arcsin \parenth*{sin \parenth*{\frac{9\degree}{2}} \cdot sin \parenth*{\frac{29\degree}{2}}} = 4.2~sr
@@ -214,13 +212,13 @@ vor der Reflexion berücksichtigt werden muss. Deswegen wird die Distanz zum Tar
 
 \subsection{Transimpedanzverstärker}
 
-Wie die Berechnungen in den vorgängigen Kapiteln aufzeigen, haben die Photoströme, welche zu detektieren sind, sehr kleine
+Wie die Berechnungen in den vorgängigen Kapiteln aufzeigen, besitzen die Photoströme, welche zu detektieren sind, sehr kleine
 Stromstärken. Weiter sind die Lichtimpulse typischerweise oft nur von sehr kurzer Dauer, nämlich im Bereich einiger Nanosekunden.
-Dies hat zur Folge, dass die Signale dementsprechend kurze Anstiegszeiten haben, welche detektiert werden müssen.
+Dies hat zur Folge, dass die Signale dementsprechend kurze Anstiegszeiten haben, welche es zu detektierten gilt.
 
-Die Anforderungen zeigen auf, dass ein Verstärker mit sehr hohem Gain bei gleichzeitig sehr hoher Bandbreite eingesetzt werden muss.
-Die Verstärkerschaltung, welche eingesetzt wird, ist ein Strom-Spannungswandler. Die Beschaltung des Operationsverstärkers,
-welche in Abbildung~\ref{fig:theory_tia} ersichtlich ist, wird auch Transimpedanzverstärker (\acrshort{tia}) genannt.
+Die Anforderungen deuten darauf hin, dass ein Verstärker mit sehr hohem Gain bei gleichzeitig sehr hoher Bandbreite eingesetzt werden muss.
+Die Verstärkerschaltung, welche eingesetzt wird, ist ein Strom-Spannungswandler. Eine solche Beschaltung des Operationsverstärkers,
+wie sie in Abbildung~\ref{fig:theory_tia} zu sehen ist, wird auch Transimpedanzverstärker (\acrshort{tia}) genannt.
 
 \begin{figure}[H]
     \centering
