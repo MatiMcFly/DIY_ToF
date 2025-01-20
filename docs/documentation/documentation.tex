@@ -1,0 +1,103 @@
+\documentclass[11pt,a4paper,hidelinks]{article}
+
+\input{settings.tex}
+
+% Variables
+\newcommand{\vTitle}{DIY Optische ToF Distanzmessung}
+\newcommand{\vModule}{CAS Sensorik und Sensor Signal Conditioning}
+\newcommand{\vAuthorFirstName}{Matthias Schär,}
+\newcommand{\vAuthorLastName}{Timon Burkard}
+\newcommand{\vUniversity}{OST -- Ostschweizer Fachhochschule}
+\newcommand{\vDegree}{CAS Sensorik und Sensor Signal Conditioning}
+\newcommand{\vSemester}{HS24}
+\newcommand{\vProfessor}{Prof. Guido Keel, Michael Lehmann}
+\newcommand{\vCity}{Rapperswil}
+\newcommand{\vAbstract}{
+    Diese Projektarbeit behandelt die Entwicklung eines \acrfull{diy} Systems zur optischen \acrfull{tof} Distanzmessung.
+
+    Ein \acrfull{tdc} wird eingesetzt, um die Signallaufzeit präzise zu messen. Zu Testzwecken wird
+    ein zweiter \acrshort{tdc} eingesetzt, der rein elektrisch betrieben wird, um die Länge unterschiedlicher
+    Kupferkabel zu bestimmen.
+
+    Die Arbeit umfasst die Entwicklung der Hardware, einschließlich Lasertreiber, Photodetektor und
+    Transimpedanzverstärker, sowie die Implementierung der Firmware zur Signalauswertung. Simulationen und Messungen
+    wurden durchgeführt, um die Genauigkeit zu optimieren und Störfaktoren zu minimieren.
+
+    Die elektrischen Messungen zeigen, dass der \acrshort{tdc} eine zeitliche Auflösung im Bereich einiger Dutzend
+    Pikosekunden erreicht. Damit lassen sich Kabellängen auf wenige cm genau bestimmen.
+
+    Die optischen Messungen zeigen, dass eine grobe Distanzmessung bis ca. 30~cm möglich ist, wenn ein Spiegel als
+    Target eingesetzt wird. Um die Distanz zu einer Wand messen zu können, sind weiterführende Verbesserungen des
+    Demonstrators notwendig.
+}
+
+% Acronyms
+\newacronym{pcb}{PCB}{Printed Circuit Board}
+\newacronym{tof}{ToF}{Time of Flight}
+\newacronym{diy}{DIY}{Do It Yourself}
+\newacronym{adc}{ADC}{Analog to Digital Converter}
+\newacronym{tdc}{TDC}{Time to Digital Converter}
+\newacronym{tia}{TIA}{Trans-Impedance Amplifier}
+\newacronym{mcu}{MCU}{Microcontroller Unit}
+\newacronym{cpu}{CPU}{Central Processing Unit}
+\newacronym{hal}{HAL}{Hardware Abstraction Layer}
+\newacronym{gpio}{GPIO}{General Purpose Input/Output}
+\newacronym{uart}{UART}{Universal Asynchronous Receiver/Transmitter}
+\newacronym{dso}{DSO}{Digital Storage Oscilloscope}
+\newacronym{spi}{SPI}{Serial Peripheral Interface}
+\newacronym{ic}{IC}{Integrated Circuit}
+\newacronym{usb}{USB}{Universal Serial Bus}
+\newacronym{hsi}{HSI}{High Speed Internal}
+\newacronym{pll}{PLL}{Phase-Locked Loop}
+\newacronym{ams}{AMS}{Analog/Mixed Signal}
+\newacronym{fw}{FW}{Firmware}
+
+\begin{document}
+
+\input{coverpage.tex}
+\input{titlepage.tex}
+\input{tocpage.tex}
+\input{acronympage.tex}
+\input{figurepage.tex}
+\input{equationpage.tex}
+\input{tablepage.tex}
+\input{codepage.tex}
+
+%%%%%%%%%%%%%%%%%%%%%% CONTENT START %%%%%%%%%%%%%%%%%%%%%%
+
+\section{Einleitung}
+\input{einleitung.tex}
+\pagebreak
+
+\section{Theorie}\label{sec:theory}
+\input{theorie.tex}
+\pagebreak
+
+\section{Konzept}\label{sec:concept}
+\input{konzept.tex}
+\pagebreak
+
+\section{Simulationen}\label{sec:simulations}
+\input{simulationen.tex}
+\pagebreak
+
+\section{Umsetzung}\label{sec:realisation}
+\input{umsetzung.tex}
+\pagebreak
+
+\section{Messungen}\label{sec:measurements}
+\input{messungen.tex}
+\pagebreak
+
+\section{Fazit}\label{sec:conclusion}
+\input{fazit.tex}
+\pagebreak
+
+\section{Anhang}
+\input{anhang.tex}
+
+%%%%%%%%%%%%%%%%%%%%%% CONTENT END %%%%%%%%%%%%%%%%%%%%%%
+
+\input{referencepage.tex}
+
+\end{document}
