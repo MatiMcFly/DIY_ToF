@@ -7,12 +7,15 @@ JOB := document
 DIAGRAM_SRCS := $(wildcard diagrams/*.drawio)
 DIAGRAM_OBJS := $(patsubst %.drawio,%.pdf,$(DIAGRAM_SRCS))
 
+DIAGRAM_DOC_SRCS := $(wildcard ../documentation/diagrams/*.drawio)
+DIAGRAM_DOC_OBJS := $(patsubst %.drawio,%.pdf,$(DIAGRAM_DOC_SRCS))
+
 ANIMATION_SRCS := $(wildcard animations/*.gif)
 ANIMATION_OBJS := $(patsubst %.gif,%.png,$(ANIMATION_SRCS))
 
 all: build clean_temps
 
-build: diagrams animations tex1 bib tex2
+build: diagrams diagrams_doc animations tex1 bib tex2
 
 tex1:
 	pdflatex -jobname ${JOB} ${FILE} --shell-escape # shell-escape: need for inkscape to convert SVG to PDF
@@ -27,6 +30,11 @@ bib:
 diagrams: $(DIAGRAM_OBJS)
 
 diagrams/%.pdf: diagrams/%.drawio
+	draw.io --crop -x -o $@ $<
+
+diagrams_doc: $(DIAGRAM_DOC_OBJS)
+
+../documentation/diagrams/%.pdf: ../documentation/diagrams/%.drawio
 	draw.io --crop -x -o $@ $<
 
 animations: $(ANIMATION_OBJS)
