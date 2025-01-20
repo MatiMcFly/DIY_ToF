@@ -1,14 +1,14 @@
-In diesem Kapitel wird die Umsetzung der Hardware sowie Firmware des \acrshort{tof}-Demonstrators dokumentiert.
+In diesem Kapitel ist das Umsetzen der Hardware sowie Firmware des \acrshort{tof}-Demonstrators dokumentiert.
 
 Im Anhang~\ref{sec:schematic_apdx} bis und mit~\ref{sec:apdx_photos_demonstrator} sind sämtliche technischen Dokumente
-sowie einige Fotos des fabrizierten Demonstrators abgelegt.
+und einige Fotos des fabrizierten Demonstrators abgelegt.
 
 \subsection{Schaltungen}
-Nachfolgend werden sämtliche Teil-Schaltungen thematisiert, welche für das entwickelten \acrshort{tof}-Evaluationsmodul
+Nachfolgend werden sämtliche Teil-Schaltungen thematisiert, welche für das entwickelte \acrshort{tof}-Evaluationsmodul
 nötig sind. Ein vollständiges Schema kann dem Anhang~\ref{sec:schematic_apdx} entnommen werden. Die kompletten
 Projekt-Dateien sind im elektronischen Anhang dieses Projektes verfügbar.
 
-Designt wurde das Schema mit Hilfe des Open-Source Tools \dq KiCad EDA 8.0\dq\ \cite{kicad2025kicadeda}.
+Gezeichnet wird das Schema mit Hilfe des Open-Source Tools \dq KiCad EDA 8.0\dq\ \cite{kicad2025kicadeda}.
 
 \subsubsection{Selective Input Voltage}
 
@@ -58,16 +58,15 @@ gezeigt.
     \caption{Nucleo Board}\label{fig:nucleo_board}
 \end{figure}
 
-Das NUCLEO Board ist ein sogenanntes \dq Development-Kit\dq, welches eine STM32F042K6 \acrshort{mcu}
-beinhaltet. Am Rand des Boards werden diverse Pins der \acrfull{mcu} via Pin-Header
-einfach zur Verfügung gestellt. Dies erleichtert die Integration in eine eigene Elektronik
-enorm. Programmiert wird die \acrshort{mcu} über eine \acrshort{usb}-Schnittstelle.
+Das NUCLEO-Board ist ein sogenanntes \dq Development-Kit\dq, welches eine STM32F042K6 \acrshort{mcu}
+beinhaltet. Am Rand des Boards werden diverse Pins der \acrfull{mcu} via Pin-Header zur Verfügung gestellt. Dies erleichtert
+die Integration in eine eigene Elektronik enorm. Geflasht wird die \acrshort{mcu} über eine \acrshort{usb}-Schnittstelle.
 
 In diesem Design wird das Entwicklerboard dazu benötigt, die TDC7200 ICs zu
 bedienen. Dazu wird einerseits ein \acrfull{spi} benötigt, um die Mess-ICs zu konfigurieren
-und auch auszulesen (siehe SPI-Bus in der Abbildung). Weiter können auf beiden \acrshort{tdc}s Messungen
-gestartet werden mit den Signalen \lstinline|start_ele|, resp. \lstinline|start_opt|. Für den
-\acrshort{tdc} welcher sich um die elektrischen Signale kümmert kann zudem mit \lstinline|stop_ele| ein
+und auch auszulesen (in der Abbildung als \acrshort{spi}-Bus zusammengefasst). Weiter können auf beiden \acrshort{tdc}s
+Messungen gestartet werden, mit den Signalen \lstinline|start_ele|, respektive \lstinline|start_opt|. Für den
+\acrshort{tdc}, welcher sich um die elektrischen Signale kümmert, kann zudem mit \lstinline|stop_ele| ein
 Stopp-Puls generiert werden.
 Zu guter Letzt ist das NUCLEO dafür zuständig, die Laser-Diode anzusteuern, was mit den Signalen
 \lstinline|LD_pulse| sowie $\overline{\mbox{\lstinline|LD_enable|}}$ geschieht.
@@ -93,7 +92,7 @@ vom TDC7200 auszulesen.
 
 Mittels Schalter \lstinline|SW1| kann das \lstinline|STOP|-Signal wahlweise via \lstinline|stop_ele| oder
 \lstinline|start_ele| generiert werden. Dies bietet zum einen die Möglichkeit, die Zeit zwischen dem Schalten von zwei
-\acrshort{gpio}s zu messen. Zum anderen, kann derselbe \acrshort{gpio}-Pin zum Generieren des \lstinline|START|- und
+\acrshort{gpio}s zu messen. Zum anderen kann derselbe \acrshort{gpio}-Pin zum Generieren des \lstinline|START|- und
 \lstinline|STOP|-Signals verwendet werden, wodurch von der Verzögerungszeit direkt auf die Kabellänge an \lstinline|J3|
 geschlossen werden kann.
 
@@ -109,7 +108,7 @@ Abbildung~\ref{fig:tdc_opt_signal} gezeigt.
 \end{figure}
 
 Die Beschaltung des \acrshort{tdc}s für die optische Messung gestaltet sich praktisch gleich wie beim elektrischen
-Gegenstück. Der Hauptunterschied ist, hier aber, dass dessen \lstinline|STOP|-Signal nicht von der \acrshort{mcu} selber generiert
+Gegenstück. Der Hauptunterschied ist hier aber, dass dessen \lstinline|STOP|-Signal nicht von der \acrshort{mcu} selber generiert
 wird, sondern von einem Komparator, welcher am Ende des optischen Messpfades steht. Da der Komparator mit einem 5~V Pegel
 arbeitet, ist der Spannungsteiler \lstinline|R1| / \lstinline|R2| vonnöten, welcher den 5~V Puls auf die geeigneten 3.3~V
 herunterteilt.
@@ -147,8 +146,9 @@ davon ausgegangen, dass dies in einem ersten Schritt nicht notwendig ist.
 \subsubsection{Laser Driver}\label{sec:schematic_laser_driver}
 
 Die Laser Diode RLD65NZX1 \cite{rohm2019rld65nzx1_datasheet} wird mittels Lasertreiber LMG1025-Q1 \cite{ti2024lmg1025q1_datasheet}
-und NexFET \cite{ti2016csd17578q3a_datasheet} angesteuert. Für die Generierung eines kurzen Pulses (0.5 \dots 100~ns)
-wurde mittels Hochpass und AND-Gatter \cite{diodes202074lvc1g08q_datasheet} implementiert. Siehe dazu Abbildung~\ref{fig:laser_driver}.
+und NexFET \cite{ti2016csd17578q3a_datasheet} angesteuert. Das AND-Gatter \lstinline|IC21| \cite{diodes202074lvc1g08q_datasheet}
+implementiert zusammen mit dem Hochpass (\lstinline|C21|, \lstinline|R21| und \lstinline|RV21|) einen Pulsverkürzer.
+Über diesen Pfad lassen sich für den Laser Pulse im Bereich von 0.5 \dots 100~ns generieren. Siehe dazu Abbildung~\ref{fig:laser_driver}.
 
 Der Widerstand \lstinline|R25| bildet den Vorwiderstand für die Laser-Diode, welcher sich gemäss der Formel~\ref{eq:ld_resistor} berechnet.
 
@@ -157,7 +157,7 @@ Der Widerstand \lstinline|R25| bildet den Vorwiderstand für die Laser-Diode, we
 \end{equation}
 
 Im Schema eingezeichnet ist aktuell ein Platzhalterwert. Während der Inbetriebnahme wird der Widerstand je nach Bedarf
-verändert. Wird dieser beispielsweise verkleinert, so vergrössert sich der Strom durch die Laser-Diode und somit die ausgesandte
+verändert. Wird dieser verkleinert, so vergrössert sich der Strom durch die Laser-Diode und somit die ausgesandte
 Lichtleistung.
 
 \begin{figure}[H]
@@ -169,11 +169,11 @@ Lichtleistung.
 \subsubsection{Photo Receiver}\label{sec:schematic_photo_receiver}
 
 Um den Photostrom der Photodiode NJL6401R \cite{jrc2014njl6401r3_datasheet} zu verstärken und in eine Spannung umzuwandeln,
-wurde mit dem Operationsverstärker OPA858 \cite{ti2018opa858_datasheet} ein Transimpedanzverstärker aufgebaut. Der
+wird mit dem Operationsverstärker OPA858 \cite{ti2018opa858_datasheet} ein Transimpedanzverstärker aufgebaut. Der
 Ausgang des Transimpedanzverstärkers geht auf den Komparator TLV3501 \cite{ti2016tlv3501_datasheet}, um das \lstinline|STOP|-Signal
 für den \acrshort{tdc} zu generieren. Siehe dazu Abbildung~\ref{fig:photo_receiver}.
 
-Der Feedback-Widerstand \lstinline|R26| kann je nach bedarf verändert werden. Wird dieser vergrössert, so steigt auch der
+Der Feedback-Widerstand \lstinline|R26| kann je nach Bedarf verändert werden. Wird dieser vergrössert, so steigt auch der
 negative Puls am Ausgang des \acrshort{tia}s. Mit \lstinline|C20| kann zudem bei Bedarf eine kleine Kapazität hinzugefügt
 werden. Diese hat zum Ziel, ein Schwingen des Verstärkers zu unterdrücken, falls dieser eine Neigung zum Schwingen haben
 sollte.
@@ -191,7 +191,7 @@ wo der Ausgang des Operationsverstärkers aufgrund des gewandelten Dunkelstroms 
 \subsubsection{Decoupling Capacitors}
 
 Die Beschaltung der Entkopplungs-Kondensatoren ist in Abbildung~\ref{fig:decoupling_capacitors} dargestellt. Die
-Kondensatoren für den Operationsverstärker OPA858 und für den Komparator TLV3501 wurden dem Vorschlag im Datenblatt
+Kondensatoren für den Operationsverstärker OPA858 und für den Komparator TLV3501 werden dem Vorschlag im Datenblatt
 entnommen. Zusätzlich wird auch der Gate-Treiber beim Laser-Treiber mit einer zusätzlichen, grösseren Kapazität gestützt,
 was sich positiv auf die Stabilität der Speisung auswirken sollte.
 
@@ -205,8 +205,8 @@ was sich positiv auf die Stabilität der Speisung auswirken sollte.
 
 \subsection{Layout}\label{sec:layout}
 
-Beim Layout wurde ein Augenmerk darauf gelegt, dass die verschiedenen Schaltungen sich auf dem \acrshort{pcb} nicht
-gegenseitig stören. Dafür wurde ein sauberes Speisungskonzept entworfen, welches die Ground- und Power-Planes nach Layer
+Beim Layout wird ein Augenmerk darauf gelegt, dass die verschiedenen Schaltungen sich auf dem \acrshort{pcb} nicht
+gegenseitig stören. Dafür ist ein sauberes Speisungskonzept im Einsatz, welches die Ground- und Power-Planes nach Layer
 definiert. Prinzipiell sind die vier Lagen der Leiterplatte wie folgt aufgetrennt:
 
 \begin{itemize}
@@ -234,8 +234,8 @@ Das komplette Layout kann dem Anhang~\ref{sec:apdx_layout} entnommen werden.
 \pagebreak
 
 \subsection{3D View}
-Die 3D-Ansicht wirkte beim Design des Layouts und vor allem bei der Komponentenplatzierung insofern unterstützend, da hier
-ersichtlich ist, wo sich mechanische und elektronische Komponenten in den Weg kommen könnten. Die Abbildung~\ref{fig:3d_top}
+Beim Design des Layouts und vor allem bei der Komponentenplatzierung kann eine 3D-Ansicht unterstützend wirken. Dies, weil
+ersichtlich gemacht wird, wo sich mechanische und elektronische Komponenten in den Weg kommen könnten. Die Abbildung~\ref{fig:3d_top}
 zeigt eine 3D-Wiedergabe der Aufsicht auf den \acrshort{tof}-Demonstrator.
 
 \begin{figure}[H]
@@ -244,14 +244,14 @@ zeigt eine 3D-Wiedergabe der Aufsicht auf den \acrshort{tof}-Demonstrator.
     \caption{3D View Top}\label{fig:3d_top}
 \end{figure}
 
-Die Linsenhalterungen wurden mit Hilfe von einer Step-Datei, die von QIOPTIQ zur Verfügung gestellt wird in die Ansicht
-integriert \cite{qioptiq2024g061041000_shoppage}. In der Abbildung~\ref{fig:3d_top} sind diese als schwarze Quader mit
+Die Linsenhalterungen sind mit Hilfe von einer Step-Datei, die von QIOPTIQ zur Verfügung gestellt wird in die Ansicht
+integriert \cite{qioptiq2024g061041000_shoppage}. In der Abbildung~\ref{fig:3d_top} werden diese als schwarze Quader mit
 zylinderförmigen Ausschnitten dargestellt. Direkt unter diesen Halterungen dürfen sich keine Komponenten befinden, da
 sich die Halterungen ansonsten nicht montieren lassen.
 
 Bei der Komponentenplatzierung wird zusätzlich auch darauf geachtet, dass sämtliche Testpunkte sowie die Trimmer und
 Schalter zur Konfiguration gut zugänglich sind. Wenn sich diese Komponenten nahe an den optoelektronischen Komponenten
-befinden, wurden sie auf der Unterseite platziert. Somit sind sie auch mit montierter Optik verfügbar.
+befinden, findet sich deren Platzierung auf der Unterseite. Somit sind sie auch mit montierter Optik verfügbar.
 
 \subsection{Fabrikation}
 KiCad 8.0 ermöglicht es, aus dem Layout-Design diverse Fabrikations-Dateien für die verschiedenen Layer zu erzeugen.
@@ -259,13 +259,13 @@ Diese sogenannten Gerber und NC-Drill Dateien können von einem Leiterplattenher
 verwendet werden. Wahlweise kann eine Leiterplatte direkt auch bestückt werden, was jedoch zusätzliche Zeit in der Produktion
 beansprucht.
 
-Da sich die meisten Komponente auf dem \acrshort{pcb} relativ gut bestücken lassen, wurde auf eine automatisierte Bestückung
-verzichtet und die Komponenten wurden von Hand bestückt.
+Da sich die meisten Komponente auf dem \acrshort{pcb} relativ gut bestücken lassen, wird auf eine automatisierte Bestückung
+verzichtet und die Komponenten werden von Hand bestückt.
 
 Die Komponenten werden bei Mouser Electronics bestellt, während die Leiterplatten vom chinesischen Hersteller JLCPCB
 \cite{jlc2025jlcpcb} bezogen werden. Mouser erfüllt die erwartete Lieferzeit von einigen Tagen. Die Bestellung von
-JLCPCB kam mit genau sieben Tagen ebenfalls pünktlich an. Die Ingenieure von JLCPCB mussten keine Rückfragen zum Design
-stellen, was sich wohl positiv auf die Lieferzeit ausgewirkt hat.
+JLCPCB kommt mit genau sieben Tagen ebenfalls pünktlich an. Die Ingenieure von JLCPCB müssen keine Rückfragen zum Design
+stellen, was sich wohl positiv auf die Lieferzeit auswirkt.
 
 Die fertig bestückte Leiterplatte ist in der Abbildung~\ref{fig:photo_demonstrator_front_wo_lens} ersichtlich. Weitere
 Fotografien des \acrshort{tof}-Demonstrators können dem Anhang~\ref{sec:apdx_photos_demonstrator} entnommen werden.
@@ -278,8 +278,8 @@ Fotografien des \acrshort{tof}-Demonstrators können dem Anhang~\ref{sec:apdx_ph
 
 \subsection{Firmware}
 
-Bei der Firmware wird ein Augenmerk darauf gelegt, dass es eine saubere Trennung zwischen Applikation, Treiber und
-Peripherie gibt. Dies sorgt für ein möglichst modulares Design. Die \acrshort{fw}-Hierarchie ist in der
+Bei der Firmware wird darauf geachtet, dass eine saubere Trennung zwischen Applikation, Treiber und
+Peripherie vorhanden ist. Dies sorgt für ein möglichst modulares Design. Die \acrshort{fw}-Hierarchie ist in der
 Abbildung~\ref{fig:hierarchy_firmware} nachvollziehbar.
 
 \begin{figure}[H]
@@ -288,10 +288,10 @@ Abbildung~\ref{fig:hierarchy_firmware} nachvollziehbar.
     \caption{Aufbau Firmware-Projekt}\label{fig:hierarchy_firmware}
 \end{figure}
 
-Die Applikation ist für das Timing der Messungen verantwortlich. Der Code für das auslösen wurde schrittweise ausgebaut,
+Die Applikation ist für das Timing der Messungen verantwortlich. Der Code für das auslösen wird während der Messphase schrittweise ausgebaut,
 erst über die Verwendung einfacher \acrshort{gpio}s, bis hin zu optimalem zeitlichen Verhalten unter Einsatz verschiedener
 Hardware-Timer für das Generieren der Trigger-Pulse für die \acrshort{tdc}s. Im Kapitel~\ref{sec:electrical_measurements}
-sind die einzelnen Erweiterungsschritte detailliert erklärt.
+sind die einzelnen Erweiterungsschritte detaillierer erklärt.
 
 Der \acrshort{tdc}-Treiber stellt Funktionen zur Initialisierung und zum Aktivieren des \acrshort{tdc} zur Verfügung.
 Siehe dazu Code~\ref{code:init_enable_tdc}.
@@ -314,7 +314,7 @@ Der selbst entwickelte Firmware-Treiber für den \acrshort{tdc} befindet im Anha
 
 Mit Hilfe der Entwicklungsumgebung STM32CubeIDE / CubeMX \cite{st2025stm32cubeide} ist es möglich, das Pinout der
 \acrshort{mcu} grafisch zu konfigurieren. Mit Hilfe eines Code-Generators können die Initialisierungs-Routinen für
-sämtliche Peripherien automatisiert erzeugt werden. Somit kann während der Entwicklung der Fokus auf den TDC-Treiber
+sämtliche Peripherien automatisiert erzeugt werden. Somit kann während der Entwicklung der Fokus auf den \acrshort{tdc}-Treiber
 sowie die eigentliche Applikation gelegt werden.
 
 Die Pin-Konfiguration ist in der Abbildung~\ref{fig:pinconfiguration_mcu} ersichtlich.
