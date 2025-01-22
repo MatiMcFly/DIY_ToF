@@ -62,8 +62,8 @@ Das NUCLEO-Board ist ein sogenanntes \dq Development-Kit\dq, welches eine STM32F
 beinhaltet. Am Rand des Boards werden diverse Pins der \acrfull{mcu} via Pin-Header zur Verfügung gestellt. Dies erleichtert
 die Integration in eine eigene Elektronik enorm. Geflasht wird die \acrshort{mcu} über eine \acrshort{usb}-Schnittstelle.
 
-In diesem Design wird das Entwicklerboard dazu benötigt, die TDC7200 ICs zu bedienen. Dazu wird ein \acrfull{spi}
-verwendet, um die Mess-ICs zu konfigurieren und auszulesen (in der Abbildung als \acrshort{spi}-Bus zusammengefasst).
+In diesem Design wird das Entwicklungs-Board dazu benötigt, die TDC7200 \acrshort{ic}s zu bedienen. Dazu wird ein \acrfull{spi}
+verwendet, um die Mess-\acrshort{ic}s zu konfigurieren und auszulesen (in der Abbildung als \acrshort{spi}-Bus zusammengefasst).
 Mit den Signalen \lstinline|start_ele| bzw. \lstinline|start_opt| können auf den \acrshort{tdc}s Messungen gestartet
 werden. Für den \acrshort{tdc}, welcher für die elektrischen Signale zuständig ist, kann zudem mit \lstinline|stop_ele|
 ein Stopp-Puls generiert werden. Zu guter Letzt ist das NUCLEO dafür zuständig, die Laser-Diode anzusteuern, was mit den
