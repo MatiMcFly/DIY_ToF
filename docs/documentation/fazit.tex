@@ -1,6 +1,6 @@
-In diesem Kapitel werden abschliessende Gedanken gesammelt. Es soll dazu dienen einen Ausblick zu geben für mögliche,
-weiterführende Arbeiten. Es sollen auch einige Punkte aufzuzählen, die gut gelaufen sind, aber auch jene bei denen
-Verbesserungspotential identifiziert wurde.
+In diesem Kapitel werden abschliessende Gedanken gesammelt. Es soll dazu dienen, einen Ausblick für mögliche,
+weiterführende Arbeiten zu geben. Es sollen auch einige Punkte aufzuzählen, die gut gelaufen sind, aber auch jene bei
+denen Verbesserungspotential identifiziert wurde.
 
 \subsection{Ausblick}\label{sec:ausblick}
 
@@ -12,14 +12,14 @@ aufgelistet.
     \item Die Optik besser aufeinander abstimmen. Dies würde es zum einen erlauben, über weitere Distanzen hinweg
           Messungen machen zu können. Des weiteren sollte es ebenfalls möglich sein, auch Targets mit nicht oder schwach
           reflektierenden Oberflächen-Beschaffenheiten zu detektieren.
-    \item Für die Messungen mit dem Spiegel würde es Sinn machen mit einer Linse mit grösserer Brennweite (oder mit
+    \item Für die Messungen mit dem Spiegel würde es Sinn machen, es mit einer Linse mit grösserer Brennweite (oder mit
           derselben Linse mit etwas weniger Distanz zum \acrshort{pcb}) auszuprobieren. Dies hätte den Vorteil, dass der
           Spiegel nicht ganz so genau ausgerichtet werden muss. Der Nachteil wäre etwas weniger Photostrom bei parallel
           einfallendem Licht.
     \item Bei der Ansteuerung der \acrshort{tdc}s gibt es Verbesserungspotential. So könnte beispielsweise mit einer
           schneller getakteten \acrshort{mcu} der Jitter bei \lstinline|START|- und \lstinline|STOP|-Signal minimiert
           werden, was zu Messresultaten mit noch weniger Streuung führen wird.
-    \item Eine andere Möglichkeit um die Streuung zu senken, wäre es eine externe Clock-Quelle zu verwenden.
+    \item Eine andere Möglichkeit die Streuung zu senken, wäre eine externe Clock-Quelle zu verwenden.
     \item Eventuell ist es möglich auf die künstlich eingefügte Verzögerungszeit von einem Taktzyklus zu verzichten.
           Dies wäre der Fall, falls im Messpfad bereits genug Verzögerung entsteht, um die minimale Messdauer von 12~ns
           zu überschreiten. Falls nicht, könnte die künstliche Verzögerung anstatt von der \acrshort{mcu} auch mittels
@@ -32,7 +32,7 @@ aufgelistet.
           feinjustiert werden.
     \item Optischer Sendepfad: Es lohnt sich mit höherer Sendeleistung zu experimentieren. Aufgrund der 5~V Speisung
           der Laser-Diode sind wir mit dem $5~\Omega$ Vorwiderstand schon fast am Limit. In einer nächsten
-          \acrshort{pcb}-Version würde es sich lohnen mit einem Schalter die Möglichkeit zur 12~V Speisung vorzusehen,
+          \acrshort{pcb}-Version würde es sich lohnen, mit einem Schalter die Möglichkeit zur 12~V Speisung vorzusehen,
           analog dazu wie dies für die Photodiode bereits umgesetzt ist.
     \item Optische Messungen: Es lohnt sich zu analysieren, weshalb die Messresultate in zwei Clustern (ca. 2~ns
           auseinander liegend) verteilt sind.
@@ -47,15 +47,16 @@ bei welcher die zeitliche Auflösung des Mess-\acrshort{ic}s selber die limitier
 \subsection{Lessons Learned}
 
 Wie die Messresultate und auch der Ausblick bereits vermuten lassen, hätte primär beim Auslegen der Optoelektronik etwas
-mehr Zeit investiert werden können. Die initialen, überschlags-mässigen Schätzungen und Rechnungen bezüglich der gewünschten
-Limitierungen des Systems hätten kritischer hinterfragt werden sollen. Initial war es das Ziel der Studenten, Messungen
-auf Distanzen von bis zu 10~m mit einer Auflösung von etwa 10~cm zu machen. Herausgestellt hat sich am Ende jedoch, dass
-nicht die zeitliche Auflösung, sondern vielmehr die Distanz, resp. die Stärke des Messsignals problematisch ist.
+mehr Zeit investiert werden können. Die initialen, überschlags-mässigen Schätzungen und Rechnungen bezüglich der
+gewünschten Limitierungen des Systems hätten kritischer hinterfragt werden sollen. Initial war das Ziel der Studenten,
+Messungen auf Distanzen von bis zu 10~m mit einer Auflösung von etwa 10~cm zu machen. Herausgestellt hat sich am Ende
+jedoch, dass nicht die zeitliche Auflösung, sondern vielmehr die Distanz, resp. die Stärke des Messsignals problematisch
+ist.
 
 Mit der Fabrikation des \acrshort{tof}-Demonstrators ist das Studenten-Team zufrieden. Beim erneuten Einsatz so kleiner
 SMD-Komponenten, wie beispielsweise beim \acrshort{tia} lohnt es sich jedoch darüber zu sinnieren, ob nicht eine
 maschinelle Bestückung der händischen Bestückung vorzuziehen ist. Durch die manuelle Bestückung wurde wohl keine Zeit
-eingespart, da diese auch einige Stunden über mehrere Abende verteilt in Anspruch nahm.
+eingespart, da dies auch einige Stunden, über mehrere Abende verteilt, in Anspruch nahm.
 
 \subsection{Danksagung}
 

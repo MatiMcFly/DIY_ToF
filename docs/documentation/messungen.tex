@@ -171,7 +171,7 @@ Die arithmetischen Mittelwerte und Standardabweichungen sind in Tabelle \ref{tab
 
 Die Signal-Ausbreitungs-Geschwindigkeit in Kupfer beträgt ca. $\sfrac{2}{3}$ der Lichtgeschwindigkeit
 \cite{firewallcx2025propagationdelay}. Um die Resultate in Tabelle \ref{tab:different_cable_lengths} zu validieren,
-rechnen wir wie in Formel \ref{eq:cable_length} gezeigt, auf die Kabellänge zurück. Die Laufzeit bei 0~m wird dabei
+rechnen wir, wie in Formel \ref{eq:cable_length} gezeigt, auf die Kabellänge zurück. Die Laufzeit bei 0~m wird dabei
 abgezogen, um die Verzögerung zu kompensieren, welche durch das Schalten der \acrshort{gpio}s entsteht.
 
 \begin{equation}\label{eq:cable_length}
@@ -289,7 +289,7 @@ und \lstinline|CLOCK_COUNT1|~=~0.
 
 \subsubsection{Timer Output}\label{sec:timer_output}
 
-In Kapitel~\ref{sec:gpio_toggle_with_hal} und \ref{sec:gpio_toggle_without_hal} wurge gezeigt, dass es einige
+In Kapitel~\ref{sec:gpio_toggle_with_hal} und \ref{sec:gpio_toggle_without_hal} wurde gezeigt, dass es einige
 \acrshort{cpu}-Cycles dauert, um  mittels Software, also mit \acrshort{cpu}-Instruktionen, \acrshort{gpio}s zu toggeln.
 
 Eine schnellere Methode ist es, das Toggeln der \acrshort{gpio}s von der Hardware-Peripherie der \acrshort{mcu}
@@ -494,7 +494,7 @@ In Tabelle~\ref{tab:different_cable_lengths_with_dso_theorie_vs_tdc_ns} ist zu e
 scheint, dass $c$ eine etwas bessere Näherung darstellt.
 
 Falls sich der gemessene Unterschied tatsächliche durch eine falsche Annahme der Ausbreitungs-Geschwindigkeit erklären
-lässt, dann müsst die Ausbreitungs-Geschwindigkeit im gewählten Kabel bei ca. $0.9~c$ liegen. Die zurückrechneten
+lässt, dann müsste die Ausbreitungs-Geschwindigkeit im gewählten Kabel bei ca. $0.9~c$ liegen. Die zurückrechneten
 Resultate dazu sind in Tabelle~\ref{tab:different_cable_lengths_with_dso_theorie09_vs_tdc_m} aufgelistet.
 
 \begin{table}[H]
@@ -634,10 +634,10 @@ dargestellt.
     \caption{Laser-Ausrichtung angepasst}\label{fig:laser_ausrichtung_angepasst}
 \end{figure}
 
-Das \acrshort{dso}-Diagramm einer initialen Spiegel-Messung mit ca. 20~cm Distanz zum Spiegel ist
+Das \acrshort{dso}-Diagramm einer initialen Spiegel-Messung mit ca. 20~cm Distanz zum Spiegel ist in
 Abbildung~\ref{fig:spiegel_initial} dargestellt. Es zeigt den Ausgang des Transimpedanzverstärkers. Zusätzlich, um die
-Verzögerungszeit zu sehen wurden auch die \acrshort{mcu}-Signale \lstinline|start_op| und \lstinline|LD_pulse| sowie das
-Potential am Gate des FET aufgezeichnet.
+Verzögerungszeit zu sehen, wurden auch die \acrshort{mcu}-Signale \lstinline|start_op| und \lstinline|LD_pulse| sowie
+das Spannungspotential am Gate des FET aufgezeichnet.
 
 \begin{figure}[H]
     \centering
@@ -690,8 +690,8 @@ In Formel~\ref{eq:spiegel_unterschiedliche_distanzen} wird der theoretisch zu er
 
 Dieser Unterschied (ca. Faktor 2) könnte mehrere Gründe haben:
 
-1.) Eine mögliche Erklärung ist es, dass die Flanke bei
-grössere Distanz weniger steil wird und dadurch fälschlicherweise eine etwas längere Laufzeit gemessen wird.
+1.) Eine mögliche Erklärung ist, dass die Flanke bei grössere Distanz weniger steil wird und dadurch fälschlicherweise
+eine etwas längere Laufzeit gemessen wird.
 
 2.) Etwas anderes, das in Abbildung~\ref{fig:spiegel_unterschiedliche_distanzen} auffällt, ist ein Time-Drift während
 dem Aufzeichnen der Messdaten bei 24~cm und 29~cm. Abbildung \ref{fig:spiegel_unterschiedliche_distanzen_linear} soll
