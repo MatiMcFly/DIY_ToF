@@ -29,13 +29,14 @@ in Form eines Lichtpulses, wird dann von einem Target reflektiert, welches in ei
 
 Der reflektierte Lichtpuls wird über eine Optik fokussiert und anschliessend von einer Photo-Diode in einen
 Lichtstrom umgewandelt. Dieser Lichtstrom wird von einem Transimpedanzverstärker in eine Spannung umgewandelt. Bevor die
-\acrshort{mcu} diese Spannung auswerten kann, muss diese erst digitalisiert werden. Dies passiert unter Verwendung eines Komparators.
-Dieser kann als 1~bit \acrshort{adc} verstanden werden, da bloss eine Unterscheidung der beiden Zustände \dq Licht\dq\ und
-\dq kein Licht\dq\ notwendig ist. Es ergibt sich also ein Empfangspuls.
+\acrshort{mcu} diese Spannung auswerten kann, muss diese erst digitalisiert werden. Dies passiert unter Verwendung eines
+Komparators. Dieser kann als 1~bit \acrshort{adc} verstanden werden, da bloss eine Unterscheidung der beiden Zustände
+\dq Licht\dq\ und \dq kein Licht\dq\ notwendig ist. Es ergibt sich also ein Empfangspuls.
 
-Wird nun die Zeit gemessen zwischen Startsignal und empfangenem Puls, ist es möglich einen Rückschluss zu ziehen über die variable Strecke
-zwischen Elektronik und Target. Die Zeitmessung unterliegt höchsten Anforderungen. Als Versinnbildlichung: Innert einer Nanosekunde
-kann Licht eine Distanz von 30~cm zurücklegen. Wie eine solche Zeitmessung realisiert werden kann, erklärt das nächste Unterkapitel.
+Wird nun die Zeit zwischen Startsignal und empfangenem Puls gemessen, ist es möglich einen Rückschluss über die variable
+Strecke zwischen Elektronik und Target zu ziehen. Die Zeitmessung unterliegt höchsten Anforderungen. Als
+Versinnbildlichung: Innert einer Nanosekunde legt Licht eine Distanz von 30~cm zurück. Wie eine solche Zeitmessung
+realisiert werden kann, erklärt das nächste Unterkapitel.
 
 \subsection{Zeitmessung}
 
@@ -64,7 +65,7 @@ wird mittels verschiedener Messungen dargestellt, wie nah an die vom TDC7200 vor
 
 \subsection{Vorgehensweise}\label{sec:approach}
 
-Wie bereits erläutert ist davon auszugehen, dass der gesamte Signalpfad eine Ungenauigkeit in die Messung einbringt,
+Wie bereits erläutert, ist davon auszugehen, dass der gesamte Signalpfad eine Ungenauigkeit in die Messung einbringt,
 welche weit ausserhalb derjenigen des TDC7200 liegt. Es bietet sich also an, dass diese im Vorfeld untersucht wird.
 Dazu wird ein zweiter TDC7200 auf der Elektronik eingesetzt, welcher zur Messung eines rein elektrischen Signals
 zuständig ist.

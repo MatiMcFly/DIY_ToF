@@ -62,14 +62,12 @@ Das NUCLEO-Board ist ein sogenanntes \dq Development-Kit\dq, welches eine STM32F
 beinhaltet. Am Rand des Boards werden diverse Pins der \acrfull{mcu} via Pin-Header zur Verfügung gestellt. Dies erleichtert
 die Integration in eine eigene Elektronik enorm. Geflasht wird die \acrshort{mcu} über eine \acrshort{usb}-Schnittstelle.
 
-In diesem Design wird das Entwicklerboard dazu benötigt, die TDC7200 ICs zu
-bedienen. Dazu wird einerseits ein \acrfull{spi} benötigt, um die Mess-ICs zu konfigurieren
-und auch auszulesen (in der Abbildung als \acrshort{spi}-Bus zusammengefasst). Weiter können auf beiden \acrshort{tdc}s
-Messungen gestartet werden, mit den Signalen \lstinline|start_ele|, respektive \lstinline|start_opt|. Für den
-\acrshort{tdc}, welcher sich um die elektrischen Signale kümmert, kann zudem mit \lstinline|stop_ele| ein
-Stopp-Puls generiert werden.
-Zu guter Letzt ist das NUCLEO dafür zuständig, die Laser-Diode anzusteuern, was mit den Signalen
-\lstinline|LD_pulse| sowie $\overline{\mbox{\lstinline|LD_enable|}}$ geschieht.
+In diesem Design wird das Entwicklungs-Board dazu benötigt, die TDC7200 \acrshort{ic}s zu bedienen. Dazu wird ein \acrfull{spi}
+verwendet, um die Mess-\acrshort{ic}s zu konfigurieren und auszulesen (in der Abbildung als \acrshort{spi}-Bus zusammengefasst).
+Mit den Signalen \lstinline|start_ele| bzw. \lstinline|start_opt| können auf den \acrshort{tdc}s Messungen gestartet
+werden. Für den \acrshort{tdc}, welcher für die elektrischen Signale zuständig ist, kann zudem mit \lstinline|stop_ele|
+ein Stopp-Puls generiert werden. Zu guter Letzt ist das NUCLEO dafür zuständig, die Laser-Diode anzusteuern, was mit den
+Signalen \lstinline|LD_pulse| sowie $\overline{\mbox{\lstinline|LD_enable|}}$ geschieht.
 
 \subsubsection{TDC Electrical Signal}
 
@@ -257,8 +255,8 @@ befinden, findet sich deren Platzierung auf der Unterseite. Somit sind sie auch 
 \subsection{Fabrikation}
 KiCad 8.0 ermöglicht es, aus dem Layout-Design diverse Fabrikations-Dateien für die verschiedenen Layer zu erzeugen.
 Diese sogenannten Gerber und NC-Drill Dateien können von einem Leiterplattenhersteller zur Produktion einer Leiterplatte
-verwendet werden. Wahlweise kann eine Leiterplatte direkt auch bestückt werden, was jedoch zusätzliche Zeit in der Produktion
-beansprucht.
+verwendet werden. Wahlweise kann eine Leiterplatte auch direkt bestückt werden, was jedoch zusätzliche Zeit in der
+Produktion beansprucht.
 
 Da sich die meisten Komponente auf dem \acrshort{pcb} relativ gut bestücken lassen, wird auf eine automatisierte Bestückung
 verzichtet und die Komponenten werden von Hand bestückt.
@@ -313,10 +311,10 @@ Formeln. Im Code~\ref{code:start_measurement_tdc} ist der Beispiel-Code für ein
 
 Der selbst entwickelte Firmware-Treiber für den \acrshort{tdc} befindet im Anhang~\ref{sec:tdc_driver}.
 
-Mit Hilfe der Entwicklungsumgebung STM32CubeIDE / CubeMX \cite{st2025stm32cubeide} ist es möglich, das Pinout der
+Mit der Entwicklungsumgebung STM32CubeIDE / CubeMX \cite{st2025stm32cubeide} ist es möglich, das Pinout der
 \acrshort{mcu} grafisch zu konfigurieren. Mit Hilfe eines Code-Generators können die Initialisierungs-Routinen für
-sämtliche Peripherien automatisiert erzeugt werden. Somit kann während der Entwicklung der Fokus auf den \acrshort{tdc}-Treiber
-sowie die eigentliche Applikation gelegt werden.
+sämtliche Peripherien automatisiert erzeugt werden. Somit kann während der Entwicklung der Fokus auf den
+acrshort{tdc}-Treiber sowie die eigentliche Applikation gelegt werden.
 
 Die Pin-Konfiguration ist in der Abbildung~\ref{fig:pinconfiguration_mcu} ersichtlich.
 
