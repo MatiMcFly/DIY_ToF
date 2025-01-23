@@ -373,6 +373,22 @@ leftmargin\romannumeral\@ld\endcsname
     \end{tabular}
 }
 
+\newcommand{\iconelectrical}{
+    \begin{tikzpicture}[remember picture, overlay]
+        \node at ([xshift=0.8cm, yshift=-2.3cm]current page.north west) {
+            \includesvg[width=1cm]{graphics/icon_electrical.svg}
+        };
+    \end{tikzpicture}
+}
+
+\newcommand{\iconoptical}{
+    \begin{tikzpicture}[remember picture, overlay]
+        \node at ([xshift=0.8cm, yshift=-2.3cm]current page.north west) {
+            \includesvg[width=1cm]{graphics/icon_optical.svg}
+        };
+    \end{tikzpicture}
+}
+
 % usable in math mode
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}     % make scalable absolute stripes
 \DeclarePairedDelimiter\parenth{(}{)}           % make scalable parentheses

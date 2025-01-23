@@ -2,12 +2,28 @@
     \begin{figure}
         \includegraphics[width=0.78\textwidth]{../documentation/diagrams/blockdiagram.pdf}
     \end{figure}
+
+    \onslide<2->{
+        \begin{tikzpicture}[remember picture, overlay]
+            \node at ([xshift=8.3cm, yshift=-2.6cm]current page.north west) {
+                \includesvg[width=1cm]{graphics/icon_electrical.svg}
+            };
+        \end{tikzpicture}
+
+        \begin{tikzpicture}[remember picture, overlay]
+            \node at ([xshift=7.9cm, yshift=-6.4cm]current page.north west) {
+                \includesvg[width=1cm]{graphics/icon_optical.svg}
+            };
+        \end{tikzpicture}
+    }
 \end{frame}
 
 \begin{frame}{Konzept: Optischer Teil}
     \begin{figure}
-        \includegraphics[width=\textwidth]{../documentation/diagrams/konzept_signalpfad.pdf}
+        \includegraphics[width=0.9\textwidth]{../documentation/diagrams/konzept_signalpfad.pdf}
     \end{figure}
+
+    \iconoptical
 \end{frame}
 
 \subsection{Schaltungen}
@@ -16,24 +32,32 @@
     \begin{figure}
         \includegraphics[page=2, trim=80 330 750 310, clip, width=0.8\textwidth]{../documentation/attachments/schematic.pdf}
     \end{figure}
+
+    \iconelectrical
 \end{frame}
 
 \begin{frame}{TDC Optisch}
     \begin{figure}
         \includegraphics[page=2, trim=530 330 300 310, clip, width=0.8\textwidth]{../documentation/attachments/schematic.pdf}
     \end{figure}
+
+    \iconoptical
 \end{frame}
 
 \begin{frame}{Laser Treiber}
     \begin{figure}
         \includegraphics[page=3, trim=100 520 550 60, clip, width=0.95\textwidth]{../documentation/attachments/schematic.pdf}
     \end{figure}
+
+    \iconoptical
 \end{frame}
 
 \begin{frame}{Photo Receiver}
     \begin{figure}
         \includegraphics[page=3, trim=100 240 600 340, clip, width=0.9\textwidth]{../documentation/attachments/schematic.pdf}
     \end{figure}
+
+    \iconoptical
 \end{frame}
 
 \begin{frame}{3D View}
