@@ -6,4 +6,4 @@ This project is about creating a DIY (Do-It-Yourself) optical ToF (Time of Fligh
 
 ![](docs/documentation/graphics/cover_picture.png)
 
-It is a project work as part of the CAS (Certificate of Advanced Studiers) in Sensors and Sensor Signal Conditioning, which is held at OST (Ostschweizer Fachhochschule) in Rapperswil CH.
+It is a project work as part of the CAS (Certificate of Advanced Studies) in Sensors and Sensor Signal Conditioning, which is held at OST (Ostschweizer Fachhochschule) in Rapperswil CH.
