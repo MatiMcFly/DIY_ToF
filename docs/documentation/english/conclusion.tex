@@ -1,0 +1,66 @@
+This chapter collects final thoughts. It is intended to provide an outlook for possible
+further work. It also lists some points that went well, but also those where
+potential for improvement was identified.
+
+\subsection{Outlook}\label{sec:ausblick}
+
+In principle, it can be confirmed that a \acrshort{tof} system, as imagined by the students,
+can be developed and operated. In the following, a few possible improvements and further measurements are
+listed.
+
+\begin{enumerate}
+      \item The optics should be better aligned. On the one hand, this would allow measurements to be taken over longer
+            distances measurements over longer distances. Furthermore, it should also be possible to detect targets with
+            non-reflective or weakly reflective surface properties.
+      \item For measurements with the mirror, it would make sense to try a lens with a longer focal length (or the same
+            lens at a slightly shorter distance to the \acrshort{pcb}). This would have the advantage that the mirror
+            would not have to be aligned quite as precisely. The disadvantage would be a slightly lower photocurrent with
+            parallel incident light.
+      \item There is room for improvement in the control of the \acrshort{tdc}s. For example, a faster clocked
+            \acrshort{mcu} could minimize the jitter at \lstinline|START| and \lstinline|STOP| signals, which would lead
+            to measurement results with even less dispersion.
+      \item Another way to minimize dispersion would be to use an external clock source.
+      \item It may be possible to do without the artificially inserted delay of one clock cycle. This would be the case if
+            there is already enough delay in the measurement path to exceed the minimum measurement duration of 12~ns.
+            If not, the artificial delay could also be implemented by means of a separate circuit (with the lowest possible
+            jitter) instead of the \acrshort{mcu} separate circuit (with the lowest possible jitter).
+      \item The Nucleo used offers the option of configuring the rise time of the GPIO. With a faster rise time, it may be
+            possible to improve the measurement results.
+      \item Optical receiving path: Measurements should be carried out with different gains of the \acrshort{tia} to
+            increase the distance with a mirror and to enable measurements against the wall or other targets.
+            In this context, the switching threshold of the comparator should be tested more accurately and fine-tuned.
+      \item Optical transmission path: It is worth experimenting with higher transmission power. Due to the 5~V supply
+            of the laser diode, we are almost at the limit with the $5~\Omega$ series resistor. In a next \acrshort{pcb}
+            version, it would be worthwhile to provide the option of a 12~V supply with a switch, analogous to how this is
+            already implemented for the photodiode.
+      \item Optical measurements: It is worth analyzing why the measurement results are distributed in two clusters
+            (approx. 2 ns apart).
+      \item For further measurements with a mirror, it is worth constructing a precise mechanical test setup.
+            This would allow the mirror to be better fixed and adjusted. It is difficult to achieve reproducible results by hand.
+\end{enumerate}
+
+In conclusion, it is possible to perform a time-of-flight measurement with a TDC7200,
+whereby the temporal resolution of the measurement itself is the limiting factor.
+
+\subsection{Lessons Learned}
+
+As the measurement results and the outlook already suggest, a little more time could have been invested primarily in
+designing the optoelectronics. The initial rough estimates and calculations regarding the desired limitations of the
+system should have been scrutinized more critically. Initially, the students' goal was to to take measurements at
+distances of up to 10 cm with a resolution of about 10 cm. However, it turned out in the end that it was not the
+temporal resolution but rather the distance and the strength of the measurement signal that was problematic.
+
+The student team is satisfied with the fabrication of the \acrshort{tof} demonstrator. When using such small
+SMD components, such as in the \acrshort{tia}, it is worth considering whether
+machine assembly is preferable to manual assembly. Manual assembly probably saved hardly any
+time, since it also took several hours, spread over several evenings.
+
+\subsection{Acknowledgements}
+
+We would like to take this opportunity to express our sincere thanks to the two lecturers, Prof. Guido Keel and Michael
+Lehmann. During the project, they were always on hand to help us with advice and support and followed the project with
+great interest. We would also like to thank them for the optical equipment loaned to us. This enabled us to achieve a
+partial success in the optical measurement.
+
+We would also like to thank Robin Burkard, who carried out a layout review for us. Thanks to his valuable tips, the
+\acrshort{pcb} could be put into operation with as few glitches as possible.

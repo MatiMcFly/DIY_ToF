@@ -1,0 +1,85 @@
+The following subchapters explain the development work necessary for the implementation of the \acrshort{tof} demonstrator.
+In particular, they discuss how the electronics can be constructed. In addition, further
+challenges of such a system and how they can be overcome are shown.
+
+\subsection{Signal chain}
+
+Some explanations can be found below on how the \acrshort{tof} measurement is realized.
+
+A block diagram of the overall project, consisting of the electrical and the optical part, is shown in
+Figure~\ref{fig:blockdiagram}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../diagrams/blockdiagram.pdf}
+    \caption{Block diagram}\label{fig:blockdiagram}
+\end{figure}
+
+A more detailed sketch of the optical signal chain can be seen in the figure~\ref{fig:konzept_signalpfad}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{../diagrams/konzept_signalpfad.pdf}
+    \caption{Conceptual signal path}\label{fig:konzept_signalpfad}
+\end{figure}
+
+An \acrshort{mcu} takes care of starting and evaluating the measurement results. Generating a start signal
+a laser diode is triggered by a laser driver. This pulse, in the form of a light pulse after the laser diode,
+is then reflected by a target that is at a variable distance from the electronics.
+
+The reflected light pulse is focused by an optical system and then converted into a photocurrent. This photocurrent is
+converted into a voltage by a transimpedance amplifier. Before the \acrshort{mcu} can evaluate this voltage, it must
+first be digitized. This is done using a comparator. This can be understood as a 1-bit \acrshort{adc}, since only a
+distinction between the two states \dq light\dq\ and \dq no light\dq\ is necessary. The result is a received pulse.
+
+If the time between the start signal and the received pulse is measured, it is possible to draw a conclusion about the variable
+distance between the electronics and the target. The time measurement is subject to the highest requirements. As
+symbolization: light travels a distance of 30 cm within a nanosecond. The next subchapter explains how such a time measurement
+can be realized.
+
+\subsection{Time measurement}
+
+In order for a direct \acrshort{tof} signal to be evaluated, it requires a high-resolution
+time measurement. The TDC7200 from Texas Instruments offers a good solution for this.
+According to the data sheet \cite{ti2016tdc7200_datasheet}, it can resolve up to 55 ps with a
+standard deviation of 35 ps. If we now insert the speed of light and this minimum
+temporal resolution in a motion equation, the module should achieve the following spatial resolution according to the formula~\ref{eq:tdc_max_resolution}:
+
+\begin{equation}\label{eq:tdc_max_resolution}
+    s_{min} = c \cdot t = 299.8 \cdot 10^6~\frac{m}{s} \cdot 55~ps = 16.5~mm
+\end{equation}
+\myequations{Maximum spatial resolution of the TDC7200}
+
+In principle, the \acrshort{tof} functionality should be put into operation in two steps.
+In the first part, the aim is purely to get to know the TDC7200 \acrshort{ic} better.
+
+Note: In reality, such a resolution will not be achievable. The challenges
+consist, for example, in the fact that various delays are present in the entire signal chain.
+For example, the switching on of the laser diode, the bandwidth of the amplifier and
+the switching time of the comparator play a major role. Also, the jitter of the \acrshort{mcu} when switching on and off
+of their outputs will be important at the minimum resolution. In the chapter~\ref{sec:electrical_measurements},
+various measurements are used to show how close the TDC7200's specified limit is approached.
+
+\subsection{Approach}\label{sec:approach}
+
+As already explained, it can be assumed that the entire signal path introduces an inaccuracy into the measurement that
+is far outside that of the TDC7200. It therefore makes sense to examine this in advance.
+For this purpose, a second TDC7200 is used on the electronics, which is responsible for measuring a purely electrical signal
+.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{../diagrams/konzept_tdc_electrical.pdf}
+    \caption{Concept operation \acrshort{tdc} purely electric}\label{fig:konzept_tdc_electrical}
+\end{figure}
+
+Figure~\ref{fig:konzept_tdc_electrical} shows a possible design for such a circuit. The wavy
+red line symbolizes a variable measurement path. Cables of different lengths can be connected here via a plug.
+This makes it possible to verify the measurement accuracy of the TDC7200 purely electrically.
+
+The following points can be checked with such an extension:
+
+\begin{itemize}
+    \item Measurement of jitter at the \acrshort{mcu} outputs
+    \item Configuration and operation of the TDC7200 (e.g. different measurement modes)
+    \item Evaluation of the TDC7200 results
+\end{itemize}
