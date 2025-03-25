@@ -1,4 +1,28 @@
-\begin{frame}{Blockdiagramm}
+\begin{frame}{TDC}
+    \begin{itemize}
+        \item TDC7200 from TI \cite{ti2025tdc7200}
+              \begin{itemize}
+                  \item Resolution: 55~ps
+                  \item Range 1: 12~ns \dots 500~ns
+                  \item Range 2: 250~ns \dots 8~ms
+                  \item Digital interface: SPI
+              \end{itemize}
+    \end{itemize}
+
+    \begin{columns}
+        \column{0.3\textwidth}
+        \begin{figure}
+            \includegraphics[width=0.8\textwidth]{graphics/tdc7200.png}
+        \end{figure}
+
+        \column{0.7\textwidth}
+        \begin{figure}
+            \includegraphics[width=0.7\textwidth]{graphics/tdc7200_diagram.png}
+        \end{figure}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Block diagram}
     \begin{figure}
         \includegraphics[width=0.78\textwidth]{../../documentation/diagrams/blockdiagram.pdf}
     \end{figure}
