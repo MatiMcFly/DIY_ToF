@@ -1,0 +1,114 @@
+\begin{frame}{TDC}
+    \begin{itemize}
+        \item TDC7200 from TI \cite{ti2025tdc7200}
+              \begin{itemize}
+                  \item Resolution: 55~ps
+                  \item Range 1: 12~ns \dots 500~ns
+                  \item Range 2: 250~ns \dots 8~ms
+                  \item Digital interface: SPI
+              \end{itemize}
+    \end{itemize}
+
+    \begin{columns}
+        \column{0.3\textwidth}
+        \begin{figure}
+            \includegraphics[width=0.8\textwidth]{graphics/tdc7200.png}
+        \end{figure}
+
+        \column{0.7\textwidth}
+        \begin{figure}
+            \includegraphics[width=0.7\textwidth]{graphics/tdc7200_diagram.png}
+        \end{figure}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Block diagram}
+    \begin{figure}
+        \includegraphics[width=0.78\textwidth]{../../documentation/diagrams/blockdiagram.pdf}
+    \end{figure}
+
+    \onslide<2->{
+        \begin{tikzpicture}[remember picture, overlay]
+            \node at ([xshift=8.3cm, yshift=-2.6cm]current page.north west) {
+                \includesvg[width=1cm]{../graphics/icon_electrical.svg}
+            };
+        \end{tikzpicture}
+
+        \begin{tikzpicture}[remember picture, overlay]
+            \node at ([xshift=7.9cm, yshift=-6.4cm]current page.north west) {
+                \includesvg[width=1cm]{../graphics/icon_optical.svg}
+            };
+        \end{tikzpicture}
+    }
+\end{frame}
+
+\begin{frame}{Concept: Optical Part}
+    \begin{figure}
+        \includegraphics[width=0.9\textwidth]{../../documentation/diagrams/konzept_signalpfad.pdf}
+    \end{figure}
+    \iconoptical
+\end{frame}
+
+\subsection{Circuits}
+
+\begin{frame}{TDC Electrical}
+    \begin{figure}
+        \includegraphics[page=2, trim=80 330 750 310, clip, width=0.8\textwidth]{../../documentation/attachments/schematic.pdf}
+    \end{figure}
+    \iconelectrical
+\end{frame}
+
+\begin{frame}{TDC Optical}
+    \begin{figure}
+        \includegraphics[page=2, trim=530 330 300 310, clip, width=0.8\textwidth]{../../documentation/attachments/schematic.pdf}
+    \end{figure}
+    \iconoptical
+\end{frame}
+
+\begin{frame}{Laser Driver}
+    \begin{figure}
+        \includegraphics[page=3, trim=100 520 550 60, clip, width=0.95\textwidth]{../../documentation/attachments/schematic.pdf}
+    \end{figure}
+    \iconoptical
+\end{frame}
+
+\begin{frame}{Photo Receiver}
+    \begin{figure}
+        \includegraphics[page=3, trim=100 240 600 340, clip, width=0.9\textwidth]{../../documentation/attachments/schematic.pdf}
+    \end{figure}
+    \iconoptical
+\end{frame}
+
+\begin{frame}{3D View}
+    \begin{figure}
+        \includegraphics[width=0.4\textwidth]{../../documentation/graphics/3d_top.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Demonstrator}
+    \begin{figure}
+        \includegraphics[width=0.6\textwidth]{../../documentation/graphics/photo_demonstrator_front_wo_lens.jpg}
+    \end{figure}
+\end{frame}
+
+\subsection{Firmware}
+
+\begin{frame}{Firmware block diagram}
+    \begin{figure}
+        \includegraphics[width=0.55\textwidth]{../../documentation/diagrams/Aufbau_FW.pdf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Firmware example: configuration}
+    \only<1>{\codehighlight{C}{1}{99}{../sourcecode/tdc_example_config.c}}
+    \only<2>{\codehighlight{C}{1}{5}{../sourcecode/tdc_example_config.c}}
+    \only<3>{\codehighlight{C}{7}{13}{../sourcecode/tdc_example_config.c}}
+\end{frame}
+
+\begin{frame}{Firmware example: Measurement}
+    \only<1>{\codehighlight{C}{1}{99}{../sourcecode/tdc_example_measure.c}}
+    \only<2>{\codehighlight{C}{4}{4}{../sourcecode/tdc_example_measure.c}}
+    \only<3>{\codehighlight{C}{6}{8}{../sourcecode/tdc_example_measure.c}}
+    \only<4>{\codehighlight{C}{10}{10}{../sourcecode/tdc_example_measure.c}}
+    \only<5>{\codehighlight{C}{12}{12}{../sourcecode/tdc_example_measure.c}}
+\end{frame}
